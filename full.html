@@ -982,17 +982,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   <div class="page-header">
     <div>
       <div class="page-title"><i class="fa-solid fa-magnifying-glass-chart" style="color:var(--primary);margin-right:6px"></i> 数据检索</div>
-      <div class="page-subtitle">在已授权的资产库表或已发布视图中查询记录</div>
+      <div class="page-subtitle">按数据源、库/Schema和表名搜索平台已采集的表或视图</div>
     </div>
   </div>
-  <div class="retrieval-evidence-note"><i class="fa-solid fa-circle-info"></i><span>当前为原型示例数据；真实查询引擎、服务端权限校验、结果存储和导出服务待实现。</span></div>
-  <div class="retrieval-boundary-strip"><span><strong>数据地图</strong> 定位数据对象</span><i class="fa-solid fa-chevron-right"></i><span><strong>数据探查</strong> 查看结构、样例、统计和血缘</span><i class="fa-solid fa-chevron-right"></i><span class="active"><strong>数据检索</strong> 按关键词或条件查询实际记录</span></div>
-  <div class="tabs" id="retrievalTabs">
-    <div class="tab active" data-retrieval-tab="create" onclick="switchDataRetrievalTab('create',this)">新建查询</div>
-    <div class="tab" data-retrieval-tab="history" onclick="switchDataRetrievalTab('history',this)">查询历史</div>
-  </div>
+  <div class="retrieval-evidence-note"><i class="fa-solid fa-circle-info"></i><span>数据检索用于查找平台已采集的数据对象；字段、样例、统计和血缘在数据探查中查看。真实对象目录检索、服务端权限过滤和分页接口待实现。</span></div>
   <div id="retrievalWorkbench"></div>
-  <div id="retrievalHistoryPanel" style="display:none"></div>
 </div>
 <div id="page-products" class="page">
 <div class="page-header"><div><div class="page-title"><i class="fa-solid fa-plug-circle-check" style="color:var(--primary);margin-right:6px"></i> 产品数据服务</div>
@@ -1613,66 +1607,27 @@ mark { background:#fef08a; padding:0 2px; border-radius:2px; }
 .op-reg-alert{margin:8px 0;padding:9px 12px;border:1px solid #fde68a;border-radius:6px;background:#fffbeb;color:#92400e;font-size:12px;line-height:1.5}
 .kb-drop { border:2px dashed var(--gray-200); border-radius:10px; padding:24px; text-align:center; cursor:pointer; }
 .kb-drop:hover { border-color:var(--primary); background:var(--gray-50); }
-/* 数据检索工作台 */
+/* 数据检索：对象目录搜索 */
 #page-retrieval .page-subtitle{margin-top:3px;color:var(--gray-500);font-size:12px}
 .retrieval-evidence-note{display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;padding:10px 12px;border:1px solid #bfdbfe;border-radius:6px;background:#eff6ff;color:#1e40af;font-size:12px;line-height:1.5}
-.retrieval-boundary-strip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;color:var(--gray-500);font-size:12px}
-.retrieval-boundary-strip .active{color:var(--primary)}.retrieval-boundary-strip i{font-size:9px;color:var(--gray-300)}
-.retrieval-locator-panel{margin-bottom:12px}.retrieval-locator-panel .retrieval-locator-grid{grid-template-columns:minmax(190px,1.1fr) minmax(170px,1fr) minmax(240px,1.3fr) auto}.retrieval-locator-panel .retrieval-scope-note{margin-bottom:0}
-.retrieval-workbench-empty{min-height:280px;border:1px solid var(--gray-200);border-radius:6px;background:#fff;box-shadow:var(--shadow-sm)}
-.retrieval-section{padding:16px 0;border-bottom:1px solid var(--gray-200)}
-.retrieval-section:first-child{padding-top:0}.retrieval-section:last-child{border-bottom:0;padding-bottom:0}
-.retrieval-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;color:var(--gray-600);font-size:12px}
-.retrieval-section-head>div{display:flex;align-items:center;gap:8px}.retrieval-section-head strong{font-size:14px;color:var(--gray-900)}
-.retrieval-step{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700}
-.retrieval-required{color:var(--danger)}
-.retrieval-scope-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.retrieval-scope-grid label,.retrieval-name{display:flex;min-width:0;flex-direction:column;gap:6px;color:var(--gray-600);font-size:12px}
-.retrieval-name{margin-bottom:4px}
-.retrieval-scope-grid select,.retrieval-scope-grid input,.retrieval-name input,.retrieval-condition-row select,.retrieval-condition-row input{width:100%;min-width:0;padding:8px 10px;border:1px solid var(--gray-300);border-radius:6px;background:#fff;font-size:13px;color:var(--gray-900)}
-.retrieval-scope-grid select:disabled,.retrieval-condition-row select:disabled,.retrieval-condition-row input:disabled{background:var(--gray-100);color:var(--gray-400)}
-.retrieval-scope-note,.retrieval-group-note{margin-top:8px;color:var(--gray-500);font-size:11px;line-height:1.5}
-.retrieval-mode-control{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.retrieval-mode-control button{display:flex;align-items:center;gap:10px;min-height:58px;padding:10px 12px;border:1px solid var(--gray-200);border-radius:6px;background:#fff;color:var(--gray-600);text-align:left;cursor:pointer}
-.retrieval-mode-control button>i{width:22px;color:var(--gray-400);font-size:15px;text-align:center}.retrieval-mode-control button>span{display:flex;min-width:0;flex-direction:column;gap:3px}.retrieval-mode-control button strong{color:var(--gray-800);font-size:13px}.retrieval-mode-control button small{color:var(--gray-500);font-size:11px}
-.retrieval-mode-control button.active{border-color:var(--primary);background:#eff6ff}.retrieval-mode-control button.active>i,.retrieval-mode-control button.active strong{color:var(--primary)}
-.retrieval-keyword-input{display:flex;flex-direction:column;gap:6px;color:var(--gray-600);font-size:12px}.retrieval-keyword-input input{width:100%;padding:9px 10px;border:1px solid var(--gray-300);border-radius:6px;background:#fff;color:var(--gray-900);font-size:13px}
-.retrieval-keyword-title{margin:12px 0 7px;color:var(--gray-600);font-size:12px}.retrieval-keyword-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.retrieval-keyword-fields label{display:flex;align-items:flex-start;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--gray-200);border-radius:6px}.retrieval-keyword-fields label>span{display:flex;min-width:0;flex-direction:column;gap:2px}.retrieval-keyword-fields strong{font-size:12px}.retrieval-keyword-fields code{overflow-wrap:anywhere;font-size:10px;color:var(--gray-500)}
-.retrieval-empty{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--gray-400);text-align:center}
-.retrieval-empty i{font-size:30px}.retrieval-empty strong{font-size:14px;color:var(--gray-600)}
-.retrieval-field-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.retrieval-field-item{display:flex;align-items:flex-start;gap:8px;min-width:0;padding:10px;border:1px solid var(--gray-200);border-radius:6px}
-.retrieval-field-item>span:nth-child(2){display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}.retrieval-field-item code{overflow-wrap:anywhere}.retrieval-field-item small{color:var(--gray-500);line-height:1.4}
-.retrieval-field-flags{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px}.retrieval-field-flags em{padding:2px 5px;border-radius:4px;background:var(--gray-100);color:var(--gray-600);font-size:10px;font-style:normal}
-.retrieval-condition-group{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;padding:10px;border:1px solid var(--gray-200);border-radius:6px}
-.retrieval-condition-row{display:grid;grid-template-columns:42px minmax(120px,1fr) minmax(110px,.7fr) minmax(180px,1.2fr) 36px;gap:8px;align-items:center}
-.retrieval-condition-logic{color:var(--primary);font-size:12px;font-weight:600}.retrieval-condition-value{display:flex;gap:6px;min-width:0}.retrieval-no-value{color:var(--gray-400);font-size:12px}
-.retrieval-group-or{margin:4px 0 10px;color:var(--primary);font-size:12px;font-weight:600}.retrieval-group-actions{display:flex;gap:6px;flex-wrap:wrap}.retrieval-inline-empty{padding:10px;color:var(--gray-400);font-size:12px;text-align:center}
-.retrieval-estimate-grid,.retrieval-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.retrieval-estimate-grid>div,.retrieval-detail-grid>div{display:flex;min-width:0;flex-direction:column;gap:4px;padding:10px;border-radius:6px;background:var(--gray-50)}
-.retrieval-estimate-grid span,.retrieval-detail-grid span{color:var(--gray-500);font-size:11px}.retrieval-estimate-grid strong,.retrieval-detail-grid strong{overflow-wrap:anywhere}
-.retrieval-estimate-loading{padding:18px;color:var(--primary);text-align:center}.retrieval-risk{margin-top:8px;color:#92400e;font-size:12px}
-.retrieval-actions,.retrieval-pagination{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
-.retrieval-table-wrap{overflow:auto}.retrieval-status{white-space:nowrap;font-weight:600}
-.retrieval-result-workspace{width:100%;min-width:0;border:1px solid var(--gray-200);border-radius:6px;background:#fff;box-shadow:var(--shadow-sm)}
-.retrieval-result-topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:16px 18px;border-bottom:1px solid var(--gray-200)}
-.retrieval-result-heading{display:flex;min-width:0;align-items:flex-start;gap:10px}.retrieval-result-heading>i{margin-top:2px;color:var(--primary);font-size:18px}.retrieval-result-heading>div{display:flex;min-width:0;flex-direction:column;gap:5px}.retrieval-result-heading h3{margin:0;color:var(--gray-900);font-size:16px}.retrieval-result-path{overflow-wrap:anywhere;color:var(--gray-500);font-size:12px}.retrieval-result-heading-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.retrieval-result-id{color:var(--gray-400);font-size:11px}
-.retrieval-result-actions,.retrieval-result-tools{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}.retrieval-result-actions .btn,.retrieval-result-tools .btn{white-space:nowrap}
-.retrieval-result-metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:1px solid var(--gray-200)}.retrieval-result-metrics>div{display:flex;min-width:0;flex-direction:column;gap:4px;padding:12px 16px;border-right:1px solid var(--gray-100)}.retrieval-result-metrics>div:last-child{border-right:0}.retrieval-result-metrics span{color:var(--gray-500);font-size:11px}.retrieval-result-metrics strong{overflow-wrap:anywhere;color:var(--gray-800);font-size:13px}
-.retrieval-condition-summary{margin:14px 18px 0;border:1px solid var(--gray-200);border-radius:6px;background:var(--gray-50)}.retrieval-condition-summary>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;cursor:pointer;list-style:none}.retrieval-condition-summary>summary::-webkit-details-marker{display:none}.retrieval-condition-summary>summary span{color:var(--gray-600);font-size:12px}.retrieval-condition-summary>summary strong{color:var(--gray-800);font-size:12px;text-align:right}.retrieval-condition-summary[open]>summary{border-bottom:1px solid var(--gray-200)}.retrieval-condition-detail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px}.retrieval-condition-detail>div{display:flex;min-width:0;flex-direction:column;gap:4px}.retrieval-condition-detail span{color:var(--gray-500);font-size:11px}.retrieval-condition-detail strong{overflow-wrap:anywhere;color:var(--gray-800);font-size:12px;font-weight:500}
-.retrieval-result-body{padding:16px 18px}.retrieval-result-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.retrieval-result-toolbar>div:first-child{display:flex;min-width:0;flex-direction:column;gap:3px}.retrieval-result-toolbar strong{font-size:14px}.retrieval-result-toolbar span{color:var(--gray-500);font-size:11px}
-.retrieval-more-actions{position:relative}.retrieval-more-actions>summary{list-style:none}.retrieval-more-actions>summary::-webkit-details-marker{display:none}.retrieval-more-actions-menu{position:absolute;z-index:12;top:36px;right:0;display:flex;width:130px;flex-direction:column;padding:5px;border:1px solid var(--gray-200);border-radius:6px;background:#fff;box-shadow:var(--shadow)}.retrieval-more-actions-menu button{display:flex;align-items:center;gap:7px;width:100%;padding:8px;border:0;border-radius:4px;background:#fff;color:var(--gray-700);font-size:12px;text-align:left;cursor:pointer}.retrieval-more-actions-menu button:hover{background:var(--gray-50)}
-.retrieval-result-state{display:flex;min-height:220px;align-items:center;justify-content:center;flex-direction:column;gap:8px;padding:24px;color:var(--gray-500);font-size:12px;text-align:center}.retrieval-result-state i{color:var(--primary);font-size:26px}.retrieval-result-state.is-error i{color:var(--danger)}.retrieval-result-state.is-warning i{color:#d97706}.retrieval-result-state .retrieval-result-actions{justify-content:center;margin-top:6px}
-.retrieval-result-table{min-width:820px}.retrieval-result-table thead th{position:sticky;z-index:2;top:0;background:var(--gray-50)}.retrieval-result-table th code{display:block;margin-top:2px;color:var(--gray-400);font-size:10px;font-weight:400}.retrieval-result-table tbody tr{cursor:pointer}.retrieval-result-table tbody tr:hover td{background:#f8fafc}.retrieval-result-null{color:var(--gray-400);font-family:monospace;font-size:11px}.retrieval-result-missing{color:#92400e;font-size:11px}
-.retrieval-pagination{justify-content:space-between;padding-top:10px;border-top:1px solid var(--gray-100)}.retrieval-pagination>div{display:flex;align-items:center;gap:6px}.retrieval-pagination select{height:30px;padding:0 8px;border:1px solid var(--gray-300);border-radius:5px;background:#fff;color:var(--gray-700);font-size:12px}.retrieval-record-detail{display:grid;grid-template-columns:140px minmax(0,1fr);border-top:1px solid var(--gray-200);border-left:1px solid var(--gray-200)}.retrieval-record-detail dt,.retrieval-record-detail dd{min-width:0;margin:0;padding:10px 12px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);overflow-wrap:anywhere}.retrieval-record-detail dt{background:var(--gray-50);color:var(--gray-600);font-size:12px}.retrieval-record-detail dd{color:var(--gray-900);font-size:13px}.retrieval-column-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.retrieval-column-list label{display:flex;align-items:flex-start;gap:8px;padding:10px;border:1px solid var(--gray-200);border-radius:6px}.retrieval-column-list label>span{display:flex;min-width:0;flex-direction:column;gap:3px}.retrieval-column-list code{overflow-wrap:anywhere;color:var(--gray-500);font-size:10px}
-.retrieval-history-tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid var(--gray-200)}.retrieval-history-tabs button{padding:9px 12px;border:0;background:none;color:var(--gray-500);cursor:pointer}.retrieval-history-tabs button.active{border-bottom:2px solid var(--primary);color:var(--primary)}
-.retrieval-saved-list{display:flex;flex-direction:column;gap:8px}.retrieval-saved-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--gray-200);border-radius:6px;background:#fff}.retrieval-saved-item>div{display:flex;min-width:0;flex-direction:column;gap:4px}.retrieval-saved-item span{color:var(--gray-500);font-size:12px}.retrieval-saved-item .is-invalid{color:var(--danger)}.retrieval-saved-item .is-valid{color:var(--success)}
-.retrieval-snapshot,.retrieval-log-list,.retrieval-failure{padding:10px;border-radius:6px;background:var(--gray-50);font-size:12px;line-height:1.6}.retrieval-log-list>div{display:grid;grid-template-columns:150px 60px 1fr;gap:8px}.retrieval-log-list p{margin:0}.retrieval-failure p{margin:8px 0}
-.retrieval-product-test{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;padding:11px 14px;border:1px solid #93c5fd;border-radius:6px;background:#eff6ff;color:#1e40af;font-size:12px}.retrieval-product-test>div{display:flex;align-items:center;gap:9px}.retrieval-product-test span{display:flex;flex-direction:column;gap:2px}.retrieval-product-test strong{font-size:13px}
-@media(max-width:1100px){.retrieval-field-list{grid-template-columns:1fr}.retrieval-result-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.retrieval-result-metrics>div:nth-child(3){border-right:0}}
-@media(max-width:900px){.retrieval-locator-panel .retrieval-locator-grid{grid-template-columns:1fr}}
-@media(max-width:760px){.retrieval-scope-grid{grid-template-columns:1fr}.retrieval-mode-control,.retrieval-keyword-fields,.retrieval-column-list,.retrieval-condition-detail{grid-template-columns:1fr}.retrieval-condition-row{grid-template-columns:1fr}.retrieval-condition-logic{display:none}.retrieval-estimate-grid,.retrieval-detail-grid{grid-template-columns:1fr}.retrieval-log-list>div{grid-template-columns:1fr}.retrieval-saved-item,.retrieval-product-test,.retrieval-result-topbar,.retrieval-result-toolbar{align-items:flex-start;flex-direction:column}.retrieval-result-actions,.retrieval-result-tools{justify-content:flex-start}.retrieval-result-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.retrieval-result-metrics>div{border-right:1px solid var(--gray-100)}.retrieval-result-metrics>div:nth-child(2n){border-right:0}.retrieval-condition-summary{margin-left:12px;margin-right:12px}.retrieval-result-body{padding-left:12px;padding-right:12px}.retrieval-record-detail{grid-template-columns:1fr}.retrieval-record-detail dt{border-bottom:0}}
-@media(max-width:520px){.retrieval-result-metrics{grid-template-columns:1fr}.retrieval-result-metrics>div{border-right:0}.retrieval-result-actions{width:100%}.retrieval-result-actions .btn{flex:1}}
+.retrieval-object-search-panel{margin-bottom:14px;padding:18px;border:1px solid var(--gray-200);border-radius:6px;background:#fff;box-shadow:var(--shadow-sm)}
+.retrieval-object-search-grid{display:grid;grid-template-columns:minmax(220px,1fr) minmax(200px,.9fr) minmax(240px,1.1fr) auto;gap:14px;align-items:end}
+.retrieval-object-search-grid .dv-field em{margin-left:4px;color:var(--gray-400);font-size:10px;font-style:normal;font-weight:400}
+.retrieval-object-search-action{height:36px;min-width:88px;justify-content:center}
+.retrieval-object-results{width:100%;min-width:0;overflow:hidden;border:1px solid var(--gray-200);border-radius:6px;background:#fff;box-shadow:var(--shadow-sm)}
+.retrieval-object-state{display:flex;min-height:300px;align-items:center;justify-content:center;flex-direction:column;gap:8px;padding:30px;color:var(--gray-500);font-size:12px;text-align:center}
+.retrieval-object-state i{color:var(--gray-300);font-size:30px}.retrieval-object-state strong{color:var(--gray-700);font-size:14px}.retrieval-object-state>div{margin-top:5px}.retrieval-object-state.is-error i{color:var(--danger)}
+.retrieval-object-result-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 16px;border-bottom:1px solid var(--gray-200)}
+.retrieval-object-result-head>div{display:flex;min-width:0;flex-direction:column;gap:3px}.retrieval-object-result-head strong{color:var(--gray-900);font-size:14px}.retrieval-object-result-head span{overflow-wrap:anywhere;color:var(--gray-500);font-size:11px}
+.retrieval-object-table-wrap{width:100%;overflow:auto}.retrieval-object-table{min-width:1320px;margin:0}.retrieval-object-table th{background:var(--gray-50);font-size:12px;white-space:nowrap}.retrieval-object-table td{font-size:12px;vertical-align:top}.retrieval-object-table tbody tr:hover td{background:#f8fafc}
+.retrieval-object-link{padding:0;border:0;background:transparent;color:var(--primary);font-size:12px;font-weight:600;text-align:left;cursor:pointer}.retrieval-object-link:hover{text-decoration:underline}.retrieval-object-path{margin-top:4px;color:var(--gray-400);font-family:monospace;font-size:10px}.retrieval-object-description{max-width:220px;white-space:normal!important;line-height:1.45}.retrieval-object-actions{display:flex;align-items:center;gap:2px;white-space:nowrap}
+.retrieval-object-table th:first-child,.retrieval-object-table td:first-child{position:sticky;left:0;z-index:2;min-width:190px;background:#fff}.retrieval-object-table th:last-child,.retrieval-object-table td:last-child{position:sticky;right:0;z-index:2;min-width:150px;background:#fff;box-shadow:-10px 0 12px -12px rgba(15,23,42,.38)}.retrieval-object-table th:first-child,.retrieval-object-table th:last-child{z-index:3;background:var(--gray-50)}.retrieval-object-table tbody tr:hover td:first-child,.retrieval-object-table tbody tr:hover td:last-child{background:#f8fafc}
+.retrieval-object-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-top:1px solid var(--gray-100);color:var(--gray-500);font-size:11px}.retrieval-object-pagination>div{display:flex;align-items:center;gap:6px}.retrieval-object-pagination select{height:30px;padding:0 8px;border:1px solid var(--gray-300);border-radius:5px;background:#fff;color:var(--gray-700);font-size:12px}
+.retrieval-object-detail-title{display:flex;align-items:center;justify-content:space-between;margin:0 0 9px;color:var(--gray-900);font-size:13px;font-weight:600}.retrieval-object-detail-title:not(:first-child){margin-top:18px}.retrieval-object-detail-title span{color:var(--gray-500);font-size:11px;font-weight:400}
+.retrieval-object-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--gray-200);border-left:1px solid var(--gray-200)}.retrieval-object-detail-grid>div{display:flex;min-width:0;flex-direction:column;gap:4px;padding:10px 12px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200)}.retrieval-object-detail-grid>div.wide{grid-column:span 2}.retrieval-object-detail-grid span{color:var(--gray-500);font-size:11px}.retrieval-object-detail-grid strong{overflow-wrap:anywhere;color:var(--gray-800);font-size:12px;font-weight:500}
+.retrieval-object-field-table{min-width:600px}.retrieval-object-field-table code{color:var(--primary);font-size:11px}.retrieval-object-detail-empty{padding:24px;color:var(--gray-400);text-align:center}.retrieval-object-detail-note{display:flex;align-items:flex-start;gap:7px;margin-top:10px;padding:9px 10px;border-radius:5px;background:var(--gray-50);color:var(--gray-500);font-size:11px;line-height:1.5}.retrieval-object-detail-note i{margin-top:2px;color:var(--primary)}
+@media(max-width:900px){.retrieval-object-search-grid{grid-template-columns:1fr}.retrieval-object-search-action{width:100%}.retrieval-object-result-head,.retrieval-object-pagination{align-items:flex-start;flex-direction:column}.retrieval-object-pagination>div{width:100%;flex-wrap:wrap}.retrieval-object-detail-grid{grid-template-columns:1fr}.retrieval-object-detail-grid>div.wide{grid-column:auto}}
+
 /* 模型字段配置页 */
 .mf-wrap { display:flex; gap:10px; height:calc(100vh - 160px); }
 .mf-tree { width:240px; flex-shrink:0; border:1px solid var(--gray-200); border-radius:8px; padding:8px; overflow-y:auto; }
@@ -3242,7 +3197,7 @@ var PERM_TREE = [
   {mod:'规范管理', points:['元数据规范-查看','元数据规范-新增','元数据规范-编辑','元数据规范-删除','元数据规范-导入','元值域代码-查看','元值域代码-编辑','接入源管理-管理']},
   {mod:'数据管理', points:['数据源-查看','数据源-新建','数据源-编辑','数据源-删除','数据源-测试连接','资产库-查看','资产库-数据探查','资产库-字段溯源','血缘分析-查看']},
   {mod:'加工引擎', points:['算子管理-查看','算子管理-新建','算子管理-编辑','算子管理-启停','算子管理-导入导出','数据流-查看','数据流-新建','数据流-画布编辑','任务管理-查看','任务管理-新建','任务管理-启动取消','Prompt管理-查看','Prompt管理-编辑']},
-  {mod:'数据服务', points:['数据检索-查看页面','数据检索-执行查询','数据检索-查看历史','数据检索-查看日志','数据检索-导出结果','产品数据服务-查看产品','产品数据服务-注册产品','产品数据服务-编辑基本信息','产品数据服务-配置数据范围','产品数据服务-检索测试','产品数据服务-发布上线','产品数据服务-下线产品','产品数据服务-查看接口与凭证','产品数据服务-重置密钥','产品数据服务-查看调用记录']},
+  {mod:'数据服务', points:['数据检索-查看页面','数据检索-检索对象','数据检索-查看对象详情','数据检索-进入数据探查','产品数据服务-查看产品','产品数据服务-注册产品','产品数据服务-编辑基本信息','产品数据服务-配置数据范围','产品数据服务-检索测试','产品数据服务-发布上线','产品数据服务-下线产品','产品数据服务-查看接口与凭证','产品数据服务-重置密钥','产品数据服务-查看调用记录']},
   {mod:'系统管理', points:['用户管理-查看','用户管理-新增编辑','用户管理-停用删除','角色管理-查看','角色管理-编辑授权','操作日志-查看','日志审计-查看']}
 ];
 function openRolePermConfig(role){
@@ -3484,7 +3439,7 @@ var PERM_FUNC_GROUPS=[
   {name:'数据管理',  children:['数据源-查看','数据源-新建','数据源-编辑','数据源-删除','数据源-测试连接','资产库-查看','资产库-数据探查','资产库-字段溯源','血缘分析-查看','资产库-删除']},
   {name:'加工引擎',  children:['算子中心-查看','算子中心-注册自定义算子','算子中心-上架内置算子','数据流设计器-查看','数据流设计器-新建','数据流设计器-编辑','数据流设计器-发布','数据流设计器-删除','任务管理-查看','任务管理-新建','任务管理-执行停止','Prompt管理-查看','Prompt管理-编辑']},
   {name:'数据质量',  children:['质量规则-查看','质量规则-新建规则','质检任务-查看','质检任务-新建执行','质检报告-查看']},
-  {name:'数据服务',  children:['数据检索-查看页面','数据检索-执行查询','数据检索-查看历史','数据检索-查看日志','数据检索-导出结果','产品数据服务-查看产品','产品数据服务-注册产品','产品数据服务-编辑基本信息','产品数据服务-配置数据范围','产品数据服务-检索测试','产品数据服务-发布上线','产品数据服务-下线产品','产品数据服务-查看接口与凭证','产品数据服务-重置密钥','产品数据服务-查看调用记录']},
+  {name:'数据服务',  children:['数据检索-查看页面','数据检索-检索对象','数据检索-查看对象详情','数据检索-进入数据探查','产品数据服务-查看产品','产品数据服务-注册产品','产品数据服务-编辑基本信息','产品数据服务-配置数据范围','产品数据服务-检索测试','产品数据服务-发布上线','产品数据服务-下线产品','产品数据服务-查看接口与凭证','产品数据服务-重置密钥','产品数据服务-查看调用记录']},
   {name:'系统管理',  children:['用户管理-查看','用户管理-添加','用户管理-停用移除','用户管理-分配角色','角色管理-查看','角色管理-新增','角色管理-编辑','角色管理-删除','日志审计-查看']}
 ];
 function permFuncSubgroups(group){
@@ -3949,7 +3904,7 @@ function toggleCheckAll(masterId, slaveClass) {
 }
 
 // ============ RETRIEVAL ============
-// 当前目录与执行结果均为原型示例，不代表已接入真实数据库或服务端权限。
+// 数据检索只搜索已采集的数据对象；真实目录检索、权限过滤和分页由服务端实现。
 var RETRIEVAL_CATALOG=[
   {id:'LIB-RESEARCH',name:'科研主题资产库',evidence:'prototype',schemas:[
     {name:'research',objects:[
@@ -3971,721 +3926,135 @@ var RETRIEVAL_CATALOG=[
         {name:'hba1c',label:'糖化血红蛋白',type:'number',sensitive:false,view:'plain',export:true},
         {name:'measure_time',label:'检测时间',type:'datetime',sensitive:false,view:'plain',export:true}
       ]},
-      {id:'invalid_research_view',name:'invalid_research_view',label:'上游失效关联视图',kind:'view',published:true,authorized:true,queryable:true,schemaSynced:true,upstreamAvailable:false,sourceType:'published-view',updatedAt:'当前未返回',rows:0,fields:[]},
-      {id:'disabled_table',name:'disabled_table',label:'已停用对象',kind:'table',published:true,authorized:true,queryable:false,schemaSynced:true,sourceType:'asset-library',updatedAt:'2026-07-01',rows:0,fields:[]},
-      {id:'unauthorized_table',name:'unauthorized_table',label:'未授权对象',kind:'table',published:true,authorized:false,queryable:true,schemaSynced:true,sourceType:'asset-library',updatedAt:'2026-08-01',rows:0,fields:[]},
-      {id:'unsynced_table',name:'unsynced_table',label:'字段未同步对象',kind:'table',published:true,authorized:true,queryable:true,schemaSynced:false,sourceType:'asset-library',updatedAt:'当前未返回',rows:0,fields:[]}
+      {id:'invalid_research_view',name:'invalid_research_view',label:'上游失效关联视图',kind:'view',published:true,authorized:true,queryable:true,schemaSynced:true,upstreamAvailable:false,sourceType:'published-view',updatedAt:'当前未返回',rows:0,fields:[
+        {name:'subject_id',label:'研究对象标识',type:'text',sensitive:true,view:'masked',export:false}
+      ]}
     ]}
   ]}
 ];
-var RETRIEVAL_TASK_STATES=['待执行','正在预估','排队中','执行中','执行成功','执行失败','取消中','已取消','结果已过期'];
-var RETRIEVAL_FAILURE_TYPES=['权限不足','查询对象不可用','字段已删除或类型发生变化','筛选条件不合法','查询超时','资源不足','查询引擎异常'];
-var RETRIEVAL_EXPORT_STATES=['排队中','导出中','导出成功','导出失败'];
-var RETRIEVAL_TASKS=[];
-var RETRIEVAL_SAVED=[];
-var RETRIEVAL_EXPORTS=[];
-var _retrievalProductTest=null;
-var _retrievalResultView={taskId:'',page:1,pageSize:10,columns:[]};
-var _retrievalColumnDraft=null;
-var _retrievalQuery={
-  tab:'create',historyTab:'runs',mode:'keyword',name:'',libraryId:'',schema:'',objectId:'',selectedFields:[],keyword:'',keywordFields:[],
-  conditionGroups:[{conditions:[]}],sortField:'',sortDirection:'asc',limit:100,
-  estimate:{status:'idle',scan:null,hits:null,duration:null,risk:''},activeTaskId:'',scopeSubmitted:false
-};
 
-function retrievalLibrary(libraryId){
-  return RETRIEVAL_CATALOG.find(function(item){return item.id===libraryId;})||null;
-}
-function retrievalSchema(libraryId,schemaName){
-  var library=retrievalLibrary(libraryId);
-  return library?(library.schemas||[]).find(function(item){return item.name===schemaName;})||null:null;
-}
-function retrievalAvailableObjects(libraryId,schemaName){
-  var schema=retrievalSchema(libraryId,schemaName);
-  return schema?(schema.objects||[]).filter(function(item){
-    return item.authorized===true&&item.queryable===true&&item.schemaSynced===true&&item.published===true&&(item.sourceType==='asset-library'||item.sourceType==='published-view')&&(item.kind!=='view'||item.upstreamAvailable!==false);
-  }):[];
-}
-function retrievalAuthorizedLibraries(){
-  var libraries=RETRIEVAL_CATALOG.filter(function(library){return (library.schemas||[]).some(function(schema){return retrievalAvailableObjects(library.id,schema.name).length>0;});});
-  if(typeof _retrievalProductTest==='undefined'||!_retrievalProductTest)return libraries;
-  var allowed={};(_retrievalProductTest.scope||[]).forEach(function(item){allowed[item.libraryId]=true;});
-  return libraries.filter(function(library){return allowed[library.id]===true;});
-}
-function retrievalObjectsForScope(libraryId,schemaName){
-  var objects=retrievalAvailableObjects(libraryId,schemaName);
-  if(typeof _retrievalProductTest==='undefined'||!_retrievalProductTest)return objects;
-  var allowed={};(_retrievalProductTest.scope||[]).forEach(function(item){if(item.libraryId===libraryId&&item.schema===schemaName)allowed[item.objectId]=true;});
-  return objects.filter(function(object){return allowed[object.id]===true;});
-}
-function retrievalObject(libraryId,schemaName,objectId){
-  return retrievalObjectsForScope(libraryId,schemaName).find(function(item){return item.id===objectId;})||null;
-}
-function retrievalResetDependentState(){
-  _retrievalQuery.selectedFields=[];
-  _retrievalQuery.keyword='';
-  _retrievalQuery.keywordFields=[];
-  _retrievalQuery.conditionGroups=[{conditions:[]}];
-  _retrievalQuery.sortField='';
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  _retrievalQuery.activeTaskId='';
-  _retrievalResultView={taskId:'',page:1,pageSize:10,columns:[]};
-}
-function setRetrievalScope(level,value){
-  if(level==='libraryId'){
-    _retrievalQuery.libraryId=value;_retrievalQuery.schema='';_retrievalQuery.objectId='';
-  }else if(level==='schema'){
-    _retrievalQuery.schema=value;_retrievalQuery.objectId='';
-  }else if(level==='objectId'){
-    _retrievalQuery.objectId=value;
-  }
-  _retrievalQuery.scopeSubmitted=false;
-  retrievalResetDependentState();
-  if(level==='objectId'&&value&&typeof retrievalObject==='function'&&typeof retrievalKeywordEligibleFields==='function'){
-    _retrievalQuery.keywordFields=retrievalKeywordEligibleFields(retrievalObject(_retrievalQuery.libraryId,_retrievalQuery.schema,value)).map(function(field){return field.name;});
-  }
-  if(typeof renderDataRetrieval==='function')renderDataRetrieval();
-  if(level==='objectId'&&value&&typeof showToast==='function')showToast('查询对象已变更，原返回字段、关键词和筛选条件已清空','warning');
-}
-function applyRetrievalScope(){
-  var object=retrievalObject(_retrievalQuery.libraryId,_retrievalQuery.schema,_retrievalQuery.objectId);
-  if(!_retrievalQuery.libraryId||!_retrievalQuery.schema||!_retrievalQuery.objectId||!object){showToast('请按资产库、Schema、表名或视图顺序完成选择','warning');return;}
-  var fields=retrievalVisibleFields(object);
-  _retrievalQuery.selectedFields=fields.map(function(field){return field.name;});
-  _retrievalQuery.keywordFields=retrievalKeywordEligibleFields(object).map(function(field){return field.name;});
-  _retrievalQuery.scopeSubmitted=true;
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  _retrievalQuery.activeTaskId='';
-  _retrievalResultView={taskId:'',page:1,pageSize:10,columns:[]};
-  renderDataRetrieval();showToast('已进入 '+object.label+' 检索工作台','success');
-}
-function retrievalVisibleFields(object){
-  var fields=(object&&object.fields||[]).filter(function(field){return field.view!=='none';});
-  if(typeof _retrievalProductTest==='undefined'||!_retrievalProductTest||!object)return fields;
-  var scope=(_retrievalProductTest.scope||[]).find(function(item){return item.objectId===object.id;});
-  if(!scope)return [];
-  return fields.filter(function(field){return (scope.fields||[]).indexOf(field.name)>-1;});
-}
-function retrievalKeywordEligibleFields(object){
-  return retrievalVisibleFields(object).filter(function(field){return field.type==='text'||field.type==='enum';});
-}
-function retrievalOperatorsForField(field){
-  var sets={
-    text:[['contains','包含'],['eq','等于'],['neq','不等于'],['is_null','为空'],['not_null','不为空']],
-    number:[['eq','等于'],['neq','不等于'],['gt','大于'],['gte','大于等于'],['lt','小于'],['lte','小于等于'],['between','介于'],['is_null','为空'],['not_null','不为空']],
-    date:[['eq','等于'],['before','早于'],['after','晚于'],['between','介于'],['is_null','为空'],['not_null','不为空']],
-    datetime:[['eq','等于'],['before','早于'],['after','晚于'],['between','介于'],['is_null','为空'],['not_null','不为空']],
-    enum:[['eq','等于'],['neq','不等于'],['in','属于'],['not_in','不属于'],['is_null','为空'],['not_null','不为空']],
-    boolean:[['eq','等于']]
-  };
-  return (sets[field&&field.type]||sets.text).map(function(item){return {value:item[0],label:item[1]};});
-}
-function retrievalOperatorNeedsValue(operator){return operator!=='is_null'&&operator!=='not_null';}
-function retrievalField(object,name){return retrievalVisibleFields(object).find(function(field){return field.name===name;})||null;}
-function validateRetrievalQuery(query,object){
-  if(!object)return {valid:false,message:'请选择可查询的数据表或已发布视图'};
-  if(!query.selectedFields||!query.selectedFields.length)return {valid:false,message:'请至少选择一个返回字段'};
-  var visible=retrievalVisibleFields(object).map(function(field){return field.name;});
-  var invalidField=query.selectedFields.find(function(name){return visible.indexOf(name)<0;});
-  if(invalidField)return {valid:false,message:'返回字段已失效：'+invalidField};
-  var mode=query.mode==='keyword'?'keyword':'condition';
-  if(mode==='keyword'){
-    if(String(query.keyword||'').trim()==='')return {valid:false,message:'请输入关键词'};
-    var keywordEligible=retrievalKeywordEligibleFields(object).map(function(field){return field.name;});
-    if(!keywordEligible.length)return {valid:false,message:'当前对象没有可用于关键词检索的文本或枚举字段'};
-    if(!query.keywordFields||!query.keywordFields.length)return {valid:false,message:'请至少选择一个关键词检索字段'};
-    var invalidKeywordField=query.keywordFields.find(function(name){return keywordEligible.indexOf(name)<0;});
-    if(invalidKeywordField)return {valid:false,message:'关键词检索字段已失效：'+invalidKeywordField};
-  }
-  var groups=query.conditionGroups||[{conditions:[]}];
-  var conditionCount=groups.reduce(function(total,group){return total+(group.conditions||[]).length;},0);
-  if(mode==='condition'&&!conditionCount)return {valid:false,message:'请至少添加一个筛选条件'};
-  for(var groupIndex=0;mode==='condition'&&groupIndex<groups.length;groupIndex+=1){
-    for(var conditionIndex=0;conditionIndex<(groups[groupIndex].conditions||[]).length;conditionIndex+=1){
-      var condition=groups[groupIndex].conditions[conditionIndex];
-      var field=(object.fields||[]).find(function(item){return item.name===condition.field&&item.view!=='none';});
-      var position='第 '+(groupIndex+1)+' 组第 '+(conditionIndex+1)+' 条条件';
-      if(!field)return {valid:false,message:position+'的字段不存在或无权限'};
-      if(!condition.operator)return {valid:false,message:'请选择'+position+'的运算符'};
-      var allowed=retrievalOperatorsForField(field).map(function(item){return item.value;});
-      if(allowed.indexOf(condition.operator)<0)return {valid:false,message:position+'的运算符与字段类型不匹配'};
-      if(retrievalOperatorNeedsValue(condition.operator)&&String(condition.value||'').trim()==='')return {valid:false,message:'请填写'+position+'的条件值'};
-      if(condition.operator==='between'&&String(condition.valueTo||'').trim()==='')return {valid:false,message:'请填写'+position+'的结束值'};
-    }
-  }
-  var limit=Number(query.limit||0);
-  if(!Number.isInteger(limit)||limit<1||limit>10000)return {valid:false,message:'返回条数应为 1 至 10000 的整数'};
-  return {valid:true,message:''};
-}
-function retrievalEstimateDisplay(value){return value===null||value===undefined?'当前无法预估':String(value);}
-
-function toggleRetrievalField(name,checked){
-  var selected=_retrievalQuery.selectedFields;
-  if(checked&&selected.indexOf(name)<0)selected.push(name);
-  if(!checked)_retrievalQuery.selectedFields=selected.filter(function(item){return item!==name;});
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-function addRetrievalCondition(groupIndex){
-  var group=_retrievalQuery.conditionGroups[groupIndex];if(!group)return;
-  group.conditions.push({field:'',operator:'',value:'',valueTo:''});
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-function addRetrievalConditionGroup(){
-  _retrievalQuery.conditionGroups.push({conditions:[{field:'',operator:'',value:'',valueTo:''}]});
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-function updateRetrievalCondition(groupIndex,conditionIndex,key,value){
-  var group=_retrievalQuery.conditionGroups[groupIndex];
-  var condition=group&&group.conditions[conditionIndex];if(!condition)return;
-  condition[key]=value;
-  if(key==='field'){condition.operator='';condition.value='';condition.valueTo='';}
-  if(key==='operator'){condition.value='';condition.valueTo='';}
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-function removeRetrievalCondition(groupIndex,conditionIndex){
-  var group=_retrievalQuery.conditionGroups[groupIndex];if(!group)return;
-  group.conditions.splice(conditionIndex,1);
-  if(!group.conditions.length&&_retrievalQuery.conditionGroups.length>1)_retrievalQuery.conditionGroups.splice(groupIndex,1);
-  if(!_retrievalQuery.conditionGroups.length)_retrievalQuery.conditionGroups=[{conditions:[]}];
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-function removeRetrievalConditionGroup(groupIndex){
-  if(_retrievalQuery.conditionGroups.length===1)_retrievalQuery.conditionGroups[0].conditions=[];
-  else _retrievalQuery.conditionGroups.splice(groupIndex,1);
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-
-function setRetrievalOption(key,value){
-  _retrievalQuery[key]=key==='limit'?Number(value):value;
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-function setRetrievalMode(mode){
-  if(mode!=='keyword'&&mode!=='condition')return;
-  _retrievalQuery.mode=mode;
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  _retrievalQuery.activeTaskId='';
-  renderDataRetrieval();
-}
-function setRetrievalKeyword(value){
-  _retrievalQuery.keyword=value;
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-function toggleRetrievalKeywordField(name,checked){
-  var fields=_retrievalQuery.keywordFields||[];
-  if(checked&&fields.indexOf(name)<0)fields.push(name);
-  if(!checked)_retrievalQuery.keywordFields=fields.filter(function(item){return item!==name;});
-  _retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};
-  renderDataRetrieval();
-}
-
+function retrievalLibrary(libraryId){return RETRIEVAL_CATALOG.find(function(item){return item.id===libraryId;})||null;}
+function retrievalSchema(libraryId,schemaName){var library=retrievalLibrary(libraryId);return library?(library.schemas||[]).find(function(item){return item.name===schemaName;})||null:null;}
+function retrievalAvailableObjects(libraryId,schemaName){var schema=retrievalSchema(libraryId,schemaName);return schema?(schema.objects||[]).filter(function(item){return item.authorized===true&&item.queryable===true&&item.schemaSynced===true&&item.published===true&&(item.kind!=='view'||item.upstreamAvailable!==false);}):[];}
 function retrievalClone(value){return JSON.parse(JSON.stringify(value));}
-function retrievalSnapshot(query,object){
-  var productTest=typeof _retrievalProductTest!=='undefined'&&_retrievalProductTest;
-  var snapshot={name:query.name||'',mode:query.mode==='keyword'?'keyword':'condition',libraryId:query.libraryId||'',schema:query.schema||'',objectId:query.objectId||'',selectedFields:retrievalClone(query.selectedFields||[]),keyword:query.keyword||'',keywordFields:retrievalClone(query.keywordFields||[]),conditionGroups:retrievalClone(query.conditionGroups||[{conditions:[]}]),sortField:query.sortField||'',sortDirection:query.sortDirection||'asc',limit:Number(query.limit||100),fieldTypes:{},sourceType:productTest?'产品范围测试':'内部查询',productId:productTest?productTest.productId:'',productName:productTest?productTest.productName:'',productVersion:productTest?productTest.version:''};
-  (object&&object.fields||[]).forEach(function(field){snapshot.fieldTypes[field.name]=field.type;});
-  return snapshot;
-}
 function retrievalNowText(){return new Date().toLocaleString('zh-CN',{hour12:false}).replace(/\//g,'-');}
-function retrievalTaskId(){return 'QRY-'+new Date().getTime()+'-'+String(RETRIEVAL_TASKS.length+1).padStart(3,'0');}
-function createRetrievalTask(query,object,status){
-  var task={
-    id:retrievalTaskId(),name:String(query.name||'').trim()||object.label+' '+retrievalNowText(),objectName:object.label,
-    objectType:object.kind==='view'?'已发布视图':'数据表',dataUpdatedAt:object.updatedAt||'当前未返回',submitter:'当前用户',submittedAt:retrievalNowText(),
-    status:status||'待执行',startedAt:'',finishedAt:'',duration:'-',hitCount:null,returnedCount:0,
-    expiresAt:'-',snapshot:retrievalSnapshot(query,object),permissionCheck:'原型模拟通过，真实服务端校验待实现',
-    logs:[{time:retrievalNowText(),level:'INFO',message:'查询任务已创建（原型演示）'}],result:[],failure:null
-  };
-  RETRIEVAL_TASKS.unshift(task);
-  return task;
-}
-function retrievalTaskCapabilities(task){
-  return {
-    viewResult:task.status==='执行成功',
-    exportResult:task.status==='执行成功',
-    cancel:task.status==='排队中'||task.status==='执行中',
-    restart:['执行成功','执行失败','已取消','结果已过期'].indexOf(task.status)>-1
-  };
-}
-function retrievalTaskById(taskId){return RETRIEVAL_TASKS.find(function(task){return task.id===taskId;})||null;}
-function retrievalConditionMatches(row,condition,object){
-  var field=(object&&object.fields||[]).find(function(item){return item.name===condition.field;});
-  if(!field)return false;
-  var actual=row[condition.field],operator=condition.operator,target=condition.value,targetTo=condition.valueTo;
-  var empty=actual===null||actual===undefined||actual==='';
-  if(operator==='is_null')return empty;
-  if(operator==='not_null')return !empty;
-  if(empty)return false;
-  if(operator==='in'||operator==='not_in'){
-    var values=Array.isArray(target)?target:String(target||'').split(/[,，]/).map(function(item){return item.trim();}).filter(Boolean);
-    var included=values.map(String).indexOf(String(actual))>-1;
-    return operator==='in'?included:!included;
-  }
-  var left=actual,right=target,end=targetTo;
-  if(field.type==='number'){
-    left=Number(actual);right=Number(target);end=Number(targetTo);
-    if(!Number.isFinite(left)||!Number.isFinite(right))return false;
-  }else if(field.type==='date'||field.type==='datetime'){
-    var leftTime=Date.parse(actual),rightTime=Date.parse(target),endTime=Date.parse(targetTo);
-    if(!Number.isNaN(leftTime)&&!Number.isNaN(rightTime)){left=leftTime;right=rightTime;end=endTime;}
-  }else{
-    left=String(actual).toLowerCase();right=String(target||'').toLowerCase();end=String(targetTo||'').toLowerCase();
-  }
-  if(operator==='contains')return String(left).indexOf(String(right))>-1;
-  if(operator==='eq')return left===right;
-  if(operator==='neq')return left!==right;
-  if(operator==='gt'||operator==='after')return left>right;
-  if(operator==='gte')return left>=right;
-  if(operator==='lt'||operator==='before')return left<right;
-  if(operator==='lte')return left<=right;
-  if(operator==='between')return left>=right&&left<=end;
-  return false;
-}
-function retrievalFilterRows(rows,query,object){
-  var output=(rows||[]).slice(),mode=query&&query.mode==='condition'?'condition':'keyword';
-  if(mode==='keyword'){
-    var keyword=String(query&&query.keyword||'').trim().toLowerCase(),fields=query&&query.keywordFields||[];
-    output=output.filter(function(row){return fields.some(function(name){var value=row[name];return value!==null&&value!==undefined&&String(value).toLowerCase().indexOf(keyword)>-1;});});
-  }else{
-    var groups=query&&query.conditionGroups||[];
-    output=output.filter(function(row){return groups.some(function(group){var conditions=group.conditions||[];return conditions.length>0&&conditions.every(function(condition){return retrievalConditionMatches(row,condition,object);});});});
-  }
-  if(query&&query.sortField){
-    var direction=query.sortDirection==='desc'?-1:1,sortField=query.sortField;
-    output.sort(function(a,b){if(a[sortField]===b[sortField])return 0;return (a[sortField]>b[sortField]?1:-1)*direction;});
-  }
-  return output;
-}
-function retrievalSampleRows(object,selectedFields){
-  var examples={
-    patient_base:[{patient_id:'PAT****012',sex:'男',birth_date:'1968-**-**',update_time:'2026-08-01 01:32:10'},{patient_id:'PAT****045',sex:'女',birth_date:'1963-**-**',update_time:'2026-08-01 01:35:22'}],
-    visit_record:[{visit_id:'VIS****821',visit_type:'门诊',admit_time:'2026-07-21 09:10:00',diagnosis_name:'2型糖尿病'},{visit_id:'VIS****966',visit_type:'住院',admit_time:'2026-07-22 14:30:00',diagnosis_name:'高血压'}],
-    diabetes_research_view:[{subject_id:'SUB****031',diagnosis_code:'E11.9',hba1c:7.2,measure_time:'2026-07-16 08:30:00'},{subject_id:'SUB****082',diagnosis_code:'E11.9',hba1c:8.1,measure_time:'2026-07-18 10:05:00'}]
-  };
-  var base=examples[object.id]||[],rows=[];
-  for(var index=0;base.length&&index<base.length*12;index+=1){
-    var sourceRow=base[index%base.length],row={};Object.keys(sourceRow).forEach(function(name){row[name]=sourceRow[name];});
-    Object.keys(row).forEach(function(name){if(/_id$/.test(name)&&typeof row[name]==='string')row[name]=row[name].replace(/\d{3}$/,String(index+1).padStart(3,'0'));});
-    rows.push(row);
-  }
-  var query=arguments.length>2?arguments[2]:null;
-  if(query&&typeof retrievalFilterRows==='function')rows=retrievalFilterRows(rows,query,object).slice(0,Number(query.limit||100));
-  return rows.map(function(row){var output={};selectedFields.forEach(function(name){output[name]=row[name]===undefined?'当前输入未返回':row[name];});return output;});
-}
-function runRetrievalTask(task,object){
-  setTimeout(function(){
-    var current=retrievalTaskById(task.id);if(!current||current.status!=='排队中')return;
-    current.status='执行中';current.startedAt=retrievalNowText();current.logs.push({time:retrievalNowText(),level:'INFO',message:'查询进入执行阶段（原型演示）'});renderDataRetrieval();
-  },600);
-  setTimeout(function(){
-    var current=retrievalTaskById(task.id);if(!current||current.status!=='执行中')return;
-    var allFields=(object.fields||[]).map(function(field){return field.name;}),matched=retrievalFilterRows(retrievalSampleRows(object,allFields),current.snapshot,object),limited=matched.slice(0,Number(current.snapshot.limit||100));
-    current.status='执行成功';current.finishedAt=retrievalNowText();current.duration='1.8 秒';current.expiresAt='2026-08-09 23:59:59';current.hitCount=matched.length;current.result=limited.map(function(row){var output={};(current.snapshot.selectedFields||[]).forEach(function(name){output[name]=row[name]===undefined?'当前输入未返回':row[name];});return output;});current.returnedCount=current.result.length;current.logs.push({time:retrievalNowText(),level:'INFO',message:'查询执行成功，结果已生成（原型演示）'});_retrievalResultView={taskId:current.id,page:1,pageSize:10,columns:(current.snapshot.selectedFields||[]).slice()};renderDataRetrieval();
-  },1800);
-}
-function estimateRetrievalQuery(){
-  var object=retrievalObject(_retrievalQuery.libraryId,_retrievalQuery.schema,_retrievalQuery.objectId);
-  var validation=validateRetrievalQuery(_retrievalQuery,object);
-  if(!validation.valid){showToast(validation.message,'warning');return;}
-  _retrievalQuery.estimate={status:'loading',scan:null,hits:null,duration:null,risk:''};renderDataRetrieval();
-  setTimeout(function(){
-    var scan=object.rows;
-    _retrievalQuery.estimate={status:'success',scan:scan,hits:null,duration:null,risk:scan>500000?'预计扫描范围较大，正式执行可能进入排队状态':'未发现前端可识别的高风险项'};
-    renderDataRetrieval();
-  },500);
-}
-function submitRetrievalQuery(){
-  var object=retrievalObject(_retrievalQuery.libraryId,_retrievalQuery.schema,_retrievalQuery.objectId);
-  var validation=validateRetrievalQuery(_retrievalQuery,object);
-  if(!validation.valid){showToast(validation.message,'warning');return;}
-  if(_retrievalQuery.estimate.status!=='success'){showToast('请先完成查询预估','warning');return;}
-  var task=createRetrievalTask(_retrievalQuery,object,'排队中');
-  _retrievalQuery.activeTaskId=task.id;_retrievalResultView={taskId:task.id,page:1,pageSize:10,columns:(task.snapshot.selectedFields||[]).slice()};renderDataRetrieval();runRetrievalTask(task,object);
-}
-function validateRetrievalSnapshot(snapshot,object){
-  if(!object)return {valid:false,message:'查询对象不可用或当前账号已无权限'};
-  var current={};
-  (object.fields||[]).forEach(function(field){if(field.view!=='none')current[field.name]=field.type;});
-  var queryFields=snapshot.mode==='keyword'?(snapshot.keywordFields||[]):(snapshot.conditionGroups||[]).flatMap(function(group){return (group.conditions||[]).map(function(condition){return condition.field;});});
-  var names=(snapshot.selectedFields||[]).concat(queryFields).filter(Boolean);
-  var deleted=names.find(function(name){return !current[name];});
-  if(deleted)return {valid:false,message:'字段已删除或当前无权限：'+deleted};
-  var changed=names.find(function(name){return snapshot.fieldTypes&&snapshot.fieldTypes[name]&&snapshot.fieldTypes[name]!==current[name];});
-  if(changed)return {valid:false,message:'字段类型发生变化：'+changed};
-  return {valid:true,message:''};
-}
-function saveRetrievalDefinition(query,object,savedAt){
-  var item={id:'SAVED-'+new Date().getTime()+'-'+String(RETRIEVAL_SAVED.length+1).padStart(3,'0'),name:String(query.name||'').trim()||'未命名查询',savedAt:savedAt||retrievalNowText(),snapshot:retrievalSnapshot(query,object)};
-  RETRIEVAL_SAVED.unshift(item);return item;
-}
-function saveCurrentRetrieval(){
-  var object=retrievalObject(_retrievalQuery.libraryId,_retrievalQuery.schema,_retrievalQuery.objectId);
-  var validation=validateRetrievalQuery(_retrievalQuery,object);
-  if(!validation.valid){showToast(validation.message,'warning');return;}
-  saveRetrievalDefinition(_retrievalQuery,object,retrievalNowText());
-  showToast('查询条件已保存，尚未执行','success');
-}
-function loadSavedRetrieval(savedId){
-  var saved=RETRIEVAL_SAVED.find(function(item){return item.id===savedId;});if(!saved)return;
-  var object=retrievalObject(saved.snapshot.libraryId,saved.snapshot.schema,saved.snapshot.objectId);
-  var validity=validateRetrievalSnapshot(saved.snapshot,object);
-  if(!validity.valid){showToast('无法载入：'+validity.message,'warning');return;}
-  _retrievalQuery=retrievalClone(saved.snapshot);delete _retrievalQuery.fieldTypes;
-  _retrievalQuery.tab='create';_retrievalQuery.historyTab='runs';_retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};_retrievalQuery.activeTaskId='';_retrievalQuery.scopeSubmitted=true;
-  switchDataRetrievalTab('create',document.querySelector('[data-retrieval-tab="create"]'));
-  showToast('已载入保存的查询，执行前将重新校验对象、字段和权限','success');
-}
-function setRetrievalHistoryTab(tab){_retrievalQuery.historyTab=tab;renderRetrievalHistory();}
-function retrievalRunHistoryHTML(){
-  if(!RETRIEVAL_TASKS.length)return '<div class="retrieval-empty"><i class="fa-solid fa-clock-rotate-left"></i><strong>暂无执行记录</strong><span>提交查询后将在这里保留独立执行记录</span></div>';
-  return '<div class="retrieval-table-wrap"><table class="data-table"><thead><tr><th>查询名称</th><th>查询来源</th><th>检索方式</th><th>查询对象</th><th>提交人</th><th>提交时间</th><th>执行状态</th><th>命中记录数</th><th>执行耗时</th><th>结果有效期</th><th>操作</th></tr></thead><tbody>'+RETRIEVAL_TASKS.map(function(task){return '<tr><td><strong>'+esc(task.name)+'</strong><br><code>'+esc(task.id)+'</code></td><td><span class="tag '+(task.snapshot&&task.snapshot.sourceType==='产品范围测试'?'tag-blue':'tag-gray')+'">'+esc(task.snapshot&&task.snapshot.sourceType||'内部查询')+'</span>'+(task.snapshot&&task.snapshot.productName?'<br><small>'+esc(task.snapshot.productName)+'</small>':'')+'</td><td>'+((task.snapshot&&task.snapshot.mode)==='keyword'?'关键词检索':'条件检索')+'</td><td>'+esc(task.objectName)+'</td><td>'+esc(task.submitter)+'</td><td>'+esc(task.submittedAt)+'</td><td><span class="retrieval-status">'+esc(task.status)+'</span></td><td>'+retrievalEstimateDisplay(task.hitCount)+'</td><td>'+esc(task.duration)+'</td><td>'+esc(task.expiresAt)+'</td><td><button class="btn btn-ghost btn-sm" onclick="openRetrievalTaskDetail(\''+esc(task.id)+'\')">查看详情</button></td></tr>';}).join('')+'</tbody></table></div>';
-}
-function retrievalHistoryHTML(){return retrievalRunHistoryHTML();}
-function retrievalSavedHistoryHTML(){
-  if(!RETRIEVAL_SAVED.length)return '<div class="retrieval-empty"><i class="fa-regular fa-bookmark"></i><strong>暂无已保存查询</strong><span>保存的条件不包含结果，也不代表已经执行</span></div>';
-  return '<div class="retrieval-saved-list">'+RETRIEVAL_SAVED.map(function(item){var object=retrievalObject(item.snapshot.libraryId,item.snapshot.schema,item.snapshot.objectId),validity=validateRetrievalSnapshot(item.snapshot,object);return '<div class="retrieval-saved-item"><div><strong>'+esc(item.name)+'</strong><span>'+esc(item.savedAt)+' · '+(item.snapshot.mode==='keyword'?'关键词检索':'条件检索')+' · '+esc(item.snapshot.schema+'.'+item.snapshot.objectId)+'</span><span class="'+(validity.valid?'is-valid':'is-invalid')+'">'+(validity.valid?'当前可用':esc(validity.message))+'</span></div><button class="btn btn-outline btn-sm" '+(validity.valid?'':'disabled')+' onclick="loadSavedRetrieval(\''+esc(item.id)+'\')">载入并校验</button></div>';}).join('')+'</div>';
-}
-function showRetrievalTaskResult(taskId){
-  var task=retrievalTaskById(taskId);if(!task)return;
-  if(!retrievalTaskCapabilities(task).viewResult){showToast('当前任务没有可查看的有效结果','warning');return;}
-  _retrievalQuery=retrievalClone(task.snapshot);delete _retrievalQuery.fieldTypes;
-  _retrievalQuery.activeTaskId=task.id;_retrievalQuery.tab='create';_retrievalQuery.historyTab='runs';_retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};_retrievalQuery.scopeSubmitted=true;
-  closeModal();switchDataRetrievalTab('create',document.querySelector('[data-retrieval-tab="create"]'));
-}
-function retrievalTaskDetailActionsHTML(task){
-  var capabilities=retrievalTaskCapabilities(task);
-  var buttons=['<button class="btn btn-outline" onclick="closeModal()">关闭</button>'];
-  if(capabilities.cancel)buttons.push('<button class="btn btn-outline" onclick="closeModal();cancelRetrievalTask(\''+esc(task.id)+'\')">取消</button>');
-  if(task.status==='执行失败')buttons.push('<button class="btn btn-outline" onclick="openRetrievalFailureDetail(\''+esc(task.id)+'\')">查看失败详情</button>');
-  if(task.status==='执行失败')buttons.push('<button class="btn btn-outline" onclick="refreshRetrievalLogs(\''+esc(task.id)+'\')">刷新日志</button>');
-  if(['执行失败','已取消','结果已过期'].indexOf(task.status)>-1)buttons.push('<button class="btn btn-outline" onclick="editRetrievalTask(\''+esc(task.id)+'\')">'+(task.snapshot&&task.snapshot.mode==='keyword'?'修改关键词':'修改条件')+'</button>');
-  if(capabilities.viewResult)buttons.push('<button class="btn btn-outline" onclick="showRetrievalTaskResult(\''+esc(task.id)+'\')">查看结果</button>');
-  if(capabilities.exportResult)buttons.push('<button class="btn btn-outline" onclick="submitRetrievalExport(\''+esc(task.id)+'\')">提交导出</button>');
-  if(capabilities.restart)buttons.push('<button class="btn btn-primary" onclick="restartRetrievalTask(\''+esc(task.id)+'\')">从头重新执行</button>');
-  return buttons.join('');
-}
-function openRetrievalTaskDetail(taskId){
-  var task=retrievalTaskById(taskId);if(!task){showToast('查询记录不存在或已无查看权限','warning');return;}
-  var snapshot=task.snapshot||{};
-  var conditionText=(snapshot.conditionGroups||[]).map(function(group){return (group.conditions||[]).map(function(item){return item.field+' '+item.operator+' '+(item.value||'');}).join(' 且 ');}).filter(Boolean).join(' 或 ')||'未配置筛选条件';
-  var retrievalDetail=snapshot.mode==='keyword'?'<h4>关键词快照</h4><div class="retrieval-snapshot">关键词：'+esc(snapshot.keyword||'当前输入未返回')+'<br>检索字段：'+esc((snapshot.keywordFields||[]).join('、')||'当前输入未返回')+'</div>':'<h4>查询条件快照</h4><div class="retrieval-snapshot">'+esc(conditionText)+'</div>';
-  var exports=RETRIEVAL_EXPORTS.filter(function(item){return item.queryTaskId===task.id;});
-  var body='<div class="retrieval-detail-grid"><div><span>任务 ID</span><strong>'+esc(task.id)+'</strong></div><div><span>执行状态</span><strong>'+esc(task.status)+'</strong></div></div>'+
-    '<h4>数据范围快照</h4><div class="retrieval-snapshot">'+esc(snapshot.libraryId+' / '+snapshot.schema+' / '+snapshot.objectId)+'</div>'+
-    '<h4>检索方式</h4><div class="retrieval-snapshot">'+(snapshot.mode==='keyword'?'关键词检索':'条件检索')+'</div>'+
-    '<h4>返回字段快照</h4><div class="retrieval-snapshot">'+esc((snapshot.selectedFields||[]).join('、')||'当前输入未返回')+'</div>'+retrievalDetail+
-    '<h4>权限校验结果</h4><div class="retrieval-snapshot">'+esc(task.permissionCheck||'当前输入未返回')+'</div>'+
-    '<h4>查询日志</h4><div class="retrieval-log-list">'+(task.logs||[]).map(function(log){return '<div><code>'+esc(log.time)+'</code><span>'+esc(log.level)+'</span><p>'+esc(log.message||'当前输入未返回')+'</p></div>';}).join('')+'</div>'+
-    '<h4>导出记录</h4><div class="retrieval-snapshot">'+(exports.length?exports.map(function(item){return esc(item.id+' · '+item.status+' · '+item.message);}).join('<br>'):'暂无导出记录')+'</div>';
-  buildModal('查询详情',body,retrievalTaskDetailActionsHTML(task),'min(860px,90vw)');
-}
-function cancelRetrievalTask(taskId){
-  var task=retrievalTaskById(taskId);if(!task||!retrievalTaskCapabilities(task).cancel)return;
-  task.status='取消中';task.logs.push({time:retrievalNowText(),level:'WARN',message:'已提交取消请求（原型演示）'});renderDataRetrieval();
-  setTimeout(function(){finishRetrievalCancellation(taskId);},500);
-}
-function finishRetrievalCancellation(taskId){
-  var task=retrievalTaskById(taskId);if(!task||(task.status!=='取消中'&&task.status!=='执行中'))return;
-  task.status='已取消';task.finishedAt=retrievalNowText();task.result=[];task.returnedCount=0;task.hitCount=null;task.logs.push({time:retrievalNowText(),level:'INFO',message:'查询任务已取消，未生成可用结果'});renderDataRetrieval();
-}
-function refreshRetrievalLogs(taskId){
-  var task=retrievalTaskById(taskId);if(!task)return;
-  task.logs.push({time:retrievalNowText(),level:'INFO',message:'已刷新当前原型日志；后端实时日志接口待实现'});openRetrievalTaskDetail(taskId);
-}
-function editRetrievalTask(taskId){
-  var task=retrievalTaskById(taskId);if(!task)return;
-  _retrievalQuery=retrievalClone(task.snapshot);delete _retrievalQuery.fieldTypes;
-  _retrievalQuery.tab='create';_retrievalQuery.historyTab='runs';_retrievalQuery.activeTaskId='';_retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};_retrievalQuery.scopeSubmitted=true;
-  closeModal();switchDataRetrievalTab('create',document.querySelector('[data-retrieval-tab="create"]'));showToast('已载入历史条件；修改后需重新预估并从头执行','success');
-}
-function restartRetrievalTask(taskId){
-  var oldTask=retrievalTaskById(taskId);if(!oldTask)return;
-  var snapshot=retrievalClone(oldTask.snapshot);
-  var object=retrievalObject(snapshot.libraryId,snapshot.schema,snapshot.objectId);
-  var snapshotValidity=validateRetrievalSnapshot(snapshot,object);
-  if(!snapshotValidity.valid){showToast('无法重新执行：'+snapshotValidity.message,'warning');return;}
-  var validation=validateRetrievalQuery(snapshot,object);
-  if(!validation.valid){showToast('无法重新执行：'+validation.message,'warning');return;}
-  var newTask=createRetrievalTask(snapshot,object,'排队中');
-  newTask.logs.push({time:retrievalNowText(),level:'INFO',message:'由 '+oldTask.id+' 从头创建新执行记录'});
-  _retrievalQuery=retrievalClone(snapshot);delete _retrievalQuery.fieldTypes;
-  closeModal();_retrievalQuery.activeTaskId=newTask.id;_retrievalQuery.tab='create';_retrievalQuery.historyTab='runs';_retrievalQuery.estimate={status:'idle',scan:null,hits:null,duration:null,risk:''};_retrievalQuery.scopeSubmitted=true;_retrievalResultView={taskId:newTask.id,page:1,pageSize:10,columns:(newTask.snapshot.selectedFields||[]).slice()};renderDataRetrieval();runRetrievalTask(newTask,object);showToast('已创建新的查询任务，原历史记录保持不变','success');
-}
-function openRetrievalFailureDetail(taskId){
-  var task=retrievalTaskById(taskId);if(!task)return;
-  var failure=task.failure||{type:'查询引擎异常',message:'当前执行引擎未返回具体错误信息',recoverable:'修改条件后从头重新执行'};
-  buildModal('查询失败详情','<div class="retrieval-failure"><strong>'+esc(failure.type)+'</strong><p>'+esc(failure.message)+'</p><span>恢复建议：'+esc(failure.recoverable)+'</span></div>','<button class="btn btn-outline" onclick="closeModal()">关闭</button>','520px');
-}
-function createRetrievalExportTask(queryTask,fields){
-  var item={id:'EXP-'+new Date().getTime()+'-'+String(RETRIEVAL_EXPORTS.length+1).padStart(3,'0'),queryTaskId:queryTask.id,fields:fields.slice(),createdAt:retrievalNowText(),status:'排队中',message:'真实导出服务待实现'};
-  RETRIEVAL_EXPORTS.unshift(item);return item;
-}
-function runRetrievalExportTask(exportTask){
-  setTimeout(function(){if(exportTask.status!=='排队中')return;exportTask.status='导出中';openRetrievalTaskDetail(exportTask.queryTaskId);},500);
-  setTimeout(function(){if(exportTask.status!=='导出中')return;exportTask.status='导出成功';exportTask.message='原型未生成真实文件；导出服务待实现';openRetrievalTaskDetail(exportTask.queryTaskId);},1200);
-}
-function submitRetrievalExport(taskId){
-  var task=retrievalTaskById(taskId);if(!task||task.status!=='执行成功'){showToast('当前查询结果不可导出','warning');return;}
-  var object=retrievalObject(task.snapshot.libraryId,task.snapshot.schema,task.snapshot.objectId);
-  if(!object){showToast('查询对象不可用或当前账号已无权限','warning');return;}
-  var exportable=retrievalVisibleFields(object).filter(function(field){return field.export===true;}).map(function(field){return field.name;});
-  var selected=(task.snapshot.selectedFields||[]).filter(function(name){return exportable.indexOf(name)>-1;});
-  if(!selected.length){showToast('所选返回字段当前均无导出权限','warning');return;}
-  var exportTask=createRetrievalExportTask(task,selected);
-  task.logs.push({time:retrievalNowText(),level:'INFO',message:'已创建独立导出任务 '+exportTask.id});
-  runRetrievalExportTask(exportTask);showToast('导出任务已创建；查询状态保持执行成功','success');openRetrievalTaskDetail(taskId);
-}
-function simulateRetrievalFailure(taskId,type){
-  var task=retrievalTaskById(taskId);if(!task||task.status!=='执行中')return;
-  var failureType=RETRIEVAL_FAILURE_TYPES.indexOf(type)>-1?type:'查询引擎异常';
-  var messages={'权限不足':'当前账号的对象或字段权限已发生变化','查询对象不可用':'查询对象已停用或依赖的上游对象失效','字段已删除或类型发生变化':'查询快照中的字段与当前字段结构不一致','筛选条件不合法':'筛选条件未通过执行引擎校验','查询超时':'查询超过原型演示时限','资源不足':'当前执行队列资源不足','查询引擎异常':'当前执行引擎返回异常'};
-  task.status='执行失败';task.finishedAt=retrievalNowText();task.failure={type:failureType,message:messages[failureType],recoverable:'修改条件或稍后从头重新执行'};task.result=[];task.returnedCount=0;task.logs.push({time:retrievalNowText(),level:'ERROR',message:task.failure.message+'（原型演示）'});renderDataRetrieval();
-}
-function expireRetrievalResult(taskId){
-  var task=retrievalTaskById(taskId);if(!task||task.status!=='执行成功')return;
-  task.status='结果已过期';task.result=[];task.returnedCount=0;task.logs.push({time:retrievalNowText(),level:'WARN',message:'查询结果已过期，条件快照继续保留（原型演示）'});renderDataRetrieval();
-}
 
 function openProductRetrievalTest(productId,versionSource){
   var product=productDataServiceById(productId),scope=productScopeForTest(product,versionSource),validity=productScopeValidity(scope);
   if(!product){showToast('产品数据服务不存在','warning');return;}
-  if(!scope.length){showToast('产品尚未配置数据范围，不能进入检索测试','warning');return;}
-  if(!validity.valid){showToast('产品数据范围存在失效项，不能进入检索测试：'+validity.invalid.join('、'),'warning');return;}
-  _retrievalProductTest={productTest:true,productId:product.id,productName:product.name,version:versionSource==='draft'&&product.draftVersion?product.draftVersion.version:product.currentVersion,versionSource:versionSource,scope:retrievalClone(scope)};
-  var first=scope[0];
-  _retrievalQuery={tab:'create',historyTab:'runs',mode:'keyword',name:product.name+' · 范围测试',libraryId:first.libraryId,schema:first.schema,objectId:first.objectId,selectedFields:[],keyword:'',keywordFields:[],conditionGroups:[{conditions:[]}],sortField:'',sortDirection:'asc',limit:100,estimate:{status:'idle',scan:null,hits:null,duration:null,risk:''},activeTaskId:'',scopeSubmitted:true};
-  var productObject=retrievalObject(first.libraryId,first.schema,first.objectId);
-  _retrievalQuery.selectedFields=retrievalVisibleFields(productObject).map(function(field){return field.name;});
-  _retrievalQuery.keywordFields=retrievalKeywordEligibleFields(productObject).map(function(field){return field.name;});
-  _retrievalResultView={taskId:'',page:1,pageSize:10,columns:[]};
-  navigateTo('数据检索');renderDataRetrieval();showToast('已进入产品授权范围测试；不能扩大产品授权范围','success');
-}
-function exitProductRetrievalTest(){
-  _retrievalProductTest=null;
-  _retrievalQuery={tab:'create',historyTab:'runs',mode:'keyword',name:'',libraryId:'',schema:'',objectId:'',selectedFields:[],keyword:'',keywordFields:[],conditionGroups:[{conditions:[]}],sortField:'',sortDirection:'asc',limit:100,estimate:{status:'idle',scan:null,hits:null,duration:null,risk:''},activeTaskId:'',scopeSubmitted:false};
-  _retrievalResultView={taskId:'',page:1,pageSize:10,columns:[]};
-  renderDataRetrieval();showToast('已退出产品测试，恢复当前用户的资产库查询范围','success');
+  if(!scope.length){showToast('产品尚未配置数据范围，不能进行范围测试','warning');return;}
+  var version=versionSource==='draft'&&product.draftVersion?product.draftVersion.version:product.currentVersion;
+  var rows=scope.map(function(item){
+    var object=productCatalogObject(item.libraryId,item.schema,item.objectId),itemValidity=productScopeValidity([item]);
+    return '<tr><td><strong>'+esc(object?object.label:item.objectId)+'</strong><br><code>'+esc(item.schema+'.'+item.objectId)+'</code></td><td>'+Number((item.fields||[]).length)+' 个字段</td><td><span class="tag '+(itemValidity.valid?'tag-green':'tag-red')+'">'+(itemValidity.valid?'可用':'存在失效项')+'</span></td><td>'+esc(itemValidity.valid?'对象和字段范围校验通过':itemValidity.invalid.join('、'))+'</td></tr>';
+  }).join('');
+  var result='<div class="product-version-banner"><span>'+esc(product.name)+' · '+esc(version||'当前未返回')+'</span><span>产品范围测试结果</span></div><div class="product-prototype-note"><i class="fa-solid fa-circle-info"></i> 当前只校验产品配置中的对象和字段范围；真实接口调用、凭证鉴权和数据返回待服务端实现。</div><div class="product-service-table"><table class="data-table"><thead><tr><th>数据对象</th><th>授权字段</th><th>校验结果</th><th>说明</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  buildModal('产品授权范围测试',result,'<button class="btn btn-primary" onclick="closeModal()">关闭</button>','760px');
+  showToast(validity.valid?'产品数据范围校验通过':'产品数据范围存在失效项',validity.valid?'success':'warning');
 }
 
-function retrievalScopeHTML(){
-  var library=retrievalLibrary(_retrievalQuery.libraryId);
-  var schema=retrievalSchema(_retrievalQuery.libraryId,_retrievalQuery.schema);
-  var object=retrievalObject(_retrievalQuery.libraryId,_retrievalQuery.schema,_retrievalQuery.objectId);
-  var libraries=retrievalAuthorizedLibraries();
-  var schemas=(library&&library.schemas||[]).filter(function(item){return !_retrievalProductTest||(_retrievalProductTest.scope||[]).some(function(scope){return scope.libraryId===library.id&&scope.schema===item.name;});});
-  var objects=retrievalObjectsForScope(_retrievalQuery.libraryId,_retrievalQuery.schema);
-  var path=(library?library.name:'未选择')+(_retrievalQuery.schema?' / '+_retrievalQuery.schema:'')+(object?' / '+object.name:'');
-  return '<section class="dv-form-panel retrieval-locator-panel"><div class="dv-cascade-caption"><div><strong>选择检索对象</strong><span>按资产库 → 库/Schema → 表或视图逐级定位，进入后再配置关键词或条件</span></div><span class="dv-cascade-path">'+esc(path)+'</span></div><div class="dv-cascade-grid retrieval-locator-grid">'+
-    '<label class="dv-field"><span>资产库 <i class="req">*</i></span><select class="form-select" onchange="setRetrievalScope(\'libraryId\',this.value)"><option value="">请选择资产库</option>'+libraries.map(function(item){return '<option value="'+esc(item.id)+'"'+(item.id===_retrievalQuery.libraryId?' selected':'')+'>'+esc(item.name)+'</option>';}).join('')+'</select></label>'+
-    '<label class="dv-field"><span>库 / Schema <i class="req">*</i></span><select class="form-select" '+(library?'':'disabled')+' onchange="setRetrievalScope(\'schema\',this.value)"><option value="">可选</option>'+schemas.map(function(item){return '<option'+(item.name===_retrievalQuery.schema?' selected':'')+'>'+esc(item.name)+'</option>';}).join('')+'</select></label>'+
-    '<label class="dv-field"><span>表名 / 视图 <i class="req">*</i></span><select class="form-select" '+(schema?'':'disabled')+' onchange="setRetrievalScope(\'objectId\',this.value)"><option value="">输入或选择表名 / 视图</option>'+objects.map(function(item){return '<option value="'+esc(item.id)+'"'+(item.id===_retrievalQuery.objectId?' selected':'')+'>'+esc(item.name)+' · '+esc(item.label)+' · '+(item.kind==='view'?'已发布视图':'数据表')+'</option>';}).join('')+'</select></label>'+
-    '<button type="button" class="btn btn-primary btn-sm dv-form-action" onclick="applyRetrievalScope()"><i class="fa-solid fa-magnifying-glass"></i> 检索</button>'+
-    '</div><div class="retrieval-scope-note"><i class="fa-solid fa-shield-halved"></i> '+(_retrievalProductTest?'当前范围为产品授权对象与当前用户权限的交集，不能在测试页扩展。':'这里复用数据探查的对象定位方式，但检索仍只查询资产库中当前用户有权限的表或已发布视图。')+' 真实服务端权限拦截待实现。</div></section>';
+var _retrievalObjectSearch={source:'',schema:'',tableKeyword:'',submitted:false,status:'idle',error:'',page:1,pageSize:10,requestId:0};
+
+function retrievalDirectoryRows(){return typeof DATA_MAP_ROWS==='undefined'?[]:DATA_MAP_ROWS;}
+function retrievalSearchSources(){
+  var seen={};retrievalDirectoryRows().forEach(function(item){if(item&&item.authorized!==false&&item.source)seen[item.source]=true;});
+  return Object.keys(seen).sort(function(a,b){return a.localeCompare(b,'zh-CN');});
 }
-function retrievalModeHTML(){
-  return '<section class="retrieval-section retrieval-mode-section"><div class="retrieval-section-head"><div><span class="retrieval-step"><i class="fa-solid fa-magnifying-glass"></i></span><strong>检索方式</strong></div><span class="retrieval-required">必选</span></div><div class="retrieval-mode-control"><button class="'+(_retrievalQuery.mode==='keyword'?'active':'')+'" onclick="setRetrievalMode(\'keyword\')"><i class="fa-solid fa-font"></i><span><strong>关键词检索</strong><small>直接匹配字段原始值</small></span></button><button class="'+(_retrievalQuery.mode==='condition'?'active':'')+'" onclick="setRetrievalMode(\'condition\')"><i class="fa-solid fa-filter"></i><span><strong>条件检索</strong><small>按字段和运算符组合条件</small></span></button></div></section>';
+function retrievalSearchSchemas(source){
+  var seen={};retrievalDirectoryRows().forEach(function(item){if(item&&item.authorized!==false&&item.source===source&&item.schema)seen[item.schema]=true;});
+  return Object.keys(seen).sort(function(a,b){return a.localeCompare(b,'zh-CN');});
 }
-function retrievalFieldsHTML(object){
-  var fields=retrievalVisibleFields(object);
-  return '<section class="retrieval-section"><div class="retrieval-section-head"><div><span class="retrieval-step">2</span><strong>返回字段</strong></div><span>'+_retrievalQuery.selectedFields.length+' / '+fields.length+' 已选</span></div><div class="retrieval-field-list">'+fields.map(function(field){
-    var checked=_retrievalQuery.selectedFields.indexOf(field.name)>-1;
-    return '<label class="retrieval-field-item"><input type="checkbox" '+(checked?'checked':'')+' onchange="toggleRetrievalField(\''+esc(field.name)+'\',this.checked)"><span><strong>'+esc(field.label||'当前未配置')+'</strong><code>'+esc(field.name)+'</code><small>'+esc(field.type)+'</small></span><span class="retrieval-field-flags">'+(field.sensitive?'<em>敏感</em>':'')+(field.view==='masked'?'<em>脱敏查看</em>':'')+(field.export===false?'<em>不可导出</em>':'')+'</span></label>';
-  }).join('')+'</div></section>';
+function retrievalSearchObjects(criteria){
+  criteria=criteria||{};var keyword=String(criteria.tableKeyword||'').trim().toLowerCase();
+  return retrievalDirectoryRows().filter(function(item){
+    if(!item||item.authorized===false||!criteria.source||item.source!==criteria.source)return false;
+    if(criteria.schema&&item.schema!==criteria.schema)return false;
+    return !keyword||String(item.name||'').toLowerCase().indexOf(keyword)>-1;
+  }).slice().sort(function(a,b){return String(a.schema||'').localeCompare(String(b.schema||''),'zh-CN')||String(a.name||'').localeCompare(String(b.name||''),'zh-CN');});
 }
-function retrievalKeywordHTML(object){
-  var fields=retrievalKeywordEligibleFields(object),selected=_retrievalQuery.keywordFields||[];
-  var fieldOptions=fields.length?'<div class="retrieval-keyword-fields">'+fields.map(function(field){return '<label><input type="checkbox" '+(selected.indexOf(field.name)>-1?'checked':'')+' onchange="toggleRetrievalKeywordField(\''+esc(field.name)+'\',this.checked)"><span><strong>'+esc(field.label||field.name)+'</strong><code>'+esc(field.name)+'</code></span></label>';}).join('')+'</div>':'<div class="retrieval-inline-empty">当前对象没有可用于关键词检索的文本或枚举字段，请改用条件检索。</div>';
-  return '<section class="retrieval-section"><div class="retrieval-section-head"><div><span class="retrieval-step">3</span><strong>关键词与检索字段</strong></div><span class="retrieval-required">必填</span></div><label class="retrieval-keyword-input"><span>关键词 *</span><input maxlength="200" value="'+esc(_retrievalQuery.keyword||'')+'" placeholder="输入需要匹配的原始值" onchange="setRetrievalKeyword(this.value)"></label><div class="retrieval-keyword-title">关键词检索字段 *</div>'+fieldOptions+'<div class="retrieval-group-note">直接匹配当前表或视图存储的原始值，不做名称、编码或语义转换。</div></section>';
-}
-function retrievalConditionValueHTML(field,condition,groupIndex,conditionIndex){
-  if(!retrievalOperatorNeedsValue(condition.operator))return '<span class="retrieval-no-value">无需填写条件值</span>';
-  if(field.type==='enum')return '<select onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'value\',this.value)"><option value="">请选择</option>'+(field.options||[]).map(function(option){return '<option'+(option===condition.value?' selected':'')+'>'+esc(option)+'</option>';}).join('')+'</select>';
-  if(field.type==='date'||field.type==='datetime')return '<input type="'+(field.type==='date'?'date':'datetime-local')+'" value="'+esc(condition.value)+'" onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'value\',this.value)">'+(condition.operator==='between'?'<input type="'+(field.type==='date'?'date':'datetime-local')+'" value="'+esc(condition.valueTo)+'" onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'valueTo\',this.value)">':'');
-  if(field.type==='number')return '<input type="number" value="'+esc(condition.value)+'" onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'value\',this.value)">'+(condition.operator==='between'?'<input type="number" value="'+esc(condition.valueTo)+'" onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'valueTo\',this.value)">':'');
-  return '<input type="text" value="'+esc(condition.value)+'" placeholder="请输入条件值" onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'value\',this.value)">';
-}
-function retrievalConditionsHTML(object){
-  var fields=retrievalVisibleFields(object);
-  var groups=(_retrievalQuery.conditionGroups||[{conditions:[]}]).map(function(group,groupIndex){
-    var rows=(group.conditions||[]).map(function(condition,conditionIndex){
-      var field=retrievalField(object,condition.field);
-      var operators=field?retrievalOperatorsForField(field):[];
-      return '<div class="retrieval-condition-row"><span class="retrieval-condition-logic">'+(conditionIndex?'且':'条件')+'</span><select onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'field\',this.value)"><option value="">请选择字段</option>'+fields.map(function(item){return '<option value="'+esc(item.name)+'"'+(item.name===condition.field?' selected':'')+'>'+esc(item.label||item.name)+'</option>';}).join('')+'</select><select '+(field?'':'disabled')+' onchange="updateRetrievalCondition('+groupIndex+','+conditionIndex+',\'operator\',this.value)"><option value="">请选择运算符</option>'+operators.map(function(item){return '<option value="'+item.value+'"'+(item.value===condition.operator?' selected':'')+'>'+item.label+'</option>';}).join('')+'</select><div class="retrieval-condition-value">'+(field&&condition.operator?retrievalConditionValueHTML(field,condition,groupIndex,conditionIndex):'<input disabled placeholder="请选择字段和运算符">')+'</div><button class="btn btn-ghost btn-sm" title="删除条件" onclick="removeRetrievalCondition('+groupIndex+','+conditionIndex+')"><i class="fa-solid fa-trash"></i></button></div>';
-    }).join('');
-    return (groupIndex?'<div class="retrieval-group-or">或</div>':'')+'<div class="retrieval-condition-group">'+(rows||'<div class="retrieval-inline-empty">当前条件组未配置条件</div>')+'<div class="retrieval-group-actions"><button class="btn btn-outline btn-sm" onclick="addRetrievalCondition('+groupIndex+')"><i class="fa-solid fa-plus"></i> 添加条件</button><button class="btn btn-ghost btn-sm" onclick="removeRetrievalConditionGroup('+groupIndex+')">删除条件组</button></div></div>';
-  }).join('');
-  return '<section class="retrieval-section"><div class="retrieval-section-head"><div><span class="retrieval-step">3</span><strong>筛选条件</strong></div><span>组内且，组间或</span></div>'+groups+'<button class="btn btn-outline btn-sm" onclick="addRetrievalConditionGroup()"><i class="fa-solid fa-layer-group"></i> 添加条件组</button><div class="retrieval-group-note">第一版只支持“组内且、组间或”两层结构，不支持无限嵌套。</div></section>';
-}
-function retrievalOrderHTML(object){
-  var fields=retrievalVisibleFields(object);
-  return '<section class="retrieval-section"><div class="retrieval-section-head"><div><span class="retrieval-step">4</span><strong>排序与返回条数</strong></div></div><div class="retrieval-scope-grid"><label><span>排序字段</span><select onchange="setRetrievalOption(\'sortField\',this.value)"><option value="">不指定</option>'+fields.map(function(field){return '<option value="'+esc(field.name)+'"'+(field.name===_retrievalQuery.sortField?' selected':'')+'>'+esc(field.label||field.name)+'</option>';}).join('')+'</select></label><label><span>排序方向</span><select onchange="setRetrievalOption(\'sortDirection\',this.value)"><option value="asc"'+(_retrievalQuery.sortDirection==='asc'?' selected':'')+'>升序</option><option value="desc"'+(_retrievalQuery.sortDirection==='desc'?' selected':'')+'>降序</option></select></label><label><span>返回条数 *</span><input type="number" min="1" max="10000" value="'+Number(_retrievalQuery.limit||100)+'" onchange="setRetrievalOption(\'limit\',this.value)"></label></div></section>';
-}
-function retrievalEstimateHTML(object){
-  var estimate=_retrievalQuery.estimate;
-  var validation=validateRetrievalQuery(_retrievalQuery,object);
-  var content=estimate.status==='loading'?'<div class="retrieval-estimate-loading"><i class="fa-solid fa-spinner fa-spin"></i> 正在预估</div>':estimate.status==='success'?'<div class="retrieval-estimate-grid"><div><span>预计扫描数据量</span><strong>'+Number(estimate.scan||0).toLocaleString()+' 条</strong></div><div><span>预计命中记录数</span><strong>'+retrievalEstimateDisplay(estimate.hits)+'</strong></div><div><span>预计耗时</span><strong>'+retrievalEstimateDisplay(estimate.duration)+'</strong></div></div><div class="retrieval-risk">'+esc(estimate.risk)+'</div>':'<div class="retrieval-inline-empty">提交正式查询前先执行预估；命中数和耗时的真实预估能力待实现。</div>';
-  return '<section class="retrieval-section"><div class="retrieval-section-head"><div><span class="retrieval-step">5</span><strong>查询预估与执行</strong></div></div>'+content+'<div class="retrieval-actions"><button class="btn btn-outline" '+(validation.valid?'':'disabled')+' onclick="saveCurrentRetrieval()"><i class="fa-regular fa-bookmark"></i> 保存查询</button><button class="btn btn-outline" '+(validation.valid?'':'disabled')+' onclick="estimateRetrievalQuery()"><i class="fa-solid fa-gauge-high"></i> 查询预估</button><button class="btn btn-primary" '+(validation.valid&&estimate.status==='success'?'':'disabled')+' onclick="submitRetrievalQuery()"><i class="fa-solid fa-play"></i> 执行检索</button></div></section>';
-}
-function retrievalQueryBuilderHTML(object){
-  var searchContent=_retrievalQuery.mode==='keyword'?retrievalKeywordHTML(object):retrievalConditionsHTML(object);
-  return '<section class="card"><label class="retrieval-name"><span>查询名称</span><input id="retrievalQueryName" maxlength="80" value="'+esc(_retrievalQuery.name)+'" placeholder="未填写时按数据表名称和提交时间生成" oninput="_retrievalQuery.name=this.value"></label><div class="retrieval-section"><div class="retrieval-section-head"><div><span class="retrieval-step"><i class="fa-solid fa-table"></i></span><strong>当前查询对象</strong></div><span>'+esc(object.kind==='view'?'已发布视图':'数据表')+'</span></div><div class="retrieval-detail-grid"><div><span>对象名称</span><strong>'+esc(object.label)+'</strong></div><div><span>数据更新时间</span><strong>'+esc(object.updatedAt||'当前未返回')+'</strong></div><div><span>字段数量</span><strong>'+Number((object.fields||[]).length)+' 个</strong></div></div><div class="retrieval-scope-note">当前权限状态为原型示例；真实服务端权限校验待实现。</div></div>'+retrievalModeHTML()+retrievalFieldsHTML(object)+searchContent+retrievalOrderHTML(object)+retrievalEstimateHTML(object)+'</section>';
-}
-function retrievalResultPageInfo(task,view){
-  var rows=task&&task.result||[],allowed=[10,20,50],pageSize=Number(view&&view.pageSize||10);
-  if(allowed.indexOf(pageSize)<0)pageSize=10;
-  var pageCount=Math.max(1,Math.ceil(rows.length/pageSize)),page=Math.min(pageCount,Math.max(1,Number(view&&view.page||1))),start=(page-1)*pageSize;
-  return {total:rows.length,pageSize:pageSize,page:page,pageCount:pageCount,start:start,end:Math.min(rows.length,start+pageSize),rows:rows.slice(start,start+pageSize)};
-}
-function retrievalEnsureResultView(task){
-  var selected=task&&task.snapshot&&task.snapshot.selectedFields||[];
-  if(_retrievalResultView.taskId!==task.id){_retrievalResultView={taskId:task.id,page:1,pageSize:10,columns:selected.slice()};}
-  _retrievalResultView.columns=(_retrievalResultView.columns||[]).filter(function(name){return selected.indexOf(name)>-1;});
-  if(!_retrievalResultView.columns.length&&selected.length)_retrievalResultView.columns=selected.slice();
-  return _retrievalResultView;
-}
-function setRetrievalResultPage(page){
-  var task=retrievalTaskById(_retrievalQuery.activeTaskId);if(!task)return;
-  var view=retrievalEnsureResultView(task),info=retrievalResultPageInfo(task,{page:page,pageSize:view.pageSize});
-  view.page=info.page;renderDataRetrieval();
-}
-function setRetrievalResultPageSize(value){
-  var task=retrievalTaskById(_retrievalQuery.activeTaskId);if(!task)return;
-  var size=Number(value);if([10,20,50].indexOf(size)<0)return;
-  var view=retrievalEnsureResultView(task);view.pageSize=size;view.page=1;renderDataRetrieval();
-}
-function openRetrievalColumnSettings(taskId){
-  var task=retrievalTaskById(taskId);if(!task||task.status!=='执行成功')return;
-  var view=retrievalEnsureResultView(task),object=retrievalObject(task.snapshot.libraryId,task.snapshot.schema,task.snapshot.objectId),selected=task.snapshot.selectedFields||[];
-  _retrievalColumnDraft={taskId:task.id,columns:view.columns.slice()};
-  var rows=selected.map(function(name){var field=object&&retrievalField(object,name);return '<label><input type="checkbox" '+(_retrievalColumnDraft.columns.indexOf(name)>-1?'checked':'')+' onchange="toggleRetrievalColumnDraft(\''+esc(name)+'\',this.checked)"><span><strong>'+esc(field&&field.label||name)+'</strong><code>'+esc(name)+'</code></span></label>';}).join('');
-  buildModal('显示列','<div class="retrieval-column-list">'+rows+'</div><div class="retrieval-scope-note">列设置仅影响当前结果展示，不改变查询快照和导出字段。</div>','<button class="btn btn-outline" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="saveRetrievalColumnSettings()">应用</button>','560px');
-}
-function toggleRetrievalColumnDraft(name,checked){
-  if(!_retrievalColumnDraft)return;
-  if(checked&&_retrievalColumnDraft.columns.indexOf(name)<0)_retrievalColumnDraft.columns.push(name);
-  if(!checked)_retrievalColumnDraft.columns=_retrievalColumnDraft.columns.filter(function(item){return item!==name;});
-}
-function saveRetrievalColumnSettings(){
-  if(!_retrievalColumnDraft||!_retrievalColumnDraft.columns.length){showToast('请至少保留一个显示列','warning');return;}
-  var task=retrievalTaskById(_retrievalColumnDraft.taskId);if(!task)return;
-  var view=retrievalEnsureResultView(task);view.columns=_retrievalColumnDraft.columns.slice();view.page=1;_retrievalColumnDraft=null;closeModal();renderDataRetrieval();showToast('结果显示列已更新','success');
-}
-function openRetrievalRowDetail(taskId,rowIndex){
-  var task=retrievalTaskById(taskId),row=task&&(task.result||[])[Number(rowIndex)];if(!task||!row){showToast('当前记录不存在或结果已过期','warning');return;}
-  var object=retrievalObject(task.snapshot.libraryId,task.snapshot.schema,task.snapshot.objectId),fields=task.snapshot.selectedFields||[];
-  var validity=validateRetrievalSnapshot(task.snapshot,object);if(!validity.valid){showToast('当前记录不可查看：'+validity.message,'warning');return;}
-  var content='<dl class="retrieval-record-detail">'+fields.map(function(name){var field=object&&retrievalField(object,name);return '<dt>'+esc(field&&field.label||name)+'<br><code>'+esc(name)+'</code></dt><dd>'+retrievalResultCellHTML(row[name])+'</dd>';}).join('')+'</dl><div class="retrieval-scope-note"><i class="fa-solid fa-shield-halved"></i> 当前记录沿用查询时的数据查看与脱敏权限；原型不展示敏感原文。</div>';
-  buildModal('记录详情',content,'<button class="btn btn-primary" onclick="closeModal()">关闭</button>','680px');
-}
-function saveRetrievalTaskDefinition(taskId){
-  var task=retrievalTaskById(taskId),snapshot=task&&retrievalClone(task.snapshot),object=snapshot&&retrievalObject(snapshot.libraryId,snapshot.schema,snapshot.objectId);if(!task||!object)return;
-  snapshot.name=task.name;saveRetrievalDefinition(snapshot,object,retrievalNowText());showToast('当前检索条件已保存','success');
-}
-function retrievalResultCellHTML(value){
-  if(value===undefined)return '<span class="retrieval-result-missing">当前输入未返回</span>';
-  if(value===null)return '<span class="retrieval-result-null">NULL</span>';
-  return esc(value);
-}
-function retrievalConditionSummaryHTML(task,object){
-  var snapshot=task.snapshot||{},isKeyword=snapshot.mode==='keyword';
-  var selected=(snapshot.selectedFields||[]).map(function(name){var field=object&&retrievalField(object,name);return field&&field.label||name;});
-  var sortText=snapshot.sortField?(snapshot.sortField+' · '+(snapshot.sortDirection==='desc'?'降序':'升序')):'未指定';
-  var conditionCount=(snapshot.conditionGroups||[]).reduce(function(total,group){return total+(group.conditions||[]).length;},0);
-  var summaryText=isKeyword?'关键词“'+(snapshot.keyword||'当前输入未返回')+'” · '+(snapshot.keywordFields||[]).length+' 个检索字段':(snapshot.conditionGroups||[]).length+' 个条件组 · '+conditionCount+' 个筛选条件';
-  var conditionText='';
-  if(isKeyword){
-    conditionText=(snapshot.keywordFields||[]).map(function(name){var field=object&&retrievalField(object,name);return field&&field.label||name;}).join('、')||'当前输入未返回';
-  }else{
-    conditionText=(snapshot.conditionGroups||[]).map(function(group,groupIndex){
-      var rows=(group.conditions||[]).map(function(item){
-        var field=object&&retrievalField(object,item.field),operators=retrievalOperatorsForField(field),operator=operators.find(function(option){return option.value===item.operator;});
-        var value=retrievalOperatorNeedsValue(item.operator)?String(item.value||'当前输入未返回'):'';
-        if(item.operator==='between')value+=' 至 '+String(item.valueTo||'当前输入未返回');
-        return (field&&field.label||item.field||'当前输入未返回')+' '+(operator&&operator.label||item.operator||'当前输入未返回')+(value?' '+value:'');
-      }).join(' 且 ');
-      return '第 '+(groupIndex+1)+' 组：'+(rows||'当前未配置条件');
-    }).join('；')||'当前未配置条件';
+function retrievalObjectById(objectId){return retrievalDirectoryRows().find(function(item){return String(item.id)===String(objectId)&&item.authorized!==false;})||null;}
+function retrievalDisplay(value){return value===undefined||value===null||String(value).trim()===''||String(value)==='-'?'当前未返回':String(value);}
+function retrievalObjectType(item){return item&&item.type?item.type:'表';}
+function validateRetrievalObjectSearch(criteria){return criteria&&criteria.source?{valid:true,message:''}:{valid:false,message:'请选择数据源'};}
+
+function setRetrievalObjectSearch(key,value){
+  if(key==='source'){
+    _retrievalObjectSearch.source=value||'';_retrievalObjectSearch.schema='';_retrievalObjectSearch.tableKeyword='';
+  }else if(key==='schema'){
+    _retrievalObjectSearch.schema=value||'';
+  }else if(key==='tableKeyword'){
+    _retrievalObjectSearch.tableKeyword=value||'';
   }
-  return '<details class="retrieval-condition-summary"><summary><span><i class="fa-solid fa-filter"></i> 检索条件摘要</span><strong>'+esc(summaryText)+'</strong></summary><div class="retrieval-condition-detail"><div><span>检索方式</span><strong>'+(isKeyword?'关键词检索':'条件检索')+'</strong></div><div><span>'+(isKeyword?'检索字段':'完整条件')+'</span><strong>'+esc(conditionText)+'</strong></div><div><span>返回字段</span><strong>'+esc(selected.join('、')||'当前输入未返回')+'</strong></div><div><span>排序与返回条数</span><strong>'+esc(sortText)+' · 最多 '+Number(snapshot.limit||0).toLocaleString()+' 条</strong></div></div></details>';
+  _retrievalObjectSearch.submitted=false;_retrievalObjectSearch.status='idle';_retrievalObjectSearch.error='';_retrievalObjectSearch.page=1;_retrievalObjectSearch.requestId+=1;
+  if(typeof renderDataRetrieval==='function')renderDataRetrieval();
 }
-function retrievalResultStateHTML(task){
-  var capabilities=retrievalTaskCapabilities(task),running=['待执行','正在预估','排队中','执行中','取消中'].indexOf(task.status)>-1;
-  var icon='fa-circle-info',title='当前任务未生成可用结果',description='可查看查询详情后修改检索条件。',tone='',actions='<button class="btn btn-outline btn-sm" onclick="openRetrievalTaskDetail(\''+esc(task.id)+'\')">查询详情</button>';
-  if(running){
-    icon='fa-spinner fa-spin';title=task.status==='取消中'?'正在取消查询':'正在生成检索结果';description='查询在后台执行，可以离开当前页面并从查询历史查看进度。';
-    if(capabilities.cancel)actions+='<button class="btn btn-outline btn-sm" onclick="cancelRetrievalTask(\''+esc(task.id)+'\')">取消查询</button>';
-  }else if(task.status==='执行失败'){
-    icon='fa-circle-exclamation';title='检索执行失败';description=task.failure&&task.failure.message||'当前执行引擎未返回具体错误信息。';tone=' is-error';
-    actions+='<button class="btn btn-outline btn-sm" onclick="openRetrievalFailureDetail(\''+esc(task.id)+'\')">失败详情</button><button class="btn btn-outline btn-sm" onclick="editRetrievalTask(\''+esc(task.id)+'\')">修改检索条件</button><button class="btn btn-primary btn-sm" onclick="restartRetrievalTask(\''+esc(task.id)+'\')">从头重新执行</button>';
-  }else if(task.status==='已取消'){
-    icon='fa-ban';title='查询已取消';description='本次执行未生成可用结果，条件快照和执行日志已保留。';
-    actions+='<button class="btn btn-outline btn-sm" onclick="editRetrievalTask(\''+esc(task.id)+'\')">修改检索条件</button><button class="btn btn-primary btn-sm" onclick="restartRetrievalTask(\''+esc(task.id)+'\')">从头重新执行</button>';
-  }else if(task.status==='结果已过期'){
-    icon='fa-clock-rotate-left';title='查询结果已过期';description='旧结果不再展示，条件快照和执行记录仍可查看。';tone=' is-warning';
-    actions+='<button class="btn btn-outline btn-sm" onclick="editRetrievalTask(\''+esc(task.id)+'\')">修改检索条件</button><button class="btn btn-primary btn-sm" onclick="restartRetrievalTask(\''+esc(task.id)+'\')">从头重新执行</button>';
+function setRetrievalTableKeyword(value){_retrievalObjectSearch.tableKeyword=value||'';_retrievalObjectSearch.submitted=false;_retrievalObjectSearch.status='idle';_retrievalObjectSearch.error='';_retrievalObjectSearch.page=1;}
+function clearRetrievalObjectSearch(){var size=_retrievalObjectSearch.pageSize||10;_retrievalObjectSearch={source:'',schema:'',tableKeyword:'',submitted:false,status:'idle',error:'',page:1,pageSize:size,requestId:(_retrievalObjectSearch.requestId||0)+1};renderDataRetrieval();}
+function submitRetrievalObjectSearch(){
+  var validation=validateRetrievalObjectSearch(_retrievalObjectSearch);if(!validation.valid){showToast(validation.message,'warning');return;}
+  _retrievalObjectSearch.submitted=true;_retrievalObjectSearch.status='loading';_retrievalObjectSearch.error='';_retrievalObjectSearch.page=1;_retrievalObjectSearch.requestId+=1;
+  var requestId=_retrievalObjectSearch.requestId;renderDataRetrieval();
+  setTimeout(function(){if(_retrievalObjectSearch.requestId!==requestId)return;_retrievalObjectSearch.status='success';renderDataRetrieval();},180);
+}
+function retryRetrievalObjectSearch(){submitRetrievalObjectSearch();}
+function failRetrievalObjectSearch(message){_retrievalObjectSearch.submitted=true;_retrievalObjectSearch.status='error';_retrievalObjectSearch.error=message||'对象目录服务未返回具体失败信息';renderDataRetrieval();}
+
+function retrievalObjectSearchFormHTML(){
+  var sources=retrievalSearchSources(),schemas=retrievalSearchSchemas(_retrievalObjectSearch.source);
+  return '<section class="retrieval-object-search-panel"><div class="retrieval-object-search-grid">'+
+    '<label class="dv-field"><span>数据源 <i class="req">*</i></span><select class="form-select" onchange="setRetrievalObjectSearch(\'source\',this.value)"><option value="">请选择数据源</option>'+sources.map(function(source){return '<option value="'+esc(source)+'"'+(_retrievalObjectSearch.source===source?' selected':'')+'>'+esc(source)+'</option>';}).join('')+'</select></label>'+
+    '<label class="dv-field"><span>库/Schema <em>可选</em></span><select class="form-select" '+(_retrievalObjectSearch.source?'':'disabled')+' onchange="setRetrievalObjectSearch(\'schema\',this.value)"><option value="">全部库/Schema</option>'+schemas.map(function(schema){return '<option value="'+esc(schema)+'"'+(_retrievalObjectSearch.schema===schema?' selected':'')+'>'+esc(schema)+'</option>';}).join('')+'</select></label>'+
+    '<label class="dv-field"><span>表名 <em>可选</em></span><input class="form-input" value="'+esc(_retrievalObjectSearch.tableKeyword)+'" placeholder="输入表名" oninput="setRetrievalTableKeyword(this.value)" onkeydown="if(event.key===\'Enter\')submitRetrievalObjectSearch()"></label>'+
+    '<button type="button" class="btn btn-primary retrieval-object-search-action" onclick="submitRetrievalObjectSearch()"><i class="fa-solid fa-magnifying-glass"></i> 检索</button>'+
+    '</div></section>';
+}
+
+function retrievalObjectPageInfo(rows,page,pageSize){
+  var allowed=[10,20,50],size=Number(pageSize||10);if(allowed.indexOf(size)<0)size=10;
+  var total=(rows||[]).length,pageCount=Math.max(1,Math.ceil(total/size)),current=Math.max(1,Math.min(pageCount,Number(page||1))),start=(current-1)*size;
+  return {total:total,page:current,pageSize:size,pageCount:pageCount,start:start,end:Math.min(total,start+size),rows:(rows||[]).slice(start,start+size)};
+}
+function setRetrievalObjectPage(page){var rows=retrievalSearchObjects(_retrievalObjectSearch),info=retrievalObjectPageInfo(rows,page,_retrievalObjectSearch.pageSize);_retrievalObjectSearch.page=info.page;renderDataRetrieval();}
+function setRetrievalObjectPageSize(value){var size=Number(value);_retrievalObjectSearch.pageSize=[10,20,50].indexOf(size)>-1?size:10;_retrievalObjectSearch.page=1;renderDataRetrieval();}
+
+function retrievalObjectStateHTML(){
+  if(_retrievalObjectSearch.status==='loading')return '<section class="retrieval-object-results"><div class="retrieval-object-state"><i class="fa-solid fa-spinner fa-spin"></i><strong>正在检索数据对象</strong><span>正在读取当前数据源的表和视图目录。</span></div></section>';
+  if(_retrievalObjectSearch.status==='error')return '<section class="retrieval-object-results"><div class="retrieval-object-state is-error"><i class="fa-solid fa-circle-exclamation"></i><strong>数据对象检索失败</strong><span>'+esc(_retrievalObjectSearch.error||'对象目录服务未返回具体失败信息')+'</span><div><button class="btn btn-primary btn-sm" onclick="retryRetrievalObjectSearch()">重新检索</button></div></div></section>';
+  if(!_retrievalObjectSearch.submitted)return '<section class="retrieval-object-results"><div class="retrieval-object-state"><i class="fa-regular fa-folder-open"></i><strong>请选择数据源开始检索</strong><span>可继续限定库/Schema或输入表名。</span></div></section>';
+  var rows=retrievalSearchObjects(_retrievalObjectSearch);
+  if(!rows.length)return '<section class="retrieval-object-results"><div class="retrieval-object-state"><i class="fa-solid fa-magnifying-glass"></i><strong>未找到符合条件的表或视图</strong><span>请调整数据源、库/Schema或表名。</span><div><button class="btn btn-outline btn-sm" onclick="clearRetrievalObjectSearch()">清空条件</button></div></div></section>';
+  return retrievalObjectResultsHTML(rows);
+}
+
+function retrievalObjectResultsHTML(rows){
+  var info=retrievalObjectPageInfo(rows,_retrievalObjectSearch.page,_retrievalObjectSearch.pageSize);_retrievalObjectSearch.page=info.page;
+  var scope=[_retrievalObjectSearch.source,_retrievalObjectSearch.schema,_retrievalObjectSearch.tableKeyword].filter(Boolean).join(' / ');
+  var body=info.rows.map(function(item){return '<tr><td><button class="retrieval-object-link" onclick="openRetrievalObjectDetail(\''+esc(item.id)+'\')">'+esc(retrievalDisplay(item.name))+'</button><div class="retrieval-object-path">'+esc(retrievalDisplay(item.schema))+'.'+esc(retrievalDisplay(item.name))+'</div></td><td>'+esc(retrievalObjectType(item))+'</td><td>'+esc(retrievalDisplay(item.source))+'</td><td>'+esc(retrievalDisplay(item.schema))+'</td><td>'+esc(retrievalDisplay(item.domain))+'</td><td class="retrieval-object-description">'+esc(retrievalDisplay(item.comment))+'</td><td>'+esc(retrievalDisplay(item.rows))+'</td><td>'+esc(retrievalDisplay(item.quality))+'</td><td>'+esc(retrievalDisplay(String(item.updated||'').replace('T',' ')))+'</td><td><span class="tag '+(item.status==='活跃'?'tag-green':'tag-gray')+'">'+esc(retrievalDisplay(item.status))+'</span></td><td><div class="retrieval-object-actions"><button class="btn btn-ghost btn-sm" onclick="openRetrievalObjectDetail(\''+esc(item.id)+'\')">查看详情</button><button class="btn btn-ghost btn-sm" onclick="openRetrievalObjectExplore(\''+esc(item.id)+'\')">数据探查</button></div></td></tr>';}).join('');
+  var pagination='<div class="retrieval-object-pagination"><span>共 '+info.total+' 个对象 · 第 '+info.page+' / '+info.pageCount+' 页</span><div><button class="btn btn-outline btn-sm" '+(info.page<=1?'disabled':'')+' onclick="setRetrievalObjectPage('+(info.page-1)+')">上一页</button><button class="btn btn-outline btn-sm" '+(info.page>=info.pageCount?'disabled':'')+' onclick="setRetrievalObjectPage('+(info.page+1)+')">下一页</button><select onchange="setRetrievalObjectPageSize(this.value)"><option value="10"'+(info.pageSize===10?' selected':'')+'>10 条/页</option><option value="20"'+(info.pageSize===20?' selected':'')+'>20 条/页</option><option value="50"'+(info.pageSize===50?' selected':'')+'>50 条/页</option></select></div></div>';
+  return '<section class="retrieval-object-results"><div class="retrieval-object-result-head"><div><strong>检索结果</strong><span>'+esc(scope||'当前筛选')+'</span></div><span>命中 '+info.total+' 个表或视图</span></div><div class="retrieval-object-table-wrap"><table class="data-table retrieval-object-table"><thead><tr><th>表名 / 视图名</th><th>类型</th><th>数据源</th><th>库 / Schema</th><th>业务域</th><th>说明</th><th>数据量</th><th>质量评分</th><th>最近同步</th><th>状态</th><th>操作</th></tr></thead><tbody>'+body+'</tbody></table></div>'+pagination+'</section>';
+}
+
+function openRetrievalObjectDetail(objectId){
+  var item=retrievalObjectById(objectId);if(!item){showToast('对象不存在、无权查看或元数据已失效','warning');return;}
+  var fields=item.columns||[],fieldRows=fields.length?fields.map(function(field){return '<tr><td><code>'+esc(retrievalDisplay(field[0]))+'</code></td><td>'+esc(retrievalDisplay(field[1]))+'</td><td>'+esc(retrievalDisplay(field[2]))+'</td></tr>';}).join(''):'<tr><td colspan="3"><div class="retrieval-object-detail-empty">当前字段元数据未返回</div></td></tr>';
+  var basic='<div class="retrieval-object-detail-title">基础信息</div><div class="retrieval-object-detail-grid"><div><span>对象名称</span><strong>'+esc(retrievalDisplay(item.name))+'</strong></div><div><span>对象类型</span><strong>'+esc(retrievalObjectType(item))+'</strong></div><div><span>数据源</span><strong>'+esc(retrievalDisplay(item.source))+'</strong></div><div><span>库 / Schema</span><strong>'+esc(retrievalDisplay(item.schema))+'</strong></div><div><span>业务域</span><strong>'+esc(retrievalDisplay(item.domain))+'</strong></div><div><span>敏感等级</span><strong>'+esc(retrievalDisplay(item.sensitivity))+'</strong></div><div><span>数据量</span><strong>'+esc(retrievalDisplay(item.rows))+'</strong></div><div><span>质量评分</span><strong>'+esc(retrievalDisplay(item.quality))+'</strong></div><div><span>最近同步</span><strong>'+esc(retrievalDisplay(String(item.updated||'').replace('T',' ')))+'</strong></div><div><span>状态</span><strong>'+esc(retrievalDisplay(item.status))+'</strong></div><div class="wide"><span>说明</span><strong>'+esc(retrievalDisplay(item.comment))+'</strong></div></div>';
+  var columns='<div class="retrieval-object-detail-title">字段列表 <span>'+fields.length+' 个</span></div><div class="retrieval-object-table-wrap"><table class="data-table retrieval-object-field-table"><thead><tr><th>字段名</th><th>数据类型</th><th>字段说明</th></tr></thead><tbody>'+fieldRows+'</tbody></table></div><div class="retrieval-object-detail-note"><i class="fa-solid fa-circle-info"></i> 当前详情来自最近一次元数据同步；真实权限校验和实时目录状态待服务端实现。</div>';
+  buildModal('对象详情',basic+columns,'<button class="btn btn-outline" onclick="closeModal()">关闭</button><button class="btn btn-primary" onclick="closeModal();openRetrievalObjectExplore(\''+esc(item.id)+'\')">数据探查</button>','820px');
+}
+function openRetrievalObjectExplore(objectId){
+  var item=retrievalObjectById(objectId);if(!item){showToast('对象不存在、无权查看或元数据已失效','warning');return;}
+  if(typeof closeModal==='function')closeModal();
+  if(typeof DATA_VIEW_CATALOG!=='undefined'){
+    var sourceCatalog=DATA_VIEW_CATALOG[item.source]||(DATA_VIEW_CATALOG[item.source]={});
+    var schemaCatalog=sourceCatalog[item.schema]||(sourceCatalog[item.schema]={});
+    if(!schemaCatalog[item.name])schemaCatalog[item.name]={rows:retrievalDisplay(item.rows),quality:retrievalDisplay(item.quality),updated:retrievalDisplay(String(item.updated||'').replace('T',' ')),columns:(item.columns||[]).map(function(field){return [field[0],field[1],'当前未返回','当前未返回',field[2]||'当前未返回'];})};
   }
-  return '<div class="retrieval-result-state'+tone+'"><i class="fa-solid '+icon+'"></i><strong>'+esc(title)+'</strong><span>'+esc(description)+'</span><div class="retrieval-result-actions">'+actions+'</div></div>';
+  _exp={name:item.source,level:'datasource',schema:item.schema||'',table:item.name||'',field:'',mode:'row',view:'summary',from:'数据检索',kw:'',rec:null,submitted:true};
+  navigateTo('数据探查');
 }
-function retrievalResultHTML(task){
-  var snapshot=task.snapshot||{},object=retrievalObject(snapshot.libraryId,snapshot.schema,snapshot.objectId);
-  var path=[snapshot.libraryId,snapshot.schema,snapshot.objectId].filter(Boolean).join(' / ')||'当前输入未返回';
-  var validity=task.status==='执行成功'?validateRetrievalSnapshot(snapshot,object):null,topActions='';
-  if(task.status==='执行成功'){
-    topActions='<button class="btn btn-outline btn-sm" onclick="editRetrievalTask(\''+esc(task.id)+'\')"><i class="fa-solid fa-arrow-left"></i> 修改检索条件</button><button class="btn btn-outline btn-sm" onclick="openRetrievalTaskDetail(\''+esc(task.id)+'\')"><i class="fa-solid fa-list-check"></i> 查询详情</button>';
-    if(validity.valid)topActions+='<button class="btn btn-primary btn-sm" onclick="restartRetrievalTask(\''+esc(task.id)+'\')"><i class="fa-solid fa-rotate-right"></i> 重新检索</button>';
-  }
-  var header='<div class="retrieval-result-topbar"><div class="retrieval-result-heading"><i class="fa-solid fa-table"></i><div><div class="retrieval-result-heading-meta"><h3>'+esc(task.name)+'</h3><span class="retrieval-status">'+esc(task.status)+'</span></div><span class="retrieval-result-path">'+esc(task.objectName||snapshot.objectId||'当前输入未返回')+' · '+esc(path)+'</span><code class="retrieval-result-id">'+esc(task.id)+'</code></div></div><div class="retrieval-result-actions">'+topActions+'</div></div>';
-  var conditionSummary=retrievalConditionSummaryHTML(task,object),body='';
-  if(task.status!=='执行成功'){
-    body=retrievalResultStateHTML(task);
-  }else{
-    if(!validity.valid){
-      body='<div class="retrieval-result-state is-warning"><i class="fa-solid fa-shield-halved"></i><strong>查询结果当前不可查看</strong><span>'+esc(validity.message)+'</span></div>';
-    }else{
-      var view=retrievalEnsureResultView(task),info=retrievalResultPageInfo(task,view),fields=view.columns||[];view.page=info.page;
-      var metrics='<div class="retrieval-result-metrics"><div><span>命中记录数</span><strong>'+(task.hitCount===null?'当前输入未返回':Number(task.hitCount).toLocaleString()+' 条')+'</strong></div><div><span>当前返回</span><strong>'+Number(task.returnedCount||0).toLocaleString()+' 条</strong></div><div><span>执行耗时</span><strong>'+esc(task.duration)+'</strong></div><div><span>数据更新时间</span><strong>'+esc(task.dataUpdatedAt||'当前输入未返回')+'</strong></div><div><span>结果有效期</span><strong>'+esc(task.expiresAt||'当前输入未返回')+'</strong></div></div>';
-      var tools='<div class="retrieval-result-tools"><button class="btn btn-outline btn-sm" onclick="openRetrievalColumnSettings(\''+esc(task.id)+'\')"><i class="fa-solid fa-table-columns"></i> 显示列</button><button class="btn btn-outline btn-sm" onclick="submitRetrievalExport(\''+esc(task.id)+'\')"><i class="fa-solid fa-download"></i> 导出结果</button><details class="retrieval-more-actions"><summary class="btn btn-outline btn-sm"><i class="fa-solid fa-ellipsis"></i> 更多</summary><div class="retrieval-more-actions-menu"><button onclick="openRetrievalTaskDetail(\''+esc(task.id)+'\')"><i class="fa-solid fa-list-check"></i> 查询详情</button><button onclick="saveRetrievalTaskDefinition(\''+esc(task.id)+'\')"><i class="fa-regular fa-bookmark"></i> 保存查询</button></div></details></div>';
-      var table=info.total?'<div class="retrieval-table-wrap"><table class="data-table retrieval-result-table"><thead><tr>'+fields.map(function(name){var field=object&&retrievalField(object,name);return '<th>'+esc(field&&field.label||name)+'<code>'+esc(name)+'</code></th>';}).join('')+'</tr></thead><tbody>'+info.rows.map(function(row,index){var absoluteIndex=info.start+index;return '<tr tabindex="0" role="button" aria-label="查看第 '+(absoluteIndex+1)+' 条记录详情" onclick="openRetrievalRowDetail(\''+esc(task.id)+'\','+absoluteIndex+')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){openRetrievalRowDetail(\''+esc(task.id)+'\','+absoluteIndex+');event.preventDefault();}">'+fields.map(function(name){return '<td>'+retrievalResultCellHTML(row[name])+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div>':'<div class="retrieval-result-state"><i class="fa-solid fa-magnifying-glass"></i><strong>未检索到符合条件的数据</strong><span>可修改关键词或筛选条件后重新执行。</span><div class="retrieval-result-actions"><button class="btn btn-primary btn-sm" onclick="editRetrievalTask(\''+esc(task.id)+'\')">修改检索条件</button></div></div>';
-      var pagination='<div class="retrieval-pagination"><span>当前结果 '+info.total+' 条 · 第 '+info.page+' / '+info.pageCount+' 页</span><div><button class="btn btn-outline btn-sm" '+(info.page<=1?'disabled':'')+' onclick="setRetrievalResultPage('+(info.page-1)+')">上一页</button><button class="btn btn-outline btn-sm" '+(info.page>=info.pageCount?'disabled':'')+' onclick="setRetrievalResultPage('+(info.page+1)+')">下一页</button><select onchange="setRetrievalResultPageSize(this.value)"><option value="10"'+(info.pageSize===10?' selected':'')+'>10 条/页</option><option value="20"'+(info.pageSize===20?' selected':'')+'>20 条/页</option><option value="50"'+(info.pageSize===50?' selected':'')+'>50 条/页</option></select></div></div>';
-      body=metrics+conditionSummary+'<div class="retrieval-result-body"><div class="retrieval-result-toolbar"><div><strong>查询结果</strong><span>'+(info.total?'点击任意记录查看全部返回字段':'当前没有可展示的记录')+'</span></div>'+(info.total?tools:'')+'</div>'+table+(info.total?pagination:'')+'</div>';
-      conditionSummary='';
-    }
-  }
-  return '<section class="retrieval-result-workspace">'+header+conditionSummary+body+'</section>';
-}
-function renderRetrievalHistory(){
-  var box=document.getElementById('retrievalHistoryPanel');if(!box)return;
-  var runs=_retrievalQuery.historyTab==='runs';
-  box.innerHTML='<div class="retrieval-history-tabs"><button class="'+(runs?'active':'')+'" onclick="setRetrievalHistoryTab(\'runs\')">执行记录</button><button class="'+(!runs?'active':'')+'" onclick="setRetrievalHistoryTab(\'saved\')">已保存查询</button></div>'+(runs?retrievalRunHistoryHTML():retrievalSavedHistoryHTML());
-}
-function renderDataRetrieval(){
-  var workbench=document.getElementById('retrievalWorkbench');
-  var history=document.getElementById('retrievalHistoryPanel');
-  if(!workbench||!history)return;
-  var isCreate=_retrievalQuery.tab==='create';
-  document.querySelectorAll('[data-retrieval-tab]').forEach(function(item){item.classList.toggle('active',item.getAttribute('data-retrieval-tab')===_retrievalQuery.tab);});
-  workbench.style.display=isCreate?'block':'none';history.style.display=isCreate?'none':'block';
-  if(!isCreate){renderRetrievalHistory();return;}
-  var object=retrievalObject(_retrievalQuery.libraryId,_retrievalQuery.schema,_retrievalQuery.objectId);
-  var task=retrievalTaskById(_retrievalQuery.activeTaskId);
-  var ready=_retrievalQuery.scopeSubmitted&&object;
-  var content=task?retrievalResultHTML(task):ready?retrievalQueryBuilderHTML(object):'<div class="retrieval-empty retrieval-workbench-empty"><i class="fa-regular fa-folder-open"></i><strong>请选择资产库和表名开始检索</strong><span>进入后可选择关键词检索或条件检索，并查看查询结果。</span></div>';
-  var productBanner=_retrievalProductTest?'<div class="retrieval-product-test"><div><i class="fa-solid fa-vial-circle-check"></i><span><strong>产品授权范围测试</strong>'+esc(_retrievalProductTest.productName)+' · '+esc(_retrievalProductTest.version)+'</span></div><button class="btn btn-outline btn-sm" onclick="exitProductRetrievalTest()"><i class="fa-solid fa-arrow-right-from-bracket"></i> 退出产品测试</button></div>':'';
-  workbench.innerHTML=productBanner+(task?'':retrievalScopeHTML())+content;
-}
+function renderDataRetrieval(){var workbench=document.getElementById('retrievalWorkbench');if(!workbench)return;workbench.innerHTML=retrievalObjectSearchFormHTML()+retrievalObjectStateHTML();}
 function initDataRetrieval(){renderDataRetrieval();}
-function switchDataRetrievalTab(tab,el){
-  _retrievalQuery.tab=tab;
-  document.querySelectorAll('[data-retrieval-tab]').forEach(function(item){item.classList.toggle('active',item===el);});
-  renderDataRetrieval();
-}
+
 // ============ DATA MAP FOR DETAIL ============
 var DATA_MAP = {};
 DATA_MAP.term = DATA.terms;
