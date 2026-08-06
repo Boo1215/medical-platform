@@ -20066,18 +20066,13 @@ function opRegFieldToJson(field){
   if(field.type==='array')item.item_kind=field.elementType||'string';
   if(field.type==='object')item.children=Array.isArray(field.children)?field.children:[];
   if(field.dependsOn)item.depends_on=field.dependsOn;
-  if(field.remoteOptions)item.remote_source=field.remoteOptions;
-  if(field.sourcePath)item.data_source_path=field.sourcePath;
-  if(field.databasePath)item.database_path=field.databasePath;
-  if(field.schemaPath)item.schema_path=field.schemaPath;
-  if(field.tablePath)item.table_path=field.tablePath;
   if(field.clearOnUpstream&&field.clearOnUpstream.length)item.clear_on_upstream=field.clearOnUpstream.slice();
   if(field.visibleWhen){try{item.visible_when=JSON.parse(field.visibleWhen);}catch(e){item.visible_when=field.visibleWhen;}}
   return item;
 }
 function opRegJsonToField(raw,index){
   var type=raw.kind||raw.type||'string';
-  return {key:raw.name||raw.key||'field_'+(index+1),label:raw.label||'字段 '+(index+1),type:type,required:!!raw.required,description:raw.description||'',placeholder:raw.placeholder||'',group:raw.group||'',defaultValue:raw.default===undefined?'':raw.default,dependsOn:raw.depends_on||raw.dependsOn||'',remoteOptions:raw.remote_source||raw.remoteOptions||'',sourcePath:raw.data_source_path||raw.sourcePath||'',databasePath:raw.database_path||raw.databasePath||'',schemaPath:raw.schema_path||raw.schemaPath||'',tablePath:raw.table_path||raw.tablePath||'',clearOnUpstream:Array.isArray(raw.clear_on_upstream)?raw.clear_on_upstream.slice():[],visibleWhen:raw.visible_when?typeof raw.visible_when==='string'?raw.visible_when:JSON.stringify(raw.visible_when):'',allowed:Array.isArray(raw.allowed)?raw.allowed.slice():[],elementType:raw.item_kind||raw.element_kind||'string',children:Array.isArray(raw.children)?raw.children.slice():[]};
+  return {key:raw.name||raw.key||'field_'+(index+1),label:raw.label||'字段 '+(index+1),type:type,required:!!raw.required,description:raw.description||'',placeholder:raw.placeholder||'',group:raw.group||'',defaultValue:raw.default===undefined?'':raw.default,dependsOn:raw.depends_on||raw.dependsOn||'',clearOnUpstream:Array.isArray(raw.clear_on_upstream)?raw.clear_on_upstream.slice():[],visibleWhen:raw.visible_when?typeof raw.visible_when==='string'?raw.visible_when:JSON.stringify(raw.visible_when):'',allowed:Array.isArray(raw.allowed)?raw.allowed.slice():[],elementType:raw.item_kind||raw.element_kind||'string',children:Array.isArray(raw.children)?raw.children.slice():[]};
 }
 function opRegValidateSchemaJSON(value){
   var errors=[],parsed;
@@ -20155,7 +20150,7 @@ function opRegSetSchemaMode(mode){
 }
 function opRegAddField(){
   var state=opWizardState();opCollectTech(_opWizardKind);var fields=state.schemaFields|| (state.schemaFields=[]),index=fields.length+1;
-  fields.push({key:'field_'+index,label:'字段 '+index,type:'string',required:false,description:'',placeholder:'',group:'',defaultValue:'',dependsOn:'',remoteOptions:'',sourcePath:'',databasePath:'',schemaPath:'',tablePath:'',clearOnUpstream:[],visibleWhen:'',allowed:[],elementType:'string',children:[]});
+  fields.push({key:'field_'+index,label:'字段 '+index,type:'string',required:false,description:'',placeholder:'',group:'',defaultValue:'',dependsOn:'',clearOnUpstream:[],visibleWhen:'',allowed:[],elementType:'string',children:[]});
   if(fields.length===1)state.selectedField=0;
   state.schemaJson='';opRegRefreshVisual();
 }
@@ -20165,7 +20160,6 @@ function opRegSyncFieldSummary(index){
   var row=root.querySelector('tr[data-field-index="'+index+'"]');
   if(row){var key=row.querySelector('[data-field-key]'),label=row.querySelector('[data-field-label]'),type=row.querySelector('[data-field-type]'),required=row.querySelector('[data-field-required]');if(key)key.textContent=field.key||'';if(label)label.textContent=field.label||'';if(type)type.textContent=field.type||'string';if(required)required.textContent=field.required?'是':'否';}
   var parameter=root.querySelector('[data-field-parameter]'),tag=root.querySelector('[data-field-type-tag]');if(parameter)parameter.textContent='parameter.'+(field.key||'');if(tag)tag.textContent=field.type||'string';
-  root.querySelectorAll('[data-field-preview]').forEach(function(preview){if(preview.dataset.fieldPreview===String(index)){preview.placeholder=field.type==='json'?'请输入 JSON':(field.type==='array'?'请输入 JSON 数组':'请输入 '+(field.label||'字段'));}});
 }
 function opRegUpdateField(index,key,value){var state=opWizardState(),field=(state.schemaFields||[])[index];if(field){field[key]=value;state.schemaJson='';if(key==='key'||key==='label'||key==='required'){opRegSyncFieldSummary(index);opRegSyncVisualValidation();}if(['type','allowed','elementType','children','remoteOptions','clearOnUpstream'].indexOf(key)>=0)opRegRefreshVisual();}}
 function opRegMoveField(index,direction){
@@ -20182,13 +20176,6 @@ function opRegFormatSchema(){
 }
 function opRegChooseFile(){var state=opWizardState();opCollectTech(_opWizardKind);state.fileName='medical_operator.py';renderActiveOpWizard();showToast('已选择 medical_operator.py','success');}
 function opRegDescriptionCount(length){var counter=document.getElementById('opr_desc_count');if(counter)counter.textContent=length+' / 500';}
-function opRegRemoteOptions(){return [['matched_data_sources','matched_data_sources - 匹配的数据源'],['databases','databases - 数据库列表'],['schemas','schemas - Schema 列表'],['tables','tables - 表列表'],['columns','columns - 字段列表']];}
-function opRegRemoteControl(index,field){
-  var found=opRegRemoteOptions().filter(function(option){return option[0]===field.remoteOptions;})[0],label=found?found[1]:'按 kind 自动推断，可不填';
-  return '<div class="op-reg-control-wrap"><button type="button" class="op-reg-combo" onclick="opRegToggleRemote('+index+',event)"><span class="'+(found?'':'op-reg-combo-placeholder')+'">'+esc(label)+'</span><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--gray-400)"></i></button><div class="op-reg-combo-menu" data-op-reg-remote-menu="'+index+'">'+opRegRemoteOptions().map(function(option){return '<button type="button" class="op-reg-combo-option" onclick="event.stopPropagation();opRegSetRemote('+index+',\''+option[0]+'\')">'+esc(option[1])+'</button>';}).join('')+'</div></div>';
-}
-function opRegToggleRemote(index,event){if(event)event.stopPropagation();var menu=document.querySelector('[data-op-reg-remote-menu="'+index+'"]'),wasOpen=menu&&menu.classList.contains('show');document.querySelectorAll('.op-reg-combo-menu.show,.op-reg-tag-menu.show').forEach(function(openMenu){openMenu.classList.remove('show');});if(menu&&!wasOpen)menu.classList.add('show');}
-function opRegSetRemote(index,value){opRegUpdateField(index,'remoteOptions',value);var menu=document.querySelector('[data-op-reg-remote-menu="'+index+'"]');if(menu)menu.classList.remove('show');}
 function opRegClearChoices(index){var state=opWizardState();return (state.schemaFields||[]).filter(function(field,i){return i!==index&&field.key;}).map(function(field){return {key:field.key,label:field.label||field.key};});}
 function opRegClearControl(index,field){
   var selected=Array.isArray(field.clearOnUpstream)?field.clearOnUpstream:[],choices=opRegClearChoices(index);
@@ -20200,16 +20187,6 @@ function opRegToggleClearMenu(index,event){if(event)event.stopPropagation();var 
 function opRegToggleClearValue(index,value){var state=opWizardState(),field=(state.schemaFields||[])[index];if(!field)return;var selected=Array.isArray(field.clearOnUpstream)?field.clearOnUpstream.slice():[],pos=selected.indexOf(value);if(pos>=0)selected.splice(pos,1);else selected.push(value);opRegUpdateField(index,'clearOnUpstream',selected);}
 function opRegClearKeydown(index,event){if(event.key!=='Enter')return;event.preventDefault();var value=(event.target.value||'').trim();if(value){opRegToggleClearValue(index,value);event.target.value='';}}
 function opRegEnumKeydown(index,event){if(event.key!=='Enter')return;event.preventDefault();var value=(event.target.value||'').trim(),state=opWizardState(),field=(state.schemaFields||[])[index];if(!value||!field)return;field.allowed=Array.isArray(field.allowed)?field.allowed:[];if(field.allowed.indexOf(value)<0)field.allowed.push(value);event.target.value='';opRegUpdateField(index,'allowed',field.allowed);}
-function opRegPreviewControl(field,index){
-  var label=field.label||'字段',placeholder='请输入 '+label,type=field.type||'string';
-  if(type==='object')return '';
-  if(type==='enum'&&!(field.allowed||[]).length)return '';
-  if(type==='bool')return '<label class="om-switch" style="margin-top:8px"><input type="checkbox" disabled><span class="om-slider"></span></label>';
-  if(type==='json')placeholder='请输入 JSON';
-  if(type==='array')placeholder='请输入 JSON 数组';
-  var inputType=type==='secret'?'password':(type==='int'||type==='float'?'number':'text'),value=(type==='int'||type==='float')?(field.defaultValue===''?'0':field.defaultValue):'';
-  return '<input data-field-preview="'+index+'" class="form-input" type="'+inputType+'" disabled value="'+esc(value)+'" placeholder="'+esc(placeholder)+'">';
-}
 function opRegDefaultControl(field,index,update){
   var type=field.type||'string';
   if(type==='bool')return '<label class="om-switch" style="margin-top:8px"><input type="checkbox"'+(field.defaultValue===true||field.defaultValue==='true'?' checked':'')+' onchange="'+update+'\'defaultValue\',this.checked)"><span class="om-slider"></span></label>';
@@ -20226,7 +20203,6 @@ function opRegFieldEditor(state){
   if(type==='enum')extra='<div class="form-group"><label class="form-label">枚举选项</label><div class="op-reg-control-wrap"><div class="op-reg-tags">'+allowed.map(function(value){return '<span class="op-reg-tag">'+esc(value)+'<button type="button" onclick="event.stopPropagation();opRegRemoveEnum('+index+',\''+String(value).replace(/'/g,'\\\'')+'\')">&times;</button></span>';}).join('')+'<input placeholder="输入选项后按回车" onkeydown="opRegEnumKeydown('+index+',event)"></div></div></div>';
   if(type==='array')extra='<div class="form-group"><label class="form-label">数组元素类型</label><select class="form-select" onchange="'+update+'\'elementType\',this.value)">'+opRegSchemaTypeOptions(field.elementType||'string')+'</select></div>';
   if(type==='object')extra='<div class="op-reg-alert">已创建空 children 数组。嵌套子字段请切换到 JSON 模式配置，保存后仍可回到可视化编辑顶层字段。</div>';
-  var preview=opRegPreviewControl(field,index);
   return '<div class="op-reg-field-editor"><div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><b>编辑字段</b><code data-field-parameter>parameter.'+esc(field.key)+'</code><span class="tag tag-gray" data-field-type-tag>'+esc(type)+'</span></div>'
     +'<div class="form-row"><div class="form-group"><label class="form-label">字段名</label><input class="form-input" value="'+esc(field.key)+'" placeholder="保存到 parameter 的 key" oninput="'+update+'\'key\',this.value)"></div><div class="form-group"><label class="form-label">展示标签</label><input class="form-input" value="'+esc(field.label)+'" placeholder="用户看到的字段名称" oninput="'+update+'\'label\',this.value)"></div></div>'
     +'<div class="form-row"><div class="form-group"><label class="form-label">字段类型</label>'+typeControl+'</div><div class="form-group"><label class="form-label">是否必填</label><label class="om-switch" style="margin-top:8px"><input type="checkbox"'+(field.required?' checked':'')+' onchange="'+update+'\'required\',this.checked)"><span class="om-slider"></span></label></div></div>'
@@ -20234,11 +20210,8 @@ function opRegFieldEditor(state){
     +'<div class="form-row"><div class="form-group"><label class="form-label">占位提示</label><input class="form-input" value="'+esc(field.placeholder)+'" placeholder="输入框提示" oninput="'+update+'\'placeholder\',this.value)"></div><div class="form-group"><label class="form-label">所属分组</label><input class="form-input" value="'+esc(field.group)+'" placeholder="如：读取配置" oninput="'+update+'\'group\',this.value)"></div></div>'
     +'<div class="form-group"><label class="form-label">默认值</label>'+opRegDefaultControl(field,index,update)+'</div>'+extra
     +'<div style="font-size:13px;font-weight:600;margin:16px 0 10px">动态展示与级联</div>'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">依赖字段</label><input class="form-input" value="'+esc(field.dependsOn)+'" placeholder="如 data_source_id" oninput="'+update+'\'dependsOn\',this.value)"></div><div class="form-group"><label class="form-label">远程选项来源</label>'+opRegRemoteControl(index,field)+'</div></div>'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">数据源字段路径</label><input class="form-input" value="'+esc(field.sourcePath)+'" placeholder="如 data_source_id" oninput="'+update+'\'sourcePath\',this.value)"></div><div class="form-group"><label class="form-label">数据库字段路径</label><input class="form-input" value="'+esc(field.databasePath)+'" placeholder="如 database" oninput="'+update+'\'databasePath\',this.value)"></div></div>'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">Schema 字段路径</label><input class="form-input" value="'+esc(field.schemaPath)+'" placeholder="如 schema" oninput="'+update+'\'schemaPath\',this.value)"></div><div class="form-group"><label class="form-label">表字段路径</label><input class="form-input" value="'+esc(field.tablePath)+'" placeholder="如 table" oninput="'+update+'\'tablePath\',this.value)"></div></div>'
-    +'<div class="form-row"><div class="form-group"><label class="form-label">上游变化时清空</label>'+opRegClearControl(index,field)+'</div><div class="form-group"><label class="form-label">条件显隐（JSON）</label><textarea class="form-textarea" style="height:58px" placeholder="例如：{&quot;mode&quot;:&quot;table&quot;}" oninput="'+update+'\'visibleWhen\',this.value)">'+esc(field.visibleWhen)+'</textarea></div></div>'
-    +(preview?'<div class="form-group"><label class="form-label">只读预览</label>'+preview+'</div>':'')+'</div>';
+    +'<div class="form-row"><div class="form-group"><label class="form-label">依赖字段</label><input class="form-input" value="'+esc(field.dependsOn)+'" placeholder="如 data_source_id" oninput="'+update+'\'dependsOn\',this.value)"></div><div class="form-group"><label class="form-label">上游变化时清空</label>'+opRegClearControl(index,field)+'</div></div>'
+    +'<div class="form-group"><label class="form-label">条件显隐（JSON）</label><textarea class="form-textarea" style="height:58px" placeholder="例如：{&quot;mode&quot;:&quot;table&quot;}" oninput="'+update+'\'visibleWhen\',this.value)">'+esc(field.visibleWhen)+'</textarea></div></div>';
 }
 function opRegRemoveEnum(index,value){var state=opWizardState(),field=(state.schemaFields||[])[index];if(!field)return;field.allowed=(field.allowed||[]).filter(function(item){return item!==value;});opRegUpdateField(index,'allowed',field.allowed);}
 function opRegSchemaVisualContent(state){
@@ -20378,8 +20351,7 @@ function opBuildRegisteredSchema(state){
     var visible=null;if(field.visibleWhen){try{visible=JSON.parse(field.visibleWhen);}catch(e){visible=null;}}
     var controls={string:'text',int:'number',float:'number',bool:'switch',enum:'select',dataset:'dataset-picker',field:'field-picker',secret:'secret',code:'code',json:'json-editor',array:'json-editor',object:'json-editor'};
     var registered=opField(field.key||('field_'+(index+1)),field.label||('字段 '+(index+1)),controls[field.type]||'text',!!field.required,field.defaultValue===undefined?'':field.defaultValue,field.description||'',(field.allowed||[]).slice(),visible);
-    registered.group=field.group||'算子参数';registered.dependsOn=field.dependsOn||'';registered.remoteOptions=field.remoteOptions||'';
-    registered.sourcePath=field.sourcePath||'';registered.databasePath=field.databasePath||'';registered.schemaPath=field.schemaPath||'';registered.tablePath=field.tablePath||'';
+    registered.group=field.group||'算子参数';registered.dependsOn=field.dependsOn||'';
     registered.clearOnUpstream=Array.isArray(field.clearOnUpstream)?field.clearOnUpstream.slice():[];
     return registered;
   });
