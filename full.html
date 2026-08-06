@@ -724,7 +724,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
         <div class="nav-item" data-page="lineage" onclick="navigateTo(&quot;血缘分析&quot;)"><i class="fa-solid fa-share-nodes"></i><span>血缘分析</span></div>
       </div>
     </div>
-    <div class="nav-group" data-group-key="service">
+        <div class="nav-group" data-group-key="service" hidden aria-hidden="true">
       <button class="nav-group-title" type="button" data-group-key="service" onclick="toggleNavGroup('service',this)" aria-expanded="false"><i class="nav-group-icon fa-solid fa-tower-broadcast"></i><span class="nav-group-label">数据服务</span><i class="nav-group-chevron fa-solid fa-chevron-down"></i></button>
       <div class="nav-group-items">
         <div class="nav-item" data-page="retrieval" onclick="navigateTo(&quot;数据检索&quot;)"><i class="fa-solid fa-magnifying-glass-chart"></i><span>数据检索</span></div>
@@ -756,11 +756,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 <div class="page-actions"><button class="btn btn-outline btn-sm" onclick="showToast(&quot;正在导出规范列表...&quot;,&quot;success&quot;)"><i class="fa-solid fa-download"></i> 导出</button><button class="btn btn-primary btn-sm" onclick="openAddTermDrawer()"><i class="fa-solid fa-plus"></i> 新增</button></div></div>
 <div class="filter-bar">
   <input type="text" placeholder="搜索规范名称/编号..." id="termSearch" oninput="filterTerms()">
-  <select id="termStatusFilter" onchange="filterTerms()"><option value="">全部状态</option><option>启用</option><option>禁用</option><option>草稿</option></select>
+  <select id="termStatusFilter" onchange="filterTerms()"><option value="">全部状态</option><option>草稿</option><option>已发布</option><option>已废弃</option></select>
   <button class="btn btn-outline btn-sm" onclick="resetTermFilters()"><i class="fa-solid fa-rotate-left"></i> 重置</button>
 </div>
 <div class="card" style="padding:0;overflow:hidden">
-<table class="data-table"><thead><tr><th>规范编号</th><th>规范名称</th><th>创建人</th><th>创建时间</th><th>状态</th><th>操作</th></tr></thead>
+<table class="data-table"><thead><tr><th>规范编号</th><th>规范名称</th><th>版本</th><th>引用数</th><th>创建人</th><th>最近修改</th><th>操作</th></tr></thead>
 <tbody id="termsBody"><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-DGN-000001</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-DGN-000001&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">2型糖尿病诊断规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">李主任</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-20 14:30</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-DGN-000001&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-DGN-000001&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;2型糖尿病诊断规范&quot;,&quot;SPEC-DGN-000001&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-SUR-000015</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-SUR-000015&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">腹腔镜胆囊切除术规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">张医生</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-18 09:15</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-SUR-000015&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-SUR-000015&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;腹腔镜胆囊切除术规范&quot;,&quot;SPEC-SUR-000015&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-LAB-000023</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-LAB-000023&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">血常规检验规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">王审核</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-15 16:00</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-LAB-000023&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-LAB-000023&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;血常规检验规范&quot;,&quot;SPEC-LAB-000023&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-DRG-000031</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-DRG-000031&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">盐酸二甲双胍药品规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">陈编辑</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-22 10:45</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-DRG-000031&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-DRG-000031&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;盐酸二甲双胍药品规范&quot;,&quot;SPEC-DRG-000031&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-SYM-000007</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-SYM-000007&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">高血压相关症状规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">赵架构</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-10 13:20</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-SYM-000007&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-SYM-000007&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;高血压相关症状规范&quot;,&quot;SPEC-SYM-000007&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-ANT-000019</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-ANT-000019&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">人体解剖部位规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">李主任</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-05-28 11:00</td><td><span class="tag tag-yellow">草稿</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-ANT-000019&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;草稿发布需先配置字段&quot;,&quot;warning&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-ANT-000019&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;人体解剖部位规范&quot;,&quot;SPEC-ANT-000019&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-MCB-000011</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-MCB-000011&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">常见病原微生物规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">张医生</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-05 15:40</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-MCB-000011&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-MCB-000011&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;常见病原微生物规范&quot;,&quot;SPEC-MCB-000011&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-DGN-000045</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-DGN-000045&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">急性心肌梗死诊断规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">王审核</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-19 08:10</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-DGN-000045&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-DGN-000045&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;急性心肌梗死诊断规范&quot;,&quot;SPEC-DGN-000045&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-SUR-000052</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-SUR-000052&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">冠状动脉搭桥术规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">陈编辑</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-12 17:20</td><td><span class="tag tag-red">已停用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-SUR-000052&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;该规范已被禁用，无法发布&quot;,&quot;warning&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-SUR-000052&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;冠状动脉搭桥术规范&quot;,&quot;SPEC-SUR-000052&quot;)" title="删除">删除</button></td></tr><tr><td class="no-click" style="font-size:12px;color:var(--gray-500)">SPEC-DRG-000058</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;SPEC-DRG-000058&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">阿司匹林药品规范</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">赵架构</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">2026-06-08 16:55</td><td><span class="tag tag-green">启用</span></td><td><button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;SPEC-DRG-000058&quot;)" title="详情">详情</button><button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button><button class="btn btn-ghost btn-sm" onclick="showToast(&quot;规范已发布&quot;,&quot;success&quot;)" title="发布">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;SPEC-DRG-000058&quot;)" title="导入">导入</button><button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;阿司匹林药品规范&quot;,&quot;SPEC-DRG-000058&quot;)" title="删除">删除</button></td></tr></tbody></table>
 <div class="pagination"><span>共 10 条</span><button class="page-btn active">1</button><select><option>10 条/页</option></select></div></div></div>
 <div id="page-mappings" class="page">
@@ -953,6 +953,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <span class="trd-quick-item"><em>节点进度</em><b id="trdNodeProgress"></b><small id="trdFailedNode"></small></span>
       <span class="trd-quick-item"><em>数据处理</em><b id="trdDataSummary"></b><small id="trdWarningSummary"></small></span>
     </div>
+
+    <section class="card" id="taskRunMetadataSnapshot" style="margin:0 0 12px;padding:16px 18px"></section>
 
     <div class="trd-workspace" id="taskRunWorkspace">
       <section class="card trd-graph-card">
@@ -2387,6 +2389,7 @@ function navigateTo(pageName) {
   if(pid==="assets" && typeof renderAssetsPage==="function") renderAssetsPage();
   if(pid==="lineage" && typeof renderLineagePage==="function") renderLineagePage();
   if(pid==="sourceconfig" && typeof renderSourceConfigPage==="function") renderSourceConfigPage();
+  if(pid==="terms" && typeof renderTermsTable==="function") renderTermsTable();
   if(pid==="operators" && typeof renderOperatorsPage==="function") renderOperatorsPage();
   if(pid==="prompts" && typeof renderPromptsTable==="function") renderPromptsTable();
   if(pid==="qcrules" && typeof renderQcRulesPage==="function") renderQcRulesPage();
@@ -2522,7 +2525,7 @@ function openPipelineCreateModal(){
         .map(function(o){return '<option>'+esc(o)+'</option>';}).join(''))
     + '<option>北京协和医院</option><option>华西医院</option><option>上海市第一人民医院</option>';
   var specOpts = '<option value="">请选择元数据规范（选填）</option>'
-    + ((window.META_SPECS_LIST||[]).map(function(s){return '<option value="'+esc(s.id)+'">'+esc(s.name)+' ('+esc(s.id)+')</option>';}).join(''));
+    + ((DATA.terms||[]).map(function(s){return '<option value="'+esc(s.id)+'">'+esc(s.name)+' ('+esc(s.id)+')</option>';}).join(''));
   var body =
     '<div class="form-group"><label class="form-label">名称 <span style="color:var(--danger)">*</span></label>'
     + '<div style="position:relative">'
@@ -2580,13 +2583,19 @@ function submitPipelineCreate(){
   renderPipelinesTable();
   setTimeout(function(){ openPipelineCanvas(no); }, 300);
 }
-function pcmLoadSpecVersions(specId){
+function pcmLoadSpecVersions(specId,selectedVersion,includeHistorical){
   var sel = document.getElementById('pcm_specVer'); if(!sel) return;
-  sel.disabled = !specId;
-  if(!specId){ sel.innerHTML = '<option value="">请先选择元数据规范</option>'; return; }
-  // demo：每个规范给 3 个版本
-  sel.innerHTML = '<option value="">请选择规范版本（选填）</option>'
-    + ['v1.0','v1.1','v2.0'].map(function(v){return '<option value="'+v+'">'+v+'</option>';}).join('');
+  if(!specId){ sel.disabled=true;sel.innerHTML = '<option value="">请先选择元数据规范</option>'; return; }
+  var term=metadataTermById(specId);
+  var selectedItem=term&&selectedVersion?metadataFindVersion(term,selectedVersion):null;
+  var published=term&&metadataPublishedVersion(term);
+  var hasSelectable=!!published||!!(includeHistorical&&selectedItem);
+  sel.disabled=!hasSelectable;
+  sel.innerHTML=hasSelectable
+    ? '<option value="">请选择规范版本</option>'+metadataVersionOptions(specId,selectedVersion,includeHistorical)
+    : metadataVersionOptions(specId,selectedVersion,includeHistorical);
+  if(selectedVersion&&selectedItem)sel.value=selectedVersion;
+  else if(!selectedVersion&&published)sel.value=published.version;
 }
 function submitPipelineCreateModal(){
   var name = (document.getElementById('pcm_name')||{}).value||'';
@@ -2597,6 +2606,7 @@ function submitPipelineCreateModal(){
   var org  = (document.getElementById('pcm_org')||{}).value||'';
   var spec = (document.getElementById('pcm_spec')||{}).value||'';
   var specVer = (document.getElementById('pcm_specVer')||{}).value||'';
+  if(spec&&!specVer){ showToast('选择元数据规范后必须选择规范版本','error'); return; }
   var now  = new Date().toISOString().replace('T',' ').slice(0,16);
   var no   = 'PL-'+Date.now().toString(36).slice(-6).toUpperCase();
   var newPipe = {
@@ -2640,8 +2650,9 @@ function openPipelineEditModal(no){
   if(nameEl){ nameEl.value = p.name || ''; var nc=document.getElementById('pcm_nameCnt'); if(nc) nc.textContent = nameEl.value.length + ' / 100'; }
   if(descEl){ descEl.value = (p.desc && p.desc!=='-') ? p.desc : ''; var dc=document.getElementById('pcm_descCnt'); if(dc) dc.textContent = descEl.value.length + ' / 500'; }
   if(orgEl && p.org) orgEl.value = p.org;
-  if(specEl && p.metaSpec){ specEl.value = p.metaSpec; pcmLoadSpecVersions(p.metaSpec); }
-  if(specVerEl && p.metaSpecVersion) specVerEl.value = p.metaSpecVersion;
+  if(specEl && p.metaSpec){ specEl.value = p.metaSpec; pcmLoadSpecVersions(p.metaSpec,p.metaSpecVersion,true); }
+  var specTerm=p.metaSpec&&metadataTermById(p.metaSpec);
+  if(specVerEl && p.metaSpecVersion && specTerm && metadataFindVersion(specTerm,p.metaSpecVersion)) specVerEl.value = p.metaSpecVersion;
   var footer = ov && ov.querySelector('.unified-modal-footer');
   if(footer){
     footer.innerHTML = '<button class="btn btn-outline" onclick="closeModal()">取消</button>'
@@ -2658,8 +2669,11 @@ function submitPipelineEditModal(no){
   p.name = name;
   p.desc = ((document.getElementById('pcm_desc')||{}).value||'') || '-';
   p.org = (document.getElementById('pcm_org')||{}).value||'';
-  p.metaSpec = (document.getElementById('pcm_spec')||{}).value||'';
-  p.metaSpecVersion = (document.getElementById('pcm_specVer')||{}).value||'';
+  var spec=(document.getElementById('pcm_spec')||{}).value||'';
+  var specVer=(document.getElementById('pcm_specVer')||{}).value||'';
+  if(spec&&!specVer){ showToast('选择元数据规范后必须选择规范版本','error'); return; }
+  p.metaSpec = spec;
+  p.metaSpecVersion = specVer;
   p.lastModify = new Date().toISOString().replace('T',' ').slice(0,16);
   closeModal();
   renderPipelinesTable();
@@ -4221,6 +4235,7 @@ window.addEventListener('DOMContentLoaded', function(){
   initSidebar();
   if(typeof platformLogApplyNavigationPermission==='function') platformLogApplyNavigationPermission();
   navigateTo('元数据规范');
+  if(typeof renderTermsTable==='function') renderTermsTable();
   if(typeof renderModelsTable==='function') renderModelsTable();
   if(typeof renderProductsGrid==='function') renderProductsGrid();
   setTimeout(function(){
@@ -4253,18 +4268,238 @@ function toggleEmptyState(tableId, hasData) {
 }
 
 // ============ TERMS V2 FUNCTIONS ============
-function filterTerms() {
-  var s = (document.getElementById('termSearch')||{}).value||'';
-  s = s.toLowerCase();
-  var sf = (document.getElementById('termStatusFilter')||{}).value||'';
-  DATA.terms.forEach(function(t,i){
-    var tr = document.getElementById('termsBody').rows[i];
-    if(!tr) return;
-    var show = true;
-    if(s && t.name.toLowerCase().indexOf(s)===-1 && t.id.toLowerCase().indexOf(s)===-1) show = false;
-    if(sf && t.status !== sf) show = false;
-    tr.style.display = show ? '' : 'none';
+function metadataClone(value){
+  return JSON.parse(JSON.stringify(value));
+}
+function metadataStatusClass(status){
+  if(status==='已发布')return 'tag-green';
+  if(status==='草稿')return 'tag-yellow';
+  return 'tag-gray';
+}
+function metadataCompareVersions(a,b){
+  function parts(item){
+    var match=/^v(\d+)\.(\d+)$/.exec(String(item&&item.version||'v0.0'));
+    return match?[Number(match[1]),Number(match[2])]:[0,0];
+  }
+  var left=parts(a),right=parts(b);
+  return right[0]-left[0]||right[1]-left[1];
+}
+function metadataEnsureVersions(term){
+  if(Array.isArray(term.versions)&&term.versions.length)return term.versions;
+  var statusMap={'启用':'已发布','草稿':'草稿','已停用':'已废弃','禁用':'已废弃'};
+  var tree=typeof _metaTree!=='undefined'?_metaTree:[];
+  var fields=typeof _metaFields!=='undefined'?_metaFields:{};
+  var targetCatalog=typeof META_SPEC_FIELDS!=='undefined'?META_SPEC_FIELDS:{};
+  term.versions=[{
+    version:term.version||'v1.0',
+    status:statusMap[term.status]||'草稿',
+    name:term.name,
+    description:term.description||term.desc||'',
+    updatedBy:term.creator||'-',
+    updatedAt:term.ctime||'-',
+    publishedAt:statusMap[term.status]==='已发布'?(term.ctime||'-'):'-',
+    revisionNote:'初始版本',
+    tree:metadataClone(tree),
+    fieldsByTable:metadataClone(fields),
+    targetFields:metadataClone(targetCatalog[term.id]||term.fields||[])
+  }];
+  return term.versions;
+}
+function metadataVersions(term){
+  return metadataEnsureVersions(term).slice().sort(metadataCompareVersions);
+}
+function metadataFindVersion(term,version){
+  return metadataEnsureVersions(term).find(function(item){return item.version===version;});
+}
+function metadataPublishedVersion(term){
+  return metadataVersions(term).find(function(item){return item.status==='已发布';});
+}
+function metadataDisplayVersion(term){
+  var versions=metadataVersions(term);
+  return versions.find(function(item){return item.status==='草稿';})||metadataPublishedVersion(term)||versions[0];
+}
+function metadataNextVersion(version){
+  var match=/^v(\d+)\.(\d+)$/.exec(String(version||'v1.0'));
+  if(!match)return 'v1.1';
+  return 'v'+match[1]+'.'+(Number(match[2])+1);
+}
+function metadataVersionOptions(specId,selectedVersion,includeHistorical){
+  var term=(DATA.terms||[]).find(function(item){return item.id===specId;});
+  if(!term)return '<option value="">当前规范版本未返回</option>';
+  var selectedItem=selectedVersion?metadataFindVersion(term,selectedVersion):null;
+  var versions=metadataVersions(term).filter(function(item){
+    return item.status==='已发布'||(includeHistorical&&item.version===selectedVersion);
   });
+  if(includeHistorical&&selectedVersion&&!selectedItem){
+    return '<option value="" selected>当前规范版本未返回</option>'
+      +versions.map(function(item){return '<option value="'+esc(item.version)+'">'+esc(item.version)+'</option>';}).join('');
+  }
+  if(!versions.length)return '<option value="">当前规范暂无已发布版本</option>';
+  return versions.map(function(item){
+    var historical=item.status!=='已发布'?'（历史版本）':'';
+    return '<option value="'+esc(item.version)+'"'+(item.version===selectedVersion?' selected':'')+'>'+esc(item.version+historical)+'</option>';
+  }).join('');
+}
+function metadataVersionTargetFields(specId,version){
+  var term=(DATA.terms||[]).find(function(item){return item.id===specId;});
+  var item=term&&metadataFindVersion(term,version);
+  return metadataClone(item&&item.targetFields||[]);
+}
+function metadataBindingSnapshot(pipeline){
+  if(!pipeline||!pipeline.metaSpec)return null;
+  var term=(DATA.terms||[]).find(function(item){return item.id===pipeline.metaSpec;});
+  var version=term&&metadataFindVersion(term,pipeline.metaSpecVersion);
+  return {
+    specId:pipeline.metaSpec,
+    specName:term?term.name:'',
+    version:pipeline.metaSpecVersion||'',
+    versionStatus:version?version.status:'',
+    targetFields:metadataClone(version&&version.targetFields||[])
+  };
+}
+function metadataBindingSnapshotHTML(snapshot){
+  if(!snapshot)return '<div class="td-flow-field"><span class="td-flow-field-label">元数据规范</span><span class="td-flow-field-value">当前未绑定元数据规范</span></div>';
+  var specText=(snapshot.specName||'当前元数据规范未返回')+' ('+(snapshot.specId||'-')+')';
+  var versionText=snapshot.version||'当前规范版本未返回';
+  if(snapshot.version&&snapshot.versionStatus==='已废弃')versionText+='（历史版本）';
+  return '<div class="td-flow-field"><span class="td-flow-field-label">元数据规范</span><span class="td-flow-field-value">'+esc(specText)+'</span></div>'
+    +'<div class="td-flow-field"><span class="td-flow-field-label">规范版本</span><span class="td-flow-field-value">'+esc(versionText)+'</span></div>';
+}
+function metadataTermById(specId){
+  return (DATA.terms||[]).find(function(term){return term.id===specId;});
+}
+function metadataTreeTableCount(nodes){
+  return (nodes||[]).reduce(function(total,node){
+    return total+(node.type==='table'?1:metadataTreeTableCount(node.children||[]));
+  },0);
+}
+function metadataVersionFieldCount(version){
+  return Object.keys(version&&version.fieldsByTable||{}).reduce(function(total,key){
+    return total+((version.fieldsByTable[key]||[]).length);
+  },0);
+}
+function metadataReferenceCount(specId,version){
+  var refs={};
+  (DATA.pipelines||[]).forEach(function(pipeline){
+    if(pipeline.metaSpec===specId&&pipeline.metaSpecVersion===version)refs['pipeline:'+pipeline.no]=1;
+    (pipeline.nodes||[]).forEach(function(node){if(node.metaSpec===specId&&node.metaSpecVersion===version)refs['node:'+pipeline.no+':'+node.id]=1;});
+  });
+  if(typeof GOV!=='undefined'){
+    (GOV.assets||[]).forEach(function(asset){if(asset.metaSpecId===specId&&asset.metaSpecVersion===version)refs['asset:'+asset.id]=1;});
+  }
+  if(typeof _canvasState!=='undefined'&&_canvasState){
+    (_canvasState.nodes||[]).forEach(function(node){if(node.metaSpec===specId&&node.metaSpecVersion===version)refs['canvas:'+node.id]=1;});
+  }
+  return Object.keys(refs).length;
+}
+function metadataTermActionHTML(term,version){
+  var id=esc(term.id),ver=esc(version.version),actions='';
+  if(version.status==='草稿'){
+    actions+='<button class="btn btn-ghost btn-sm" onclick="openMetaSpecConfig(\''+id+'\',\''+ver+'\')">配置</button>';
+    actions+='<button class="btn btn-ghost btn-sm" onclick="metadataPublishVersion(\''+id+'\',\''+ver+'\')">发布</button>';
+    actions+='<button class="btn btn-ghost btn-sm" onclick="openImportTermModal(\''+id+'\',\''+ver+'\')">导入</button>';
+    actions+='<button class="btn btn-ghost btn-sm" onclick="metadataExportVersion(\''+id+'\',\''+ver+'\')">导出</button>';
+    actions+='<button class="btn btn-ghost btn-sm btn-danger" onclick="metadataDeleteDraftVersion(\''+id+'\',\''+ver+'\')">删除</button>';
+  }else if(version.status==='已发布'){
+    actions+='<button class="btn btn-ghost btn-sm" onclick="openMetaSpecConfig(\''+id+'\',\''+ver+'\')">查看</button>';
+    actions+='<button class="btn btn-ghost btn-sm" onclick="openMetadataRevision(\''+id+'\',\''+ver+'\')">修订</button>';
+    actions+='<button class="btn btn-ghost btn-sm" onclick="metadataExportVersion(\''+id+'\',\''+ver+'\')">导出</button>';
+  }else if(version.status==='已废弃'){
+    actions+='<button class="btn btn-ghost btn-sm" onclick="openMetaSpecConfig(\''+id+'\',\''+ver+'\')">查看</button>';
+    actions+='<button class="btn btn-ghost btn-sm" onclick="metadataExportVersion(\''+id+'\',\''+ver+'\')">导出</button>';
+  }
+  if(metadataVersions(term).length>1)actions+='<button class="btn btn-ghost btn-sm" onclick="openMetadataVersionHistory(\''+id+'\')">更多版本('+metadataVersions(term).length+')</button>';
+  return actions;
+}
+function renderTermsTable(){
+  var tbody=document.getElementById('termsBody');if(!tbody)return;
+  var search=((document.getElementById('termSearch')||{}).value||'').trim().toLowerCase();
+  var status=((document.getElementById('termStatusFilter')||{}).value||'');
+  var rows=(DATA.terms||[]).map(function(term){
+    var version=metadataDisplayVersion(term);return {term:term,version:version};
+  }).filter(function(item){
+    if(search&&item.term.id.toLowerCase().indexOf(search)<0&&item.term.name.toLowerCase().indexOf(search)<0)return false;
+    return !status||item.version.status===status;
+  });
+  tbody.innerHTML=rows.map(function(item){
+    var term=item.term,version=item.version;
+    return '<tr>'
+      +'<td class="no-click" style="font-size:12px;color:var(--gray-500)">'+esc(term.id)+'</td>'
+      +'<td><a href="javascript:void(0)" onclick="openMetaSpecConfig(\''+esc(term.id)+'\',\''+esc(version.version)+'\')" style="color:var(--primary);font-weight:500">'+esc(term.name)+'</a></td>'
+      +'<td><strong style="font-size:12px">'+esc(version.version)+'</strong> <span class="tag '+metadataStatusClass(version.status)+'">'+esc(version.status)+'</span></td>'
+      +'<td class="no-click">'+metadataReferenceCount(term.id,version.version)+'</td>'
+      +'<td class="no-click" style="font-size:12px;color:var(--gray-500)">'+esc(term.creator||'-')+'</td>'
+      +'<td class="no-click" style="font-size:12px;color:var(--gray-500)">'+esc(version.updatedAt||'-')+'</td>'
+      +'<td>'+metadataTermActionHTML(term,version)+'</td>'
+      +'</tr>';
+  }).join('')||'<tr><td colspan="7"><div class="empty-state" style="padding:36px"><div class="empty-icon"><i class="fa-solid fa-folder-open"></i></div><h3>暂无元数据规范</h3><p>当前筛选条件下没有匹配的数据</p></div></td></tr>';
+}
+function metadataVersionHistoryActionHTML(term,version){
+  var id=esc(term.id),ver=esc(version.version);
+  if(version.status==='草稿')return '<button class="btn btn-ghost btn-sm" onclick="closeModal();openMetaSpecConfig(\''+id+'\',\''+ver+'\')">编辑</button><button class="btn btn-ghost btn-sm" onclick="metadataPublishVersion(\''+id+'\',\''+ver+'\')">发布</button><button class="btn btn-ghost btn-sm" onclick="openImportTermModal(\''+id+'\',\''+ver+'\')">导入</button><button class="btn btn-ghost btn-sm" onclick="metadataExportVersion(\''+id+'\',\''+ver+'\')">导出</button><button class="btn btn-ghost btn-sm btn-danger" onclick="metadataDeleteDraftVersion(\''+id+'\',\''+ver+'\')">删除</button>';
+  if(version.status==='已发布')return '<button class="btn btn-ghost btn-sm" onclick="closeModal();openMetaSpecConfig(\''+id+'\',\''+ver+'\')">查看</button><button class="btn btn-ghost btn-sm" onclick="openMetadataRevision(\''+id+'\',\''+ver+'\')">修订</button><button class="btn btn-ghost btn-sm" onclick="metadataExportVersion(\''+id+'\',\''+ver+'\')">导出</button>';
+  return '<button class="btn btn-ghost btn-sm" onclick="closeModal();openMetaSpecConfig(\''+id+'\',\''+ver+'\')">查看</button><button class="btn btn-ghost btn-sm" onclick="metadataExportVersion(\''+id+'\',\''+ver+'\')">导出</button>';
+}
+function openMetadataVersionHistory(specId){
+  var term=metadataTermById(specId);if(!term)return;
+  var rows=metadataVersions(term).map(function(version){
+    return '<tr><td><strong>'+esc(version.version)+'</strong> <span class="tag '+metadataStatusClass(version.status)+'">'+esc(version.status)+'</span></td>'
+      +'<td>'+metadataTreeTableCount(version.tree)+'</td><td>'+metadataVersionFieldCount(version)+'</td><td>'+metadataReferenceCount(term.id,version.version)+'</td>'
+      +'<td>'+esc(version.updatedBy||'-')+'</td><td>'+esc(version.updatedAt||'-')+'</td><td style="max-width:180px">'+esc(version.revisionNote||'-')+'</td>'
+      +'<td>'+metadataVersionHistoryActionHTML(term,version)+'</td></tr>';
+  }).join('');
+  var body='<div style="overflow:auto"><table class="data-table"><thead><tr><th>版本</th><th>数据表数</th><th>数据元数</th><th>引用数</th><th>修改人</th><th>修改时间</th><th>修订说明</th><th>操作</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  buildModal('版本历史 - '+term.name,body,'<button class="btn btn-outline" onclick="closeModal()">关闭</button>','1040px');
+}
+function openMetadataRevision(specId,version){
+  var term=metadataTermById(specId);if(!term)return;
+  var draft=metadataVersions(term).find(function(item){return item.status==='草稿';});
+  if(draft){showToast('当前规范已存在草稿版本，请先处理现有草稿','warning');closeModal();openMetaSpecConfig(specId,draft.version);return;}
+  var current=metadataFindVersion(term,version);if(!current||current.status!=='已发布'){showToast('仅已发布版本支持修订','warning');return;}
+  var next=metadataNextVersion(current.version);
+  var body='<div class="td-note">将基于 '+esc(current.version)+' 复制 '+metadataTreeTableCount(current.tree)+' 个数据表、'+metadataVersionFieldCount(current)+' 个数据元，并生成新草稿 '+esc(next)+'。</div>'
+    +'<div class="form-group" style="margin-top:14px"><label class="form-label">修订说明</label><textarea class="form-textarea" id="metadataRevisionNote" maxlength="200" placeholder="请输入本次修订内容，最多200字"></textarea></div>';
+  buildModal('修订规范 - 创建新草稿',body,'<button class="btn btn-outline" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="metadataReviseVersion(\''+esc(specId)+'\',\''+esc(version)+'\')">确认创建草稿版本</button>','620px');
+}
+function metadataReviseVersion(specId,version){
+  var term=metadataTermById(specId);if(!term)return;
+  var draft=metadataVersions(term).find(function(item){return item.status==='草稿';});
+  if(draft){showToast('当前规范已存在草稿版本，请先处理现有草稿','warning');return;}
+  var base=metadataFindVersion(term,version);if(!base||base.status!=='已发布'){showToast('仅已发布版本支持修订','warning');return;}
+  var now=new Date().toISOString().replace('T',' ').slice(0,16);
+  var note=((document.getElementById('metadataRevisionNote')||{}).value||'').trim();
+  var next={version:metadataNextVersion(base.version),status:'草稿',name:base.name||term.name,description:base.description||'',updatedBy:'当前用户',updatedAt:now,publishedAt:'-',revisionNote:note||'-',tree:metadataClone(base.tree||[]),fieldsByTable:metadataClone(base.fieldsByTable||{}),targetFields:metadataClone(base.targetFields||[])};
+  term.versions.push(next);term.version=next.version;term.status='草稿';
+  if(typeof platformAuditRecord==='function')platformAuditRecord({module:'规范管理',action:'修订',objectType:'元数据规范',objectId:term.id,objectName:term.name,result:'成功',summary:'基于 '+base.version+' 创建 '+next.version});
+  closeModal();renderTermsTable();showToast('草稿版本 '+next.version+' 已创建','success');openMetaSpecConfig(specId,next.version);
+}
+function metadataPublishVersion(specId,version){
+  var term=metadataTermById(specId),draft=term&&metadataFindVersion(term,version);if(!draft||draft.status!=='草稿'){showToast('仅草稿版本支持发布','warning');return;}
+  if(!metadataTreeTableCount(draft.tree)||!metadataVersionFieldCount(draft)){showToast('请先配置数据表和数据元后再发布','error');return;}
+  metadataEnsureVersions(term).forEach(function(item){if(item.status==='已发布')item.status='已废弃';});
+  draft.status='已发布';draft.updatedBy='当前用户';draft.updatedAt=new Date().toISOString().replace('T',' ').slice(0,16);draft.publishedAt=draft.updatedAt;
+  term.version=draft.version;term.status='启用';
+  if(typeof platformAuditRecord==='function')platformAuditRecord({module:'规范管理',action:'发布',objectType:'元数据规范',objectId:term.id,objectName:term.name,result:'成功',summary:'发布版本 '+draft.version});
+  closeModal();renderTermsTable();showToast('元数据规范 '+draft.version+' 已发布','success');
+  if(_metaSpecId===specId){_metaSpecStatus='已发布';renderMetaSpecPage();}
+}
+function metadataDeleteDraftVersion(specId,version){
+  var term=metadataTermById(specId),draft=term&&metadataFindVersion(term,version);if(!draft||draft.status!=='草稿'){showToast('仅草稿版本支持删除','warning');return;}
+  buildModal('删除草稿版本','<div style="font-size:14px;color:var(--gray-700)">删除后不可恢复，是否删除草稿版本 '+esc(version)+'？</div>','<button class="btn btn-outline" onclick="closeModal()">取消</button><button class="btn btn-danger" onclick="confirmMetadataDeleteDraftVersion(\''+esc(specId)+'\',\''+esc(version)+'\')">确认删除</button>','480px');
+}
+function confirmMetadataDeleteDraftVersion(specId,version){
+  var term=metadataTermById(specId);if(!term)return;
+  term.versions=metadataEnsureVersions(term).filter(function(item){return !(item.version===version&&item.status==='草稿');});
+  if(!term.versions.length)DATA.terms=DATA.terms.filter(function(item){return item.id!==specId;});
+  else{var current=metadataDisplayVersion(term);term.version=current.version;term.status=current.status==='已发布'?'启用':current.status;}
+  if(typeof platformAuditRecord==='function')platformAuditRecord({module:'规范管理',action:'删除',objectType:'元数据规范草稿',objectId:specId,objectName:term.name,result:'成功',summary:'删除草稿版本 '+version});
+  closeModal();renderTermsTable();showToast('草稿版本已删除','success');
+}
+function metadataExportVersion(specId,version){
+  var term=metadataTermById(specId);showToast('正在导出 '+(term?term.name:'元数据规范')+' '+version+'...','success');
+}
+function filterTerms() {
+  renderTermsTable();
 }
 
 function resetTermFilters() {
@@ -4272,13 +4507,13 @@ function resetTermFilters() {
   if(elS) elS.value = '';
   var elSt = document.getElementById('termStatusFilter');
   if(elSt) elSt.value = '';
-  filterTerms();
+  renderTermsTable();
   showToast('筛选条件已重置','success');
 }
 
-function openTermDetail(id) {
+function openTermDetail(id,version) {
   // 元数据规范配置页（参考截图3/4）：左侧数据表列表 + 右侧字段表格
-  openMetaSpecConfig(id);
+  openMetaSpecConfig(id,version);
 }
 // 元数据规范配置：双栏（左数据表 / 右字段表格 + 新增字段/导入）
 // 数据表按业务域多级分组树（分组可无限层级，表为叶子）
@@ -4370,35 +4605,71 @@ function metaFieldsOf(key){
   ];
 }
 var _metaCurTable = null;
-function openMetaSpecConfig(id){
-  var t=(DATA.terms||[]).find(function(x){return x.id===id;});
-  _metaSpecName = t ? t.name : '医疗大数据元数据规范';
+function openMetaSpecConfig(id,version){
+  var t=metadataTermById(id);if(!t){showToast('当前元数据规范未返回','warning');return;}
+  var selected=version?metadataFindVersion(t,version):metadataDisplayVersion(t);
+  if(!selected){showToast('当前规范版本未返回','warning');return;}
+  _metaSpecId=t.id;_metaSpecName=t.name;_metaSpecVersion=selected.version;_metaSpecStatus=selected.status;
+  _metaTree=selected.tree||[];_metaFields=selected.fieldsByTable||{};
   _metaCurTable = metaFirstTable(_metaTree);
   navigateTo('元数据规范配置');
 }
 var _metaSpecName = '医疗大数据元数据规范';
+var _metaSpecId='',_metaSpecVersion='',_metaSpecStatus='';
+function metadataActiveVersion(){
+  var term=metadataTermById(_metaSpecId);return term&&metadataFindVersion(term,_metaSpecVersion);
+}
+function metadataTouchActiveVersion(){
+  var version=metadataActiveVersion();if(!version)return;
+  version.updatedBy='当前用户';version.updatedAt=new Date().toISOString().replace('T',' ').slice(0,16);
+  version.tree=_metaTree;version.fieldsByTable=_metaFields;
+}
+function metadataSwitchDetailVersion(version){
+  openMetaSpecConfig(_metaSpecId,version);
+}
+function metadataFlatTables(nodes,output){
+  output=output||[];(nodes||[]).forEach(function(node){if(node.type==='table')output.push(node);else metadataFlatTables(node.children||[],output);});return output;
+}
 function renderMetaSpecPage(){
   var pg=document.getElementById('page-metaspec'); if(!pg) return;
   _mgSeq=0;
   var listHTML = renderMetaTree(_metaTree, 0);
+  var term=metadataTermById(_metaSpecId),mutable=_metaSpecStatus==='草稿';
+  var versions=term?metadataVersions(term):[];
+  var versionOptions=versions.map(function(item){return '<option value="'+esc(item.version)+'"'+(item.version===_metaSpecVersion?' selected':'')+'>'+esc(item.version+' '+item.status)+'</option>';}).join('');
+  var draft=versions.find(function(item){return item.status==='草稿';});
+  var actions='';
+  if(mutable){
+    actions='<button class="btn btn-outline btn-sm" onclick="openMetaAddTable()"><i class="fa-solid fa-plus"></i> 新增数据表</button>'
+      +'<button class="btn btn-outline btn-sm" onclick="openMetaAddField()"'+(!_metaCurTable?' disabled':'')+'><i class="fa-solid fa-plus"></i> 新增字段</button>'
+      +'<button class="btn btn-outline btn-sm" onclick="openMetaImport()"><i class="fa-solid fa-upload"></i> 导入</button>'
+      +'<button class="btn btn-primary btn-sm" onclick="metadataPublishVersion(\''+esc(_metaSpecId)+'\',\''+esc(_metaSpecVersion)+'\')">发布</button>';
+  }else if(_metaSpecStatus==='已发布'){
+    actions=draft?'<button class="btn btn-primary btn-sm" onclick="openMetaSpecConfig(\''+esc(_metaSpecId)+'\',\''+esc(draft.version)+'\')">打开草稿</button>':'<button class="btn btn-primary btn-sm" onclick="openMetadataRevision(\''+esc(_metaSpecId)+'\',\''+esc(_metaSpecVersion)+'\')">修订</button>';
+  }
+  actions+='<button class="btn btn-outline btn-sm" onclick="metadataExportVersion(\''+esc(_metaSpecId)+'\',\''+esc(_metaSpecVersion)+'\')"><i class="fa-solid fa-download"></i> 导出</button>';
+  var area=_metaCurTable?renderMetaFieldTable(_metaCurTable):'<div class="empty-state" style="padding:60px 20px"><div class="empty-icon"><i class="fa-solid fa-table"></i></div><h3>暂无数据表</h3><p>'+(mutable?'请先新增数据表，再配置数据元':'当前版本没有数据表')+'</p></div>';
   pg.innerHTML = '<div class="page-header"><div class="page-title">'
     + '<a href="javascript:void(0)" onclick="navigateTo(&quot;元数据规范&quot;)" style="color:var(--gray-500);font-size:14px;margin-right:8px"><i class="fa-solid fa-chevron-left"></i> 返回</a>'
-    + '<i class="fa-solid fa-table-list" style="color:var(--primary);margin-right:6px"></i> '+esc(_metaSpecName)+'</div>'
-    + '<div class="page-actions"><button class="btn btn-outline btn-sm" onclick="openMetaAddTable()"><i class="fa-solid fa-plus"></i> 新增数据表</button>'
-    + '<button class="btn btn-outline btn-sm" onclick="openMetaAddField()"><i class="fa-solid fa-plus"></i> 新增字段</button>'
-    + '<button class="btn btn-outline btn-sm" onclick="openMetaImport()"><i class="fa-solid fa-upload"></i> 导入</button></div></div>'
+    + '<i class="fa-solid fa-table-list" style="color:var(--primary);margin-right:6px"></i> '+esc(_metaSpecName)
+    + ' <span class="tag '+metadataStatusClass(_metaSpecStatus)+'" style="margin-left:8px">'+esc(_metaSpecStatus)+'</span>'
+    + '<select class="form-select" aria-label="规范版本" style="width:150px;margin-left:12px;display:inline-block" onchange="metadataSwitchDetailVersion(this.value)">'+versionOptions+'</select></div>'
+    + '<div class="page-actions">'+actions+'</div></div>'
+    +(!mutable?'<div class="td-note" style="margin-bottom:14px"><i class="fa-solid fa-lock"></i> 当前为'+esc(_metaSpecStatus)+'版本，内容只读；如需修改，请创建修订版本。</div>':'')
     + '<div class="ms-wrap">'
-    + '<div class="ms-list"><input class="form-input ms-search" placeholder="筛选数据表..." oninput="metaFilterTables(this.value)"><div id="msTableList">'+listHTML+'</div></div>'
-    + '<div class="ms-table-area" id="msTableArea">'+renderMetaFieldTable(_metaCurTable)+'</div>'
+    + '<div class="ms-list"><input class="form-input ms-search" placeholder="请输入数据表名称" oninput="metaFilterTables(this.value)"><div id="msTableList">'+(listHTML||'<div class="empty-state" style="padding:28px 8px"><p>暂无数据表</p></div>')+'</div></div>'
+    + '<div class="ms-table-area" id="msTableArea">'+area+'</div>'
     + '</div>';
 }
 function renderMetaFieldTable(key){
+  if(!key)return '<div class="empty-state"><p>暂无数据表</p></div>';
   var fields = metaFieldsOf(key);
+  var mutable=_metaSpecStatus==='草稿';
   var rows = fields.map(function(f){
     return '<tr>'
       + '<td style="font-family:monospace;font-size:12px">'+esc(f.field)+'</td>'
       + '<td>'+esc(f.cname)+'</td>'
-      + '<td><label class="om-switch"><input type="checkbox"'+(f.required?' checked':'')+'><span class="om-slider"></span></label></td>'
+      + '<td><label class="om-switch"><input type="checkbox"'+(f.required?' checked':'')+' disabled><span class="om-slider"></span></label></td>'
       + '<td><span class="tag '+(f.importance==='重要'?'tag-orange':'tag-gray')+'">'+esc(f.importance)+'</span></td>'
       + '<td><span class="tag tag-gray">'+esc(f.type)+'</span></td>'
       + '<td>'+(f.domain?'<a href="javascript:void(0)" onclick="navigateTo(&quot;元值域代码规范配置&quot;)" style="color:var(--primary)">'+esc(f.domain)+'</a>':'-')+'</td>'
@@ -4408,7 +4679,7 @@ function renderMetaFieldTable(key){
       + '<td style="font-size:12px;color:var(--gray-500)">'+esc(f.parent)+'</td>'
       + '<td style="font-size:12px;color:var(--gray-500);max-width:180px">'+esc(f.define||'-')+'</td>'
       + '<td style="font-size:12px;color:var(--gray-500)">'+esc(f.map||'-')+'</td>'
-      + '<td><button class="btn btn-ghost btn-sm" onclick="openMetaAddField()" title="编辑">编辑</button></td>'
+      + '<td>'+(mutable?'<button class="btn btn-ghost btn-sm" onclick="openMetaAddField(&quot;'+esc(f.field)+'&quot;)" title="编辑">编辑</button>':'<span style="color:var(--gray-400)">只读</span>')+'</td>'
       + '</tr>';
   }).join('');
   return '<div class="ms-table-scroll"><table class="data-table ms-ftable"><thead><tr>'
@@ -4443,6 +4714,7 @@ function metaFilterTables(kw){
 }
 // 新增数据表
 function openMetaAddTable(){
+  if(_metaSpecStatus!=='草稿'){showToast('已发布或已废弃版本不可修改','warning');return;}
   var html='<div class="form-row"><div class="form-group"><label class="form-label">表中文名 <span style="color:red">*</span></label><input class="form-input" id="f_mt_cn" placeholder="如: 住院医嘱"></div>'
     +'<div class="form-group"><label class="form-label">表英文名 <span style="color:red">*</span></label><input class="form-input" id="f_mt_en" placeholder="如: inpat_order"></div></div>'
     +'<div class="form-group"><label class="form-label">说明</label><textarea class="form-textarea" id="f_mt_desc" placeholder="选填" style="height:60px"></textarea></div>'
@@ -4458,20 +4730,26 @@ function submitMetaAddTable(){
   if(!cn){ showToast('请输入表中文名','error'); return; }
   if(!en){ showToast('请输入表英文名','error'); return; }
   _metaTree.push({type:'table',key:en,name:cn});
+  _metaFields[en]=_metaFields[en]||[];
   _metaCurTable=en;
+  metadataTouchActiveVersion();
   closeDrawer(); renderMetaSpecPage(); showToast('数据表已新增','success');
 }
-function openMetaAddField(){
+function openMetaAddField(fieldName){
+  if(_metaSpecStatus!=='草稿'){showToast('已发布或已废弃版本不可修改','warning');return;}
+  if(!_metaCurTable){showToast('请先新增数据表','warning');return;}
+  var current=(metaFieldsOf(_metaCurTable)||[]).find(function(item){return item.field===fieldName;})||{};
   var html=''
-    + '<div class="form-row"><div class="form-group"><label class="form-label">字段名称<span class="req">*</span></label><input class="form-input" id="f_mf_field" placeholder="如: patient_name"></div>'
-    + '<div class="form-group"><label class="form-label">中文名称<span class="req">*</span></label><input class="form-input" id="f_mf_cname" placeholder="如: 患者姓名"></div></div>'
-    + '<div class="form-row"><div class="form-group"><label class="form-label">类型<span class="req">*</span></label><select class="form-select" id="f_mf_type"><option>text</option><option>id</option><option>enum</option><option>int</option><option>decimal</option><option>date</option><option>timestamp</option></select></div>'
-    + '<div class="form-group"><label class="form-label">重要性</label><select class="form-select"><option>重要</option><option>一般</option></select></div></div>'
-    + '<div class="form-group"><label class="form-label">值域代码（type=enum 时填写）</label><input class="form-input" placeholder="如: sex_code"></div>'
-    + '<div style="display:flex;gap:16px;font-size:13px;margin-bottom:12px"><label><input type="checkbox"> 必填</label><label><input type="checkbox"> 逻辑主键</label><label><input type="checkbox"> 逻辑外键</label><label><input type="checkbox"> EMPI标志</label></div>'
-    + '<div class="form-group"><label class="form-label">父表</label><select class="form-select"><option value="">无</option>'+_metaTables.map(function(t){return '<option>'+esc(t.key)+'</option>';}).join('')+'</select></div>'
-    + '<div class="form-group"><label class="form-label">定义</label><textarea class="form-textarea" style="height:50px" placeholder="字段定义说明"></textarea></div>';
-  buildModal('新增字段', html,
+    + '<input type="hidden" id="f_mf_original" value="'+esc(current.field||'')+'">'
+    + '<div class="form-row"><div class="form-group"><label class="form-label">字段名称<span class="req">*</span></label><input class="form-input" id="f_mf_field" value="'+esc(current.field||'')+'" placeholder="请输入字段英文名称"></div>'
+    + '<div class="form-group"><label class="form-label">中文名称<span class="req">*</span></label><input class="form-input" id="f_mf_cname" value="'+esc(current.cname||'')+'" placeholder="请输入字段中文名称"></div></div>'
+    + '<div class="form-row"><div class="form-group"><label class="form-label">类型<span class="req">*</span></label><select class="form-select" id="f_mf_type">'+['text','id','enum','int','decimal','date','timestamp'].map(function(type){return '<option'+(current.type===type?' selected':'')+'>'+type+'</option>';}).join('')+'</select></div>'
+    + '<div class="form-group"><label class="form-label">重要性</label><select class="form-select" id="f_mf_importance"><option'+(current.importance==='重要'?' selected':'')+'>重要</option><option'+(current.importance==='一般'?' selected':'')+'>一般</option></select></div></div>'
+    + '<div class="form-group"><label class="form-label">值域代码</label><input class="form-input" id="f_mf_domain" value="'+esc(current.domain||'')+'" placeholder="字段类型为enum时填写"></div>'
+    + '<div style="display:flex;gap:16px;font-size:13px;margin-bottom:12px"><label><input id="f_mf_required" type="checkbox"'+(current.required?' checked':'')+'> 必填</label><label><input id="f_mf_pk" type="checkbox"'+(current.pk?' checked':'')+'> 逻辑主键</label><label><input id="f_mf_fk" type="checkbox"'+(current.fk?' checked':'')+'> 逻辑外键</label><label><input id="f_mf_empi" type="checkbox"'+(current.empi?' checked':'')+'> EMPI标志</label></div>'
+    + '<div class="form-group"><label class="form-label">父表</label><select class="form-select" id="f_mf_parent"><option value="">无</option>'+metadataFlatTables(_metaTree,[]).map(function(t){return '<option value="'+esc(t.key)+'"'+(current.parent===t.key?' selected':'')+'>'+esc(t.key)+'</option>';}).join('')+'</select></div>'
+    + '<div class="form-group"><label class="form-label">定义</label><textarea class="form-textarea" id="f_mf_define" style="height:50px" placeholder="请输入字段定义说明">'+esc(current.define||'')+'</textarea></div>';
+  buildModal(current.field?'编辑字段':'新增字段', html,
     '<button class="btn btn-outline" onclick="closeMetaSubModal()">取消</button><button class="btn btn-primary" onclick="submitMetaField()"><i class="fa-solid fa-check"></i> 保存</button>',
     '640px');
 }
@@ -4481,9 +4759,16 @@ function submitMetaField(){
   var f=(document.getElementById('f_mf_field')||{}).value||'';
   var cn=(document.getElementById('f_mf_cname')||{}).value||'';
   if(!f.trim()||!cn.trim()){ showToast('请填写字段名称和中文名称','error'); return; }
-  showToast('字段「'+cn+'」已新增','success'); closeModal();
+  var original=(document.getElementById('f_mf_original')||{}).value||'';
+  var fields=_metaFields[_metaCurTable]=_metaFields[_metaCurTable]||[];
+  if(fields.some(function(item){return item.field===f.trim()&&item.field!==original;})){showToast('字段名称已存在','error');return;}
+  var item={field:f.trim(),cname:cn.trim(),required:!!(document.getElementById('f_mf_required')||{}).checked,importance:(document.getElementById('f_mf_importance')||{}).value||'一般',type:(document.getElementById('f_mf_type')||{}).value||'text',domain:(document.getElementById('f_mf_domain')||{}).value||'',pk:!!(document.getElementById('f_mf_pk')||{}).checked,fk:!!(document.getElementById('f_mf_fk')||{}).checked,empi:!!(document.getElementById('f_mf_empi')||{}).checked,parent:(document.getElementById('f_mf_parent')||{}).value||'-',define:(document.getElementById('f_mf_define')||{}).value||'',map:'-'};
+  var index=fields.findIndex(function(existing){return existing.field===original;});if(index>-1)fields[index]=item;else fields.push(item);
+  metadataTouchActiveVersion();
+  showToast('字段「'+cn+'」已保存','success'); closeModal();renderMetaSpecPage();
 }
 function openMetaImport(){
+  if(_metaSpecStatus!=='草稿'){showToast('仅草稿版本支持导入','warning');return;}
   buildImportModal('导入字段',
     '<div style="font-size:13px;color:var(--gray-600)">支持 .xlsx / .csv 文件。需包含列：字段名称 / 中文名称 / 类型 / 必填 / 值域代码 / 逻辑主键 / 逻辑外键 / EMPI标志 / 父表 / 定义。</div>',
     'doImport()');
@@ -4544,31 +4829,21 @@ function submitTermAdd() {
     var name = document.getElementById('f_term_name').value.trim();
     if(!name){ showToast('请输入规范名称','error'); return; }
     var id = document.getElementById('f_term_id').value.trim() || 'SPEC-'+String(Math.floor(Math.random()*900000+100000));
-    var ver = 'v1.0';
-    DATA.terms.push({id:id,name:name,version:ver,creator:'当前用户',ctime:new Date().toISOString().slice(0,16).replace('T',' '),status:'草稿',fields:[]});
+    if(DATA.terms.some(function(item){return item.id===id;})){showToast('规范编号已存在','error');return;}
+    var now=new Date().toISOString().slice(0,16).replace('T',' '),desc=(document.getElementById('f_term_desc')||{}).value||'';
+    DATA.terms.push({id:id,name:name,version:'v1.0',creator:'当前用户',ctime:now,status:'草稿',description:desc,fields:[],versions:[{version:'v1.0',status:'草稿',name:name,description:desc,updatedBy:'当前用户',updatedAt:now,publishedAt:'-',revisionNote:'初始版本',tree:[],fieldsByTable:{},targetFields:[]}]});
   } else {
     var srcId = document.getElementById('f_term_source').value;
     if(!srcId){ showToast('请选择源规范','error'); return; }
     var src = DATA.terms.find(function(x){return x.id===srcId;});
     var newId = 'SPEC-'+String(Math.floor(Math.random()*900000+100000));
-    var copy = JSON.parse(JSON.stringify(src));
-    copy.id = newId;
-    copy.name = src.name + ' (副本)';
-    copy.version = 'v1.0';
-    copy.creator = '当前用户';
-    copy.ctime = new Date().toISOString().slice(0,16).replace('T',' ');
-    copy.status = '草稿';
+    var base=metadataDisplayVersion(src),copyNow=new Date().toISOString().slice(0,16).replace('T',' ');
+    var copy={id:newId,name:src.name+' (副本)',version:'v1.0',creator:'当前用户',ctime:copyNow,status:'草稿',description:base.description||'',fields:metadataClone(base.targetFields||[]),versions:[{version:'v1.0',status:'草稿',name:src.name+' (副本)',description:base.description||'',updatedBy:'当前用户',updatedAt:copyNow,publishedAt:'-',revisionNote:'复制自 '+src.id+' '+base.version,tree:metadataClone(base.tree||[]),fieldsByTable:metadataClone(base.fieldsByTable||{}),targetFields:metadataClone(base.targetFields||[])}]};
     DATA.terms.push(copy);
   }
   closeDrawer();
   showToast('规范已新增','success');
-  // In a real app, re-render. Here we simulate.
-  var tb = document.getElementById('termsBody');
-  if(tb){
-    var t = DATA.terms[DATA.terms.length-1];
-    var row = tb.insertRow();
-    row.innerHTML = '<td class="no-click" style="font-size:12px;color:var(--gray-500)">'+t.id+'</td><td><a href="javascript:void(0)" onclick="openTermDetail(&quot;'+t.id+'&quot;)" style="color:var(--primary);cursor:pointer;font-weight:500">'+t.name+'</a></td><td class="no-click" style="font-size:12px;color:var(--gray-500)">'+t.creator+'</td><td class="no-click" style="font-size:12px;color:var(--gray-500)">'+t.ctime+'</td><td><span class="tag tag-yellow">草稿</span></td><td>'+'<button class="btn btn-ghost btn-sm" onclick="openTermDetail(&quot;'+t.id+'&quot;)" title="详情">详情</button>'+'<button class="btn btn-ghost btn-sm" onclick="openTermDetail(this.closest(&quot;tr&quot;).cells[0].innerText)" title="配置">配置</button>'+'<button class="btn btn-ghost btn-sm" onclick="showToast(&quot;草稿发布需先配置字段&quot;,&quot;warning&quot;)" title="发布">发布</button>'+'<button class="btn btn-ghost btn-sm" onclick="openImportTermModal(&quot;'+t.id+'&quot;)" title="导入">导入</button>'+'<button class="btn btn-ghost btn-sm btn-danger" onclick="confirmDelete(&quot;元数据规范&quot;,&quot;'+t.name+'&quot;,&quot;'+t.id+'&quot;)" title="删除">删除</button>'+'</td>';
-  }
+  renderTermsTable();
 }
 
 // ============ IMPORT / EXPORT ============
@@ -6009,13 +6284,50 @@ var OP_CONTRACTS = {
 };
 
 /* 渲染 field_map（字段映射）结构化 UI */
+function fieldMapChangeStandard(nodeId,value){
+  var node=(_canvasState.nodes||[]).find(function(item){return item.id===nodeId;});
+  if(!node||value===node.metaSpec){refreshInlineEditorBody();return;}
+  if(Object.keys(node.fieldMap||{}).length&&!confirm('切换规范或版本后，将清空当前目标字段映射，是否继续？')){
+    refreshInlineEditorBody();
+    return;
+  }
+  var term=metadataTermById(value),published=term&&metadataPublishedVersion(term);
+  node.metaSpec=value;
+  node.metaSpecVersion=published?published.version:'';
+  node.metaSpecTargetFields=metadataVersionTargetFields(node.metaSpec,node.metaSpecVersion);
+  node.fieldMap = {};
+  markCanvasDirty();
+  refreshInlineEditorBody();
+}
+function fieldMapChangeVersion(nodeId,value){
+  var node=(_canvasState.nodes||[]).find(function(item){return item.id===nodeId;});
+  if(!node||value===node.metaSpecVersion){refreshInlineEditorBody();return;}
+  if(Object.keys(node.fieldMap||{}).length&&!confirm('切换规范或版本后，将清空当前目标字段映射，是否继续？')){
+    refreshInlineEditorBody();
+    return;
+  }
+  node.metaSpecVersion=value;
+  node.metaSpecTargetFields=metadataVersionTargetFields(node.metaSpec,node.metaSpecVersion);
+  node.fieldMap = {};
+  markCanvasDirty();
+  refreshInlineEditorBody();
+}
 function renderFieldMapParams(node){
-  var specId = node.metaSpec || META_SPECS_LIST[0].id;
-  var specName = (META_SPECS_LIST.find(function(s){return s.id===specId;})||{}).name || '';
-  var specOpts = META_SPECS_LIST.map(function(s){
+  var terms=(DATA.terms||[]),selectedTerm=node.metaSpec&&metadataTermById(node.metaSpec);
+  var defaultTerm=selectedTerm||terms.find(function(term){return !!metadataPublishedVersion(term);})||null;
+  var specId = defaultTerm&&defaultTerm.id||'';
+  var published=defaultTerm&&metadataPublishedVersion(defaultTerm);
+  var specVersion=node.metaSpecVersion||(published&&published.version)||'';
+  if(!node.metaSpec&&specId)node.metaSpec=specId;
+  if(!node.metaSpecVersion&&specVersion)node.metaSpecVersion=specVersion;
+  var specOpts = terms.filter(function(term){
+    return !!metadataPublishedVersion(term)||term.id===specId;
+  }).map(function(s){
     return '<option value="'+s.id+'"'+(s.id===specId?' selected':'')+'>'+esc(s.name)+' ('+s.id+')</option>';
   }).join('');
-  var targetFields = META_SPEC_FIELDS[specId] || [];
+  var versionOpts=metadataVersionOptions(specId,specVersion,!!node.metaSpecVersion);
+  var targetFields = metadataVersionTargetFields(specId,specVersion);
+  node.metaSpecTargetFields=metadataClone(targetFields);
   var srcOpts = '<option value="">— 请选择 —</option>' + MOCK_UPSTREAM_FIELDS.map(function(f){
     return '<option value="'+f.name+'">'+esc(f.name)+' ('+f.type+')</option>';
   }).join('');
@@ -6026,6 +6338,7 @@ function renderFieldMapParams(node){
     diagnosis_code:{src:'dx_code',rule:'直连'},
     sex:{src:'sex_raw',rule:'字典映射',vd:'sex_code'}
   };
+  if(!node.fieldMap)node.fieldMap=metadataClone(mapped);
   var ruleOpts=function(cur){
     var rules=['直连','类型转换','字典映射','术语标准化','表达式','系统函数','Prompt 抽取'];
     return rules.map(function(r){return '<option'+(r===cur?' selected':'')+'>'+r+'</option>';}).join('');
@@ -6059,8 +6372,11 @@ function renderFieldMapParams(node){
   var mappedReq = targetFields.filter(function(f){return f.required && mapped[f.name] && mapped[f.name].src;}).length;
   var okCls = mappedReq===totalReq ? 'tag-green' : 'tag-red';
   return '<div class="form-group"><label class="form-label">目标元数据规范<span class="req">*</span></label>'
-    + '<select class="form-select" id="fm_spec" onchange="showToast(\'已切换目标规范，映射表将重新加载\',\'success\')">'+specOpts+'</select>'
+    + '<select class="form-select" id="fm_spec" onchange="fieldMapChangeStandard(\''+esc(node.id)+'\',this.value)">'+specOpts+'</select>'
     + '<div style="font-size:11px;color:var(--gray-400);margin-top:2px">选定后自动加载目标字段清单；一个映射节点绑定一个规范</div></div>'
+    + '<div class="form-group"><label class="form-label">规范版本<span class="req">*</span></label>'
+    + '<select class="form-select" id="fm_spec_version" onchange="fieldMapChangeVersion(\''+esc(node.id)+'\',this.value)"'+(!specId?' disabled':'')+'>'+versionOpts+'</select>'
+    + '<div style="font-size:11px;color:var(--gray-400);margin-top:2px">目标字段按所选版本快照加载；历史版本不会自动升级</div></div>'
     + '<div style="margin-bottom:8px;display:flex;align-items:center;gap:8px">'
     + '<span style="font-weight:600;font-size:13px"><i class="fa-solid fa-arrows-left-right-to-line" style="color:var(--primary)"></i> 字段映射</span>'
     + '<span class="tag '+okCls+'">必填 '+mappedReq+'/'+totalReq+'</span>'
@@ -6096,16 +6412,33 @@ function renderDictNormalizeParams(node){
 }
 /* 渲染 asset_sink（资产库写入）UI */
 function renderAssetSinkParams(node){
-  var libOpts = '<option value="">— 请选择 —</option>' + ASSET_LIB_LIST.map(function(a){
-    var spec = META_SPECS_LIST.find(function(s){return s.id===a.specId;});
-    return '<option value="'+a.id+'">'+esc(a.name)+' ('+a.id+')</option>';
+  var assets=(typeof GOV!=='undefined'&&GOV.assets)||[];
+  var assetId=node.assetId||'',asset=assets.find(function(item){return item.id===assetId;});
+  if(asset){node.metaSpec=asset.metaSpecId||'';node.metaSpecVersion=asset.metaSpecVersion||'';}
+  var term=asset&&asset.metaSpecId?metadataTermById(asset.metaSpecId):null;
+  var version=term&&asset.metaSpecVersion?metadataFindVersion(term,asset.metaSpecVersion):null;
+  var specText=!asset?'请选择目标资产库':(!asset.metaSpecId?'当前资产库未绑定元数据规范':(term?term.name+' ('+term.id+')':'当前元数据规范未返回 ('+asset.metaSpecId+')'));
+  var versionText=!asset||!asset.metaSpecId?'-':(!version?'当前规范版本未返回':version.version+(version.status==='已废弃'?'（历史版本）':''));
+  var libOpts = '<option value="">— 请选择 —</option>' + assets.map(function(a){
+    return '<option value="'+a.id+'"'+(a.id===assetId?' selected':'')+'>'+esc(a.name)+' ('+a.id+')</option>';
   }).join('');
   return '<div class="form-group"><label class="form-label">目标资产库<span class="req">*</span></label>'
-    + '<select class="form-select" onchange="showToast(\'已切换资产库，元数据规范自动带入\',\'success\')">'+libOpts+'</select>'
+    + '<select class="form-select" onchange="assetSinkChangeTarget(\''+esc(node.id)+'\',this.value)">'+libOpts+'</select>'
     + '<div style="font-size:11px;color:var(--gray-400);margin-top:2px">选定后自动带出关联的元数据规范；写入前会做 Schema 兼容校验</div></div>'
-    + '<div class="form-group"><label class="form-label">关联元数据规范</label><input class="form-input" value="（由目标资产库自动带出）" readonly style="background:var(--gray-50);font-size:12px"></div>'
+    + '<div class="form-group"><label class="form-label">关联元数据规范</label><input class="form-input" value="'+esc(specText)+'" readonly style="background:var(--gray-50);font-size:12px"><div class="form-help">由目标资产库自动带出</div></div>'
+    + '<div class="form-group"><label class="form-label">关联规范版本</label><input class="form-input" value="'+esc(versionText)+'" readonly style="background:var(--gray-50);font-size:12px"><div class="form-help">由目标资产库自动带出</div></div>'
     + '<div class="form-group"><label class="form-label">写入模式</label><select class="form-select"><option>追加</option><option>覆盖</option><option>更新(Upsert，按主键)</option></select></div>'
     + '<div class="form-group"><label class="form-label">批大小</label><input class="form-input" value="1000"></div>';
+}
+function assetSinkChangeTarget(nodeId,assetId){
+  var node=(_canvasState.nodes||[]).find(function(item){return item.id===nodeId;});
+  if(!node)return;
+  var asset=(GOV.assets||[]).find(function(item){return item.id===assetId;});
+  node.assetId=assetId;
+  node.metaSpec=asset&&asset.metaSpecId||'';
+  node.metaSpecVersion=asset&&asset.metaSpecVersion||'';
+  markCanvasDirty();
+  refreshInlineEditorBody();
 }
 /* 渲染 ner_extract（大模型抽取）UI */
 function renderNerExtractParams(node){
@@ -12987,9 +13320,14 @@ function renderConfigField(f, parameter){
       ctrl=wfMultiField(f,val,['patient_id','diagnosis_code','diagnosis_name','visit_time','age','gender','user_id','nickname','status','create_time','update_time']);
       ctrl+='<div style="font-size:11px;color:var(--gray-400);margin-top:2px">'+esc(placeholder||'留空读取所有列，可选择或输入字段')+'</div>'; break;
     case 'metadata_standard':
-      ctrl=wfComboField(f,val,(window.META_SPECS_LIST||[]).map(function(s){return {value:s.id,label:s.name+' ('+s.id+')'};}),'请选择或输入元数据规范'); break;
+      var metadataTerms=(typeof DATA!=='undefined'&&DATA.terms||[]).filter(function(term){return !!metadataPublishedVersion(term)||term.id===val;});
+      ctrl='<select class="form-select"'+oc()+'><option value="">请选择元数据规范</option>'+metadataTerms.map(function(term){return '<option value="'+esc(term.id)+'"'+(term.id===val?' selected':'')+'>'+esc(term.name)+' ('+esc(term.id)+')</option>';}).join('')+'</select>';
+      break;
     case 'metadata_version':
-      ctrl=wfComboField(f,val,['v1.0','v1.1','v2.0'],'请选择或输入规范版本'); break;
+      var metadataSpecPath=f.depends_on||'metaSpec',metadataSpecId=_getDeep(parameter,metadataSpecPath)||parameter.metaSpecId||parameter.metadataStandard||parameter.metadataStandardId||'';
+      ctrl='<select class="form-select"'+oc()+(metadataSpecId?'':' disabled')+'>'+(metadataSpecId?metadataVersionOptions(metadataSpecId,String(val||''),!!val):'<option value="">请先选择元数据规范</option>')+'</select>'
+        +'<div style="font-size:11px;color:var(--gray-400);margin-top:2px">仅可新增绑定已发布版本；已有历史版本保持原绑定</div>';
+      break;
     case 'array':
       ctrl='<textarea class="form-textarea" style="height:60px;font-family:monospace;font-size:12px" placeholder="JSON 数组，如 [&quot;id&quot;,&quot;name&quot;]"'+oi('array')+'>'+esc(Array.isArray(val)?JSON.stringify(val):(val||''))+'</textarea>'; break;
     case 'object':
@@ -13057,6 +13395,12 @@ function _buildInlineEditorContent(node, ename, editorKind, schema, jsonMode){
   }
   if(!jsonMode && node.type==='QC' && isBuiltinQcNodeEditor(ename)){
     return renderQcNodeConfig(node, schema, parameter);
+  }
+  if(!jsonMode && (ename==='map'||ename==='field_map')){
+    return '<div class="ce-panel">'
+      + '<div class="ce-panel-header">参数配置</div>'
+      + '<div class="ce-panel-body">' + renderFieldMapParams(node) + '</div>'
+      + '</div>';
   }
   if(editorKind){
     var composite=_renderCompositeEditor(editorKind, node, ename);
@@ -13136,6 +13480,13 @@ function saveInlineEditor(nodeId){
   var saveMessage='配置已保存';
   if(ed && ed.nodeId===nodeId && ed.ename){
     var editingNode=(_canvasState&&_canvasState.nodes||[]).find(function(n){return n.id===nodeId;});
+    if(editingNode && (ed.ename==='map'||ed.ename==='field_map')){
+      if(!editingNode.metaSpec){showToast('请选择目标元数据规范','error');return;}
+      if(!editingNode.metaSpecVersion){showToast('请选择规范版本','error');return;}
+      var fieldMapTerm=metadataTermById(editingNode.metaSpec);
+      if(!fieldMapTerm||!metadataFindVersion(fieldMapTerm,editingNode.metaSpecVersion)){showToast('当前规范版本未返回，请重新选择规范版本','error');return;}
+      editingNode.metaSpecTargetFields=metadataVersionTargetFields(editingNode.metaSpec,editingNode.metaSpecVersion);
+    }
     if(editingNode && editingNode.type==='Model' && isBuiltinModelNodeEditor(ed.ename)){
       var modelValidation=ed.ename==='embedding'?embeddingNodeConfigValidation(editingNode,window._NODE_PARAMS[nodeId]||{}):modelNodeConfigValidation(editingNode,window._NODE_PARAMS[nodeId]||{});
       if(!modelValidation.valid){showToast(modelValidation.message,'error');return;}
@@ -15239,7 +15590,7 @@ function tcSaveTask(kind){
   var taskId=tcNewTaskId();
   var total=selected.reduce(function(sum,t){return sum+Number(t.rows||0);},0);
   var sourceNames=[];selected.forEach(function(table){if(sourceNames.indexOf(table.sourceName)<0)sourceNames.push(table.sourceName);});
-  var data={id:taskId,name:name,type:'离线任务',executionMethod:executionMethod,sched:executionLabel,enableStatus:kind==='draft'?'草稿':'已启用',pipeline:flow?flow.no:'-',pipelineName:flow?flow.name:'未绑定数据流（草稿）',source:sourceNames.length?sourceNames.join('、'):'-',target:flow?'继承数据流写入算子配置':'-',status:'未运行',statusCode:'not_run',creator:'管理员',ctime:now,execTime:'-',nextRun:nextRun,needIncremental:needIncremental,logCleanupAt:logCleanupAt,desc:tcValue('f_tc_desc')||'-',recall:'-',precision:'-',totalData:tcFormatRows(total),executionPlan:{cycle:scheduleCycle,time:scheduleTime,effectiveDate:effectiveDate},selection:{businessStart:businessStart,businessEnd:businessEnd,queryConfigs:queryConfigs},runs:[],logs:[{time:now,type:'创建',user:'管理员',content:kind==='draft'?'保存离线任务草稿':(executionMethod==='timed'?'创建并启用定时任务':'创建手动执行任务')}]};
+  var data={id:taskId,name:name,type:'离线任务',executionMethod:executionMethod,sched:executionLabel,enableStatus:kind==='draft'?'草稿':'已启用',pipeline:flow?flow.no:'-',pipelineName:flow?flow.name:'未绑定数据流（草稿）',metadataStandardSnapshot:(typeof metadataBindingSnapshot==='function'?metadataBindingSnapshot(flow):null),source:sourceNames.length?sourceNames.join('、'):'-',target:flow?'继承数据流写入算子配置':'-',status:'未运行',statusCode:'not_run',creator:'管理员',ctime:now,execTime:'-',nextRun:nextRun,needIncremental:needIncremental,logCleanupAt:logCleanupAt,desc:tcValue('f_tc_desc')||'-',recall:'-',precision:'-',totalData:tcFormatRows(total),executionPlan:{cycle:scheduleCycle,time:scheduleTime,effectiveDate:effectiveDate},selection:{businessStart:businessStart,businessEnd:businessEnd,queryConfigs:queryConfigs},runs:[],logs:[{time:now,type:'创建',user:'管理员',content:kind==='draft'?'保存离线任务草稿':(executionMethod==='timed'?'创建并启用定时任务':'创建手动执行任务')}]};
   TASK_DETAIL_DATA[taskId]=data;
   if(typeof DATA!=='undefined'&&DATA.tasks) DATA.tasks.unshift({no:taskId,name:name,type:'离线任务',pipeline:data.pipeline,sched:executionLabel,status:data.status,recall:'-',precision:'-',creator:data.creator,ctime:now,businessEnd:businessEnd,needIncremental:needIncremental,logCleanupAt:logCleanupAt});
   closeModal(); if(typeof renderTaskListTable==='function')renderTaskListTable();
@@ -15533,9 +15884,9 @@ var GOV = {
     {id:'DS-0035', type:'tidb', alias:'TiDB交易库', addr:'10.0.5.16:4000', org:'后厂村炼油厂', status:'连接正常', useCount:0, utime:'2026-06-16 10:10'}
   ],
   assets: [
-    {id:'AST-0001', name:'rabbitmq队列器', type:'rabbitmq', address:'1.117.232.208:8672', org:'-', status:'连接正常', description:'', useCount:0, ctime:'2026-05-28 23:50:10', utime:'2026-05-29 17:09:57', config:{host:'1.117.232.208',port:'8672',managementPort:'8888',username:'lucas',password:'openthedoor',vhost:'/'}, pipeline:'-', fields:0, scale:'-', quality:'优', dataSources:[], metaSpecId:''},
-    {id:'AST-0002', name:'postgres数据库', type:'postgresql', address:'1.117.232.208:8432', org:'-', status:'连接正常', description:'', useCount:0, ctime:'2026-05-19 17:25:31', utime:'2026-05-20 01:29:07', config:{host:'1.117.232.208',port:'8432',username:'postgres',password:'',database:'postgres',ssl:'disable'}, pipeline:'-', fields:0, scale:'-', quality:'优', dataSources:[], metaSpecId:''},
-    {id:'AST-0005', name:'多入多出示例库', type:'postgresql', address:'10.0.8.25:5432', org:'-', status:'连接正常', description:'用于展示多个来源、多个处理任务和多个写入资产库的演示关系', useCount:2, ctime:'2026-07-28 14:00:00', utime:'2026-07-28 14:00:00', config:{host:'10.0.8.25',port:'5432',username:'demo_reader',password:'',database:'lineage_demo',ssl:'disable'}, pipeline:'2 条', fields:0, scale:'-', quality:'优', dataSources:['DS-0002','DS-0003','DS-0005'], metaSpecId:''}
+    {id:'AST-0001', name:'rabbitmq队列器', type:'rabbitmq', address:'1.117.232.208:8672', org:'-', status:'连接正常', description:'', useCount:0, ctime:'2026-05-28 23:50:10', utime:'2026-05-29 17:09:57', config:{host:'1.117.232.208',port:'8672',managementPort:'8888',username:'lucas',password:'openthedoor',vhost:'/'}, pipeline:'-', fields:0, scale:'-', quality:'优', dataSources:[], metaSpecId:'', metaSpecVersion:''},
+    {id:'AST-0002', name:'postgres数据库', type:'postgresql', address:'1.117.232.208:8432', org:'-', status:'连接正常', description:'', useCount:0, ctime:'2026-05-19 17:25:31', utime:'2026-05-20 01:29:07', config:{host:'1.117.232.208',port:'8432',username:'postgres',password:'',database:'postgres',ssl:'disable'}, pipeline:'-', fields:0, scale:'-', quality:'优', dataSources:[], metaSpecId:'', metaSpecVersion:''},
+    {id:'AST-0005', name:'多入多出示例库', type:'postgresql', address:'10.0.8.25:5432', org:'-', status:'连接正常', description:'用于展示多个来源、多个处理任务和多个写入资产库的演示关系', useCount:2, ctime:'2026-07-28 14:00:00', utime:'2026-07-28 14:00:00', config:{host:'10.0.8.25',port:'5432',username:'demo_reader',password:'',database:'lineage_demo',ssl:'disable'}, pipeline:'2 条', fields:0, scale:'-', quality:'优', dataSources:['DS-0002','DS-0003','DS-0005'], metaSpecId:'', metaSpecVersion:''}
   ]
 };
 function govActiveDomains(){ return GOV.domains.filter(function(d){return d.status===1;}).sort(function(a,b){return a.sort-b.sort;}); }
@@ -18036,7 +18387,11 @@ function renderAssetDetailBody(){
   }
   if(_astDetail.tab==='basic'){
     var t=assetTypeMeta(a.type);
-    body.innerHTML='<table class="data-table asset-basic-table" style="margin-top:18px"><tbody><tr><th>资产名称</th><td>'+esc(a.name)+'</td><th>类型</th><td>'+esc(t.name)+'</td></tr><tr><th>状态</th><td>'+assetConnectionTag(a)+'</td><th>使用次数</th><td>'+String(a.useCount||0)+'</td></tr><tr><th>描述</th><td colspan="3">'+esc(a.description||'-')+'</td></tr><tr><th>创建时间</th><td>'+esc(a.ctime||'-')+'</td><th>更新时间</th><td>'+esc(a.utime||'-')+'</td></tr></tbody></table>';
+    var term=a.metaSpecId?metadataTermById(a.metaSpecId):null;
+    var version=term&&a.metaSpecVersion?metadataFindVersion(term,a.metaSpecVersion):null;
+    var specText=!a.metaSpecId?'当前资产库未绑定元数据规范':(term?term.name+' ('+term.id+')':'当前元数据规范未返回 ('+a.metaSpecId+')');
+    var versionText=!a.metaSpecId?'-':(!version?'当前规范版本未返回':version.version+(version.status==='已废弃'?'（历史版本）':''));
+    body.innerHTML='<table class="data-table asset-basic-table" style="margin-top:18px"><tbody><tr><th>资产名称</th><td>'+esc(a.name)+'</td><th>类型</th><td>'+esc(t.name)+'</td></tr><tr><th>状态</th><td>'+assetConnectionTag(a)+'</td><th>使用次数</th><td>'+String(a.useCount||0)+'</td></tr><tr><th>元数据规范</th><td>'+esc(specText)+'</td><th>规范版本</th><td>'+esc(versionText)+'</td></tr><tr><th>描述</th><td colspan="3">'+esc(a.description||'-')+'</td></tr><tr><th>创建时间</th><td>'+esc(a.ctime||'-')+'</td><th>更新时间</th><td>'+esc(a.utime||'-')+'</td></tr></tbody></table>';
     return;
   }
   body.innerHTML='<div class="asset-explore"><div class="asset-explore-tree"><input class="form-input" id="assetTreeSearch" value="'+esc(_astDetail.treeKw||'')+'" placeholder="筛选表或队列" oninput="filterAssetTree()"><div id="assetTreeList">'+assetExploreTreeHTML(a)+'</div></div><div class="asset-explore-main" id="assetExploreMain">'+assetExploreMainHTML(a)+'</div></div>';if(_astDetail.treeKw)filterAssetTree();
@@ -18107,7 +18462,7 @@ function assetTestSaved(id){var a=(GOV.assets||[]).find(function(x){return x.id=
 /* ---------- 新增 / 编辑资产库：选择类型 → 填写参数 ---------- */
 function openAssetCreate(id){
   var edit=id?(GOV.assets||[]).find(function(a){return a.id===id;}):null;
-  _astW={step:edit?1:0,type:edit?edit.type:null,cfgMode:'form',editId:id||null,values:edit?Object.assign({name:edit.name,description:edit.description||''},edit.config||{}):{},json:''};
+  _astW={step:edit?1:0,type:edit?edit.type:null,cfgMode:'form',editId:id||null,values:edit?Object.assign({},edit.config||{},{name:edit.name,description:edit.description||'',metaSpecId:edit.metaSpecId||'',metaSpecVersion:edit.metaSpecVersion||''}):{},json:''};
   renderAssetWizard();
 }
 function renderAssetWizard(){
@@ -18128,8 +18483,16 @@ function assetWizardBack(){assetCollectWizard();_astW.step=0;renderAssetWizard()
 function assetParamForm(type){
   var t=assetTypeMeta(type),v=_astW.values||{};
   var head='<div class="asset-param-head"><span class="asset-param-head-label">资产库类型</span><span class="asset-param-type"><span class="asset-type-icon" style="width:28px;height:28px;flex-basis:28px;font-size:13px;background:'+t.color+'14;color:'+t.color+'"><i class="fa-solid '+t.icon+'"></i></span>'+esc(t.name)+'</span>'+(_astW.editId?'':'<button class="asset-switch-type" onclick="assetWizardBack()">切换类型</button>')+'</div>';
+  var selectedTerm=v.metaSpecId?metadataTermById(v.metaSpecId):null;
+  var specTerms=(DATA.terms||[]).filter(function(term){return !!metadataPublishedVersion(term)||term.id===v.metaSpecId;});
+  var specOpts='<option value="">不绑定元数据规范</option>'
+    +(v.metaSpecId&&!selectedTerm?'<option value="'+esc(v.metaSpecId)+'" selected>当前元数据规范未返回 ('+esc(v.metaSpecId)+')</option>':'')
+    +specTerms.map(function(term){return '<option value="'+esc(term.id)+'"'+(term.id===v.metaSpecId?' selected':'')+'>'+esc(term.name)+' ('+esc(term.id)+')</option>';}).join('');
+  var versionOpts=v.metaSpecId?metadataVersionOptions(v.metaSpecId,v.metaSpecVersion,!!_astW.editId):'<option value="">请先选择元数据规范</option>';
   var common='<div class="asset-form-row"><label class="asset-form-label">资产库名称<span class="req">*</span></label><div class="asset-form-control"><input class="form-input" id="aw_name" value="'+esc(v.name||'')+'" placeholder="请输入资产库名称（如：生产-MySQL主库）"></div></div>'
-    + '<div class="asset-form-row textarea"><label class="asset-form-label">描述</label><div class="asset-form-control"><textarea class="form-textarea" id="aw_desc" style="height:58px" placeholder="选填">'+esc(v.description||'')+'</textarea></div></div>';
+    + '<div class="asset-form-row textarea"><label class="asset-form-label">描述</label><div class="asset-form-control"><textarea class="form-textarea" id="aw_desc" style="height:58px" placeholder="选填">'+esc(v.description||'')+'</textarea></div></div>'
+    + '<div class="asset-form-row"><label class="asset-form-label">元数据规范</label><div class="asset-form-control"><select class="form-select" id="aw_metaSpecId" onchange="assetMetadataSpecChanged(this.value)">'+specOpts+'</select><div class="form-help">仅可新增绑定已发布版本；不选择时资产库不绑定规范</div></div></div>'
+    + '<div class="asset-form-row"><label class="asset-form-label">规范版本'+(v.metaSpecId?'<span class="req">*</span>':'')+'</label><div class="asset-form-control"><select class="form-select" id="aw_metaSpecVersion" onchange="assetMetadataVersionChanged(this.value)"'+(!v.metaSpecId?' disabled':'')+'>'+versionOpts+'</select></div></div>';
   var toggle='<div class="asset-form-row"><label class="asset-form-label">配置方式</label><div class="asset-form-control"><button type="button" class="asset-mode-switch '+(_astW.cfgMode==='json'?'json':'form')+'" onclick="assetToggleCfgMode()"><span class="knob"></span><em>'+(_astW.cfgMode==='json'?'JSON 输入':'表单填写')+'</em></button></div></div>';
   if(_astW.cfgMode==='json'){
     if(!_astW.json) _astW.json=JSON.stringify(assetJsonFromValues(type,v),null,2);
@@ -18153,11 +18516,21 @@ function assetStepNumber(id,delta){var el=document.getElementById(id);if(!el)ret
 function assetTogglePassword(id,button){var el=document.getElementById(id);if(!el)return;el.type=el.type==='password'?'text':'password';var icon=button&&button.querySelector('i');if(icon){icon.className=el.type==='password'?'fa-regular fa-eye-slash':'fa-regular fa-eye';}}
 function assetCollectWizard(){
   if(_astW.step!==1)return;
-  var name=document.getElementById('aw_name'),desc=document.getElementById('aw_desc');
+  var name=document.getElementById('aw_name'),desc=document.getElementById('aw_desc'),metaSpec=document.getElementById('aw_metaSpecId'),metaSpecVersion=document.getElementById('aw_metaSpecVersion');
   if(name)_astW.values.name=name.value;if(desc)_astW.values.description=desc.value;
+  if(metaSpec)_astW.values.metaSpecId=metaSpec.value;
+  if(metaSpecVersion)_astW.values.metaSpecVersion=metaSpecVersion.value;
   if(_astW.cfgMode==='json'){var json=document.getElementById('aw_json');if(json)_astW.json=json.value;return;}
   assetTypeMeta(_astW.type).params.forEach(function(p){var el=document.getElementById('aw_'+p[0]);if(!el)return;_astW.values[p[0]]=p[4]==='switch'?el.checked:el.value;});
 }
+function assetMetadataSpecChanged(value){
+  assetCollectWizard();
+  _astW.values.metaSpecId=value;
+  var term=value?metadataTermById(value):null,published=term&&metadataPublishedVersion(term);
+  _astW.values.metaSpecVersion=published?published.version:'';
+  renderAssetWizard();
+}
+function assetMetadataVersionChanged(value){_astW.values.metaSpecVersion=value;}
 function assetSetCfgMode(mode){
   assetCollectWizard();
   if(mode==='form'&&_astW.cfgMode==='json'&&_astW.json){try{assetApplyJsonToValues(_astW.type,JSON.parse(_astW.json));}catch(e){showToast('JSON 格式有误，请修正后切换','error');return;}}
@@ -18175,13 +18548,20 @@ function assetJsonFromValues(type,values){
 }
 function assetApplyJsonToValues(type,json){
   var reverse={};Object.keys(ASSET_JSON_KEYS[type]||{}).forEach(function(k){reverse[ASSET_JSON_KEYS[type][k]]=k;});
-  Object.keys(json||{}).forEach(function(key){var local=reverse[key]||key;_astW.values[local]=json[key];});
+  Object.keys(json||{}).forEach(function(key){var local=reverse[key]||key;if(local==='metaSpecId'||local==='metaSpecVersion')return;_astW.values[local]=json[key];});
 }
 function assetValidateWizard(){
   assetCollectWizard();
   var name=(_astW.values.name||'').trim();if(!name){showToast('请输入资产库名称','error');return false;}
   if(_astW.cfgMode==='json'){
     try{assetApplyJsonToValues(_astW.type,JSON.parse(_astW.json||'{}'));}catch(e){showToast('连接配置 JSON 格式有误','error');return false;}
+  }
+  if(_astW.values.metaSpecId&&!_astW.values.metaSpecVersion){showToast('选择元数据规范后必须选择规范版本','error');return false;}
+  if(_astW.values.metaSpecId){
+    var term=metadataTermById(_astW.values.metaSpecId),version=term&&metadataFindVersion(term,_astW.values.metaSpecVersion),edit=(GOV.assets||[]).find(function(a){return a.id===_astW.editId;});
+    if(!term||!version){showToast('当前规范版本未返回，请重新选择规范版本','error');return false;}
+    var retainingHistorical=edit&&edit.metaSpecId===_astW.values.metaSpecId&&edit.metaSpecVersion===_astW.values.metaSpecVersion;
+    if(version.status!=='已发布'&&!retainingHistorical){showToast('仅支持选择已发布的规范版本','error');return false;}
   }
   var missing=assetTypeMeta(_astW.type).params.find(function(p){var value=_astW.values[p[0]];return p[2]&&(value===undefined||value===null||String(value).trim()==='');});
   if(missing){showToast('请填写'+missing[1],'error');return false;}return true;
@@ -18190,13 +18570,13 @@ function assetTestConnection(){if(!assetValidateWizard())return;showToast('正�
 function submitAssetCreate(){
   if(!assetValidateWizard())return;
   var now=assetNow(),cfg=assetConfigFromValues(_astW.type,_astW.values),name=_astW.values.name.trim(),edit=(GOV.assets||[]).find(function(a){return a.id===_astW.editId;});
-  if(edit){edit.name=name;edit.description=_astW.values.description||'';edit.config=cfg;edit.address=assetAddressFromConfig(_astW.type,cfg);edit.utime=now;edit.status='连接正常';}
+  if(edit){edit.name=name;edit.description=_astW.values.description||'';edit.config=cfg;edit.metaSpecId=_astW.values.metaSpecId||'';edit.metaSpecVersion=_astW.values.metaSpecVersion||'';edit.address=assetAddressFromConfig(_astW.type,cfg);edit.utime=now;edit.status='连接正常';}
   else{
     var max=(GOV.assets||[]).reduce(function(m,a){return Math.max(m,parseInt(String(a.id||'').replace(/\D/g,''),10)||0);},0),id='AST-'+String(max+1).padStart(4,'0');
-    GOV.assets.unshift({id:id,name:name,type:_astW.type,address:assetAddressFromConfig(_astW.type,cfg),org:'-',status:'连接正常',description:_astW.values.description||'',useCount:0,ctime:now,utime:now,config:cfg,pipeline:'-',fields:0,scale:'-',quality:'优',dataSources:[],metaSpecId:''});
-    window.ASSET_LIB_LIST=window.ASSET_LIB_LIST||[];window.ASSET_LIB_LIST.unshift({id:id,name:name,specId:''});
+    GOV.assets.unshift({id:id,name:name,type:_astW.type,address:assetAddressFromConfig(_astW.type,cfg),org:'-',status:'连接正常',description:_astW.values.description||'',useCount:0,ctime:now,utime:now,config:cfg,pipeline:'-',fields:0,scale:'-',quality:'优',dataSources:[],metaSpecId:_astW.values.metaSpecId||'',metaSpecVersion:_astW.values.metaSpecVersion||''});
+    window.ASSET_LIB_LIST=window.ASSET_LIB_LIST||[];window.ASSET_LIB_LIST.unshift({id:id,name:name,specId:_astW.values.metaSpecId||'',specVersion:_astW.values.metaSpecVersion||''});
   }
-  if(edit){var sink=(window.ASSET_LIB_LIST||[]).find(function(x){return x.id===edit.id;});if(sink)sink.name=name;}
+  if(edit){var sink=(window.ASSET_LIB_LIST||[]).find(function(x){return x.id===edit.id;});if(sink){sink.name=name;sink.specId=edit.metaSpecId||'';sink.specVersion=edit.metaSpecVersion||'';}}
   closeModal();renderAssetsPage();showToast('资产库「'+name+'」已保存','success');
 }
 function assetAddressFromConfig(type,cfg){
@@ -20605,6 +20985,7 @@ function qcTaskSubmit(){
   var version=qcPipelineVersion(pipeline),now=qcNow();
   QC.tasks.unshift({
     no:'QC-'+String(nextNo).padStart(4,'0'),name:taskName,pipelineNo:pipeline.no,pipeline:pipeline.no+'-'+version,pipelineName:pipeline.name,pipelineVersion:version,
+    metadataStandardSnapshot:(typeof metadataBindingSnapshot==='function'?metadataBindingSnapshot(pipeline):null),
     target:targetSummary,dataRange:savedRange,dataRangeMode:rangeMode,customSql:rangeMode==='sql'?String(_qcTaskDataRange.customSql||'').trim():'',qcOperatorCount:pipeline.qcNodes.length,qcNodes:qcClone(pipeline.qcNodes),ruleTemplateIds:selectedTemplates.map(function(item){return item.id;}),ruleTemplates:qcClone(selectedTemplates),
     executionCycle:_qcSchedule.mode,enableStatus:'已启用',scheduleCycle:periodic?_qcSchedule.frequency:'',scheduleFrequency:periodic?_qcSchedule.frequency:'',scheduleStartDate:periodic?_qcSchedule.startDate:'',scheduleEndDate:periodic?_qcSchedule.endDate:'',scheduleTime:periodic?_qcSchedule.time:'',
     status:'待执行',statusCode:'not_run',abn:'-',totalData:'0',rtime:'-',nextRun:'-',creator:'当前用户',ctime:now.slice(0,16),desc:'按所选质量规则模板执行检查，数据范围来自数据流 '+pipeline.name+'（'+version+'）。',runs:[],logs:[{time:now,type:'创建',user:'当前用户',content:'创建质检任务并绑定数据流 '+pipeline.no+'-'+version+'，选择 '+selectedTemplates.length+' 个质量规则模板'}]
@@ -20745,7 +21126,7 @@ function openQcTaskForm(preserve){
 function qcEnsureTaskDetailProxy(task){
   if(!task||typeof TASK_DETAIL_DATA==='undefined')return null;
   var runs=qcEnsureRunIds(task);
-  TASK_DETAIL_DATA[task.no]={id:task.no,name:task.name,type:'质检任务',executionMethod:task.executionMethod,executionCycle:task.executionCycle,sched:qcExecutionCycleLabel(task),enableStatus:task.enableStatus||'已启用',pipeline:task.pipeline,pipelineNo:task.pipelineNo,pipelineName:task.pipelineName,pipelineVersion:task.pipelineVersion,source:task.target,target:'质检报告',status:task.status,statusCode:qcTaskStatus(task).code,creator:task.creator,ctime:task.ctime,execTime:task.rtime,desc:task.desc,totalData:task.totalData||'0',nextRun:task.nextRun||'-',abn:task.abn,qcNodes:qcTaskNodes(task),ruleTemplateIds:task.ruleTemplateIds||[],ruleTemplates:task.ruleTemplates||[],runs:task.runs||[],logs:task.logs||[]};
+  TASK_DETAIL_DATA[task.no]={id:task.no,name:task.name,type:'质检任务',executionMethod:task.executionMethod,executionCycle:task.executionCycle,sched:qcExecutionCycleLabel(task),enableStatus:task.enableStatus||'已启用',pipeline:task.pipeline,pipelineNo:task.pipelineNo,pipelineName:task.pipelineName,pipelineVersion:task.pipelineVersion,metadataStandardSnapshot:(typeof metadataClone==='function'?metadataClone(task.metadataStandardSnapshot||null):JSON.parse(JSON.stringify(task.metadataStandardSnapshot||null))),source:task.target,target:'质检报告',status:task.status,statusCode:qcTaskStatus(task).code,creator:task.creator,ctime:task.ctime,execTime:task.rtime,desc:task.desc,totalData:task.totalData||'0',nextRun:task.nextRun||'-',abn:task.abn,qcNodes:qcTaskNodes(task),ruleTemplateIds:task.ruleTemplateIds||[],ruleTemplates:task.ruleTemplates||[],runs:task.runs||[],logs:task.logs||[]};
   return TASK_DETAIL_DATA[task.no];
 }
 function qcInvalidateRunCache(taskNo){if(typeof TASK_RUN_DETAIL_CACHE==='undefined')return;Object.keys(TASK_RUN_DETAIL_CACHE).forEach(function(key){if(key.indexOf('RUN-'+taskNo+'-')===0)delete TASK_RUN_DETAIL_CACHE[key];});}
@@ -20804,7 +21185,7 @@ function renderQcTaskPipelineInfo(task){
   var snapshotEmpty=!hasSnapshot||!nodes.length;
   box.innerHTML='<section class="td-flow-binding"><div class="td-flow-binding-head"><span class="td-flow-icon"><i class="fa-solid fa-diagram-project"></i></span><div class="td-flow-heading"><div class="td-flow-section-kicker">绑定的数据流</div><div class="td-flow-name">'+esc(task.pipelineName||task.pipelineNo||'-')+'</div></div><button class="btn btn-outline btn-sm td-flow-detail-btn" onclick="openQcTaskRelatedPipeline(\''+esc(task.no)+'\')"><i class="fa-solid fa-arrow-up-right-from-square"></i> 查看数据流详情</button></div>'
     + '<div class="td-flow-meta"><div class="td-flow-meta-item"><span class="td-flow-meta-label">数据流编号</span><span class="td-flow-meta-value td-flow-code">'+esc(task.pipelineNo||'-')+'</span></div><div class="td-flow-meta-item"><span class="td-flow-meta-label">绑定版本</span><span class="td-flow-meta-value td-flow-code">'+esc(task.pipelineVersion||'-')+'</span></div><div class="td-flow-meta-item"><span class="td-flow-meta-label">版本状态</span><span class="td-flow-meta-value">'+statusToTag(versionStatusCode,versionStatus)+'</span></div></div></section>'
-    + '<section class="td-flow-scope"><div class="td-flow-scope-title">质检算子配置快照 · '+nodes.length+' 个节点</div><div class="td-flow-scope-grid"><div class="td-flow-field"><span class="td-flow-field-label">目标数据集</span><span class="td-flow-field-value">'+esc(qcPipelineTargetSummary({qcNodes:nodes}))+'</span></div><div class="td-flow-field"><span class="td-flow-field-label">检查字段 / 字段对</span><span class="td-flow-field-value">'+esc(qcPipelineRangeSummary({qcNodes:nodes}))+'</span></div><div class="td-flow-field"><span class="td-flow-field-label">质检算子</span><span class="td-flow-field-value">'+esc(nodes.map(function(node){return node.operator;}).join('、')||'-')+'</span></div><div class="td-flow-field"><span class="td-flow-field-label">算子数量</span><span class="td-flow-field-value">'+nodes.length+' 个</span></div></div></section>'
+    + '<section class="td-flow-scope"><div class="td-flow-scope-title">质检算子配置快照 · '+nodes.length+' 个节点</div><div class="td-flow-scope-grid"><div class="td-flow-field"><span class="td-flow-field-label">目标数据集</span><span class="td-flow-field-value">'+esc(qcPipelineTargetSummary({qcNodes:nodes}))+'</span></div><div class="td-flow-field"><span class="td-flow-field-label">检查字段 / 字段对</span><span class="td-flow-field-value">'+esc(qcPipelineRangeSummary({qcNodes:nodes}))+'</span></div><div class="td-flow-field"><span class="td-flow-field-label">质检算子</span><span class="td-flow-field-value">'+esc(nodes.map(function(node){return node.operator;}).join('、')||'-')+'</span></div><div class="td-flow-field"><span class="td-flow-field-label">算子数量</span><span class="td-flow-field-value">'+nodes.length+' 个</span></div>'+metadataBindingSnapshotHTML(task.metadataStandardSnapshot)+'</div></section>'
     + (snapshotEmpty?'<div class="td-note" style="margin:12px">当前任务未保存质检配置快照，无法使用当前数据流配置补齐历史任务。</div>':'<div class="qc-detail-node-list">'+nodes.map(qcNodeSnapshotHtml).join('')+'</div>')
     + '<div class="td-flow-version-note"><i class="fa-solid fa-circle-info"></i><span>任务保存创建时的数据流版本和质检算子配置快照；数据流发布新版本后，本任务不会自动切换。</span></div>';
 }
@@ -20887,7 +21268,7 @@ function confirmDeleteQcRun(){
 }
 function startQcTask(taskNo,trigger){
   var task=qcFindTask(taskNo);if(!task)return;var state=qcTaskStatus(task);if(state.code==='running'){showToast('质检任务正在执行中','warning');return;}
-  var now=qcNow();task.runs=task.runs||[];qcEnsureTaskDetailProxy(task);var nextRunSeq=task.runs.reduce(function(max,run){var n=parseInt(String(run.runId||'').split('-').pop(),10)||0;return Math.max(max,n);},0)+1;task.status='执行中';task.statusCode='running';task.abn='-';task.rtime=now.slice(0,16);task.runs.unshift({runId:'RUN-'+task.no+'-'+String(nextRunSeq).padStart(3,'0'),time:now.slice(0,16),status:'进行中',duration:'—',data:task.totalData||'0',abn:0,trigger:trigger||'手动执行',error:''});task.logs=task.logs||[];task.logs.unshift({time:now,type:trigger==='整任务重试'?'重试':'启动',user:'当前用户',content:trigger==='整任务重试'?'从头执行全部质检规则，不从失败规则继续':'用户手动启动质检任务'});qcInvalidateRunCache(taskNo);qcEnsureTaskDetailProxy(task);renderQcTasksPage();if(_currentQcTaskNo===taskNo)renderQcTaskDetail(taskNo);if(trigger!=='整任务重试'&&typeof platformAuditRecord==='function')platformAuditRecord({module:'数据质量',action:'启动',objectType:'质检任务',objectId:task.no,objectName:task.name,result:'成功',summary:'手动启动质检任务并创建运行批次',taskId:task.no,runId:task.runs[0].runId,nodeId:'',changes:[{field:'任务状态',before:state.label||'当前未返回',after:'执行中'}]});showToast(trigger==='整任务重试'?'已创建新的执行批次，并从头执行全部质检规则':'质检任务已启动','success');
+  var now=qcNow();task.runs=task.runs||[];qcEnsureTaskDetailProxy(task);var nextRunSeq=task.runs.reduce(function(max,run){var n=parseInt(String(run.runId||'').split('-').pop(),10)||0;return Math.max(max,n);},0)+1;task.status='执行中';task.statusCode='running';task.abn='-';task.rtime=now.slice(0,16);task.runs.unshift({runId:'RUN-'+task.no+'-'+String(nextRunSeq).padStart(3,'0'),time:now.slice(0,16),status:'进行中',duration:'—',data:task.totalData||'0',abn:0,trigger:trigger||'手动执行',error:'',metadataStandardSnapshot:(typeof metadataClone==='function'?metadataClone(task.metadataStandardSnapshot||null):JSON.parse(JSON.stringify(task.metadataStandardSnapshot||null)))});task.logs=task.logs||[];task.logs.unshift({time:now,type:trigger==='整任务重试'?'重试':'启动',user:'当前用户',content:trigger==='整任务重试'?'从头执行全部质检规则，不从失败规则继续':'用户手动启动质检任务'});qcInvalidateRunCache(taskNo);qcEnsureTaskDetailProxy(task);renderQcTasksPage();if(_currentQcTaskNo===taskNo)renderQcTaskDetail(taskNo);if(trigger!=='整任务重试'&&typeof platformAuditRecord==='function')platformAuditRecord({module:'数据质量',action:'启动',objectType:'质检任务',objectId:task.no,objectName:task.name,result:'成功',summary:'手动启动质检任务并创建运行批次',taskId:task.no,runId:task.runs[0].runId,nodeId:'',changes:[{field:'任务状态',before:state.label||'当前未返回',after:'执行中'}]});showToast(trigger==='整任务重试'?'已创建新的执行批次，并从头执行全部质检规则':'质检任务已启动','success');
 }
 function openQcWholeTaskRetry(taskNo){
   var task=qcFindTask(taskNo);if(!task)return;_pendingQcTaskNo=taskNo;buildModal('整任务重试','<div style="font-size:13px;color:var(--gray-700);line-height:1.75">确认重新执行质检任务 <b>'+esc(task.name)+'</b>？</div><div class="td-note"><b>执行范围：</b>从头执行全部质检规则。系统将创建新的执行批次并保留历史记录，不从失败规则继续。</div><div class="form-group" style="margin-top:14px"><label class="form-label">重试原因<span class="req">*</span></label><textarea class="form-textarea" id="qcRetryReason" placeholder="请填写整任务重试原因"></textarea></div>','<button class="btn btn-outline" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="confirmQcWholeTaskRetry()"><i class="fa-solid fa-rotate-right"></i> 确认重试</button>','560px');
@@ -21392,6 +21773,7 @@ function renderTaskPipelineInfo(data) {
   var scopeHtml=scopeFields.map(function(item){
     return '<div class="td-flow-field"><span class="td-flow-field-label">'+esc(item[0])+'</span><span class="td-flow-field-value">'+esc(item[1])+'</span></div>';
   }).join('');
+  scopeHtml+=metadataBindingSnapshotHTML(data.metadataStandardSnapshot);
   box.innerHTML='<section class="td-flow-binding">'
     + '<div class="td-flow-binding-head"><span class="td-flow-icon"><i class="fa-solid fa-diagram-project"></i></span><div class="td-flow-heading"><div class="td-flow-section-kicker">绑定的数据流</div><div class="td-flow-name">'+esc(data.pipelineName||pipelineNo)+'</div></div>'
     + '<button class="btn btn-outline btn-sm td-flow-detail-btn" onclick="openTaskRelatedPipeline(\''+esc(data.id)+'\')"><i class="fa-solid fa-arrow-up-right-from-square"></i> 查看数据流详情</button></div>'
@@ -21574,7 +21956,7 @@ function getTaskRunDetail(taskId, index){
   if(TASK_RUN_DETAIL_CACHE[key]) return TASK_RUN_DETAIL_CACHE[key];
   var issue=taskRunIssue(task,run,index), nodes=taskRunBuildNodes(task,run,index), output=nodes.length?nodes[nodes.length-1].output:0;
   var failedNode=run.failedNode||(issue&&run.status==='失败'?((nodes.filter(function(node){return node.status==='fail';})[0]||{}).name||''):'');
-  var detail={key:key,runId:key,taskId:task.id,runIndex:index,taskName:task.name,pipeline:task.pipeline,pipelineName:task.pipelineName,trigger:run.trigger||taskExecutionMethod(task),status:runStatusLabel(run.status),statusCode:runStatusCode(run.status),startTime:run.time,duration:run.duration||'—',input:taskRunNumber(run.data||task.totalData),output:output,warningCount:task.type==='质检任务'?taskRunNumber(run.abn||task.abn):(issue&&issue.type==='脏数据'?issue.dirtyData:(run.dirtyData||0)),issue:issue,failedNode:failedNode,nodes:nodes,logs:taskRunBuildLogs(task,run,nodes,issue),lastRefresh:taskRunNow(),retryCount:0};
+  var detail={key:key,runId:key,taskId:task.id,runIndex:index,taskName:task.name,pipeline:task.pipeline,pipelineName:task.pipelineName,metadataStandardSnapshot:(typeof metadataClone==='function'?metadataClone(run.metadataStandardSnapshot||null):JSON.parse(JSON.stringify(run.metadataStandardSnapshot||null))),trigger:run.trigger||taskExecutionMethod(task),status:runStatusLabel(run.status),statusCode:runStatusCode(run.status),startTime:run.time,duration:run.duration||'—',input:taskRunNumber(run.data||task.totalData),output:output,warningCount:task.type==='质检任务'?taskRunNumber(run.abn||task.abn):(issue&&issue.type==='脏数据'?issue.dirtyData:(run.dirtyData||0)),issue:issue,failedNode:failedNode,nodes:nodes,logs:taskRunBuildLogs(task,run,nodes,issue),lastRefresh:taskRunNow(),retryCount:0};
   TASK_RUN_DETAIL_CACHE[key]=detail;
   return detail;
 }
@@ -21619,6 +22001,8 @@ function renderTaskRunDetail(runId){
   var setText=function(id,value){var el=document.getElementById(id);if(el)el.textContent=value;};
   setText('trdStartTime',detail.startTime);setText('trdTrigger','触发方式：'+detail.trigger);setText('trdDuration',detail.duration);setText('trdLastRefresh','最近刷新：'+detail.lastRefresh);setText('trdRunId',detail.runId);setText('trdTaskId',detail.taskId);setText('trdPipeline',detail.pipeline);
   var done=detail.nodes.filter(function(n){return n.status==='success'||n.status==='skipped';}).length;setText('trdNodeProgress',done+'/'+detail.nodes.length);setText('trdFailedNode',detail.failedNode?'异常节点：'+detail.failedNode:'无失败节点');setText('trdDataSummary',taskRunFormatNumber(detail.input)+' / '+taskRunFormatNumber(detail.output));setText('trdWarningSummary',detail.warningCount?'异常数据：'+taskRunFormatNumber(detail.warningCount)+' 条':'无异常数据');setText('trdLogRefreshStatus','');
+  var metadataBox=document.getElementById('taskRunMetadataSnapshot');
+  if(metadataBox)metadataBox.innerHTML='<div class="td-flow-scope-title">元数据规范配置快照</div><div class="td-flow-scope-grid">'+metadataBindingSnapshotHTML(detail.metadataStandardSnapshot)+'</div><div class="td-note" style="margin-top:12px">以下为本次运行保存的规范版本，不随当前元数据规范或任务配置变化。</div>';
   if(_currentTaskRunNodeId&&!detail.nodes.some(function(n){return n.id===_currentTaskRunNodeId;})){_currentTaskRunNodeId=null;_currentTaskRunSubtaskIndex=null;}
   renderTaskRunActions(detail);renderTaskRunGraph(detail);
   if(_currentTaskRunNodeId){setTaskRunNodePanelVisible(true);renderTaskRunNodePanel(detail,_currentTaskRunNodeId);taskRunCenterSelectedNode();}
@@ -21923,7 +22307,7 @@ function confirmWholeTaskRetry(){
   var detail=findTaskRunDetail(_currentTaskRunKey),task=detail&&TASK_DETAIL_DATA[detail.taskId],reason=((document.getElementById('trdRetryReason')||{}).value||'').trim();if(!detail||!task)return;
   if(!reason){showToast('请填写重试原因','warning');return;}
   taskEnsureStableRunIds(task);var now=taskRunNow(),newRunId=taskNextRunId(task),oldRunId=detail.runId;
-  task.runs.unshift({runId:newRunId,time:now,status:'进行中',duration:'—',data:task.totalData||'0',error:'',trigger:'整任务重试'});
+  task.runs.unshift({runId:newRunId,time:now,status:'进行中',duration:'—',data:task.totalData||'0',error:'',trigger:'整任务重试',metadataStandardSnapshot:(typeof metadataClone==='function'?metadataClone(task.metadataStandardSnapshot||null):JSON.parse(JSON.stringify(task.metadataStandardSnapshot||null)))});
   task.status='运行中';task.statusCode='running';task.execTime=now;task.logs=task.logs||[];task.logs.unshift({time:now,type:'重试',user:PLATFORM_LOG_VIEWER.name||'当前用户',content:'整任务重试；从头执行全部节点；原因：'+reason});
   if(typeof DATA!=='undefined'&&DATA.tasks)DATA.tasks.forEach(function(item){if(item.no===task.id)item.status='运行中';});
   if(typeof platformAuditRecord==='function')platformAuditRecord({module:'任务管理',action:'重试',objectType:'任务运行',objectId:newRunId,objectName:task.name,result:'成功',summary:'创建新的执行批次并从头执行全部节点',operationReason:reason,taskId:task.id,runId:newRunId,nodeId:'',changes:[{field:'执行批次',before:oldRunId,after:newRunId},{field:'执行范围',before:'-',after:'从头执行全部节点'}]});
@@ -21993,7 +22377,7 @@ function startTask(taskId) {
   task.execTime=now;
   task.runs=task.runs||[];
   taskEnsureStableRunIds(task);var newRunId=taskNextRunId(task);
-  task.runs.unshift({runId:newRunId,time:now,status:'进行中',duration:'—',data:task.totalData||'0',error:'',trigger:'手动执行'});
+  task.runs.unshift({runId:newRunId,time:now,status:'进行中',duration:'—',data:task.totalData||'0',error:'',trigger:'手动执行',metadataStandardSnapshot:(typeof metadataClone==='function'?metadataClone(task.metadataStandardSnapshot||null):JSON.parse(JSON.stringify(task.metadataStandardSnapshot||null)))});
   task.logs=task.logs||[];
   task.logs.unshift({time:now,type:'启动',user:'管理员',content:'用户手动启动任务'});
   var cachePrefix='RUN-'+String(taskId).replace(/^JOB-/,'')+'-';
